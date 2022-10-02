@@ -36,7 +36,7 @@ public class TrashCan : InteractableObject
             if (interactable.name == "Pizza")
             {
                 onPizza = true;
-                (interactable as Pizza).AddTopping("Pineapple");
+                PlayController.instance.AddPineapple();
             }
         }
         currPineapple.Drop(onPizza);

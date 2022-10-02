@@ -5,6 +5,7 @@ using UnityEngine;
 public class ConveyorBelt : MonoBehaviour
 {
     public GameObject beltPrefab;
+    public Pizza pizzaPrefab;
 
     private const float beltTopBound = 1;
     private const float beltBottomBound = -9;
@@ -51,9 +52,23 @@ public class ConveyorBelt : MonoBehaviour
 
                 if (child.localPosition.y <= beltBottomBound)
                 {
-                    GameObject.Destroy(child.gameObject);
+                    if (beltData != null)
+                    {
+                        GameObject.Destroy(child.gameObject);
+                    }
+                    else
+                    {
+                        PlayController.instance.EndLevel();
+                    }
                 }
             }
         }
+    }
+
+    public Pizza CreatePizza()
+    {
+        Pizza pizza = Instantiate(pizzaPrefab, transform.position + new Vector3(0, beltTopBound), Quaternion.identity, transform);
+        pizza.name = "Pizza";
+        return pizza;
     }
 }

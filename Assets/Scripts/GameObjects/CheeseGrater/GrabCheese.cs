@@ -43,7 +43,8 @@ public class GrabCheese : GrabbableObject
                 cheeseTimer += Time.deltaTime;
                 if (!cheeseAdded && cheeseTimer >= cheeseAddedTime)
                 {
-                    GameObject.FindObjectOfType<Pizza>().AddTopping("Cheese " + (cheeseType == Constants.CheeseTypes.Ball ? "Ball" : cheeseType == Constants.CheeseTypes.Cube ? "Cube" : "Triangle"));
+                    // TODO Force release mouse
+                    PlayController.instance.SetCheese(cheeseType);
                     cheeseAdded = true;
                 }
             }

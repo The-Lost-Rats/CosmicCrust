@@ -11,8 +11,7 @@ public class VeggieQuad : InteractableObject
 
     private DroppableObject currInstance;
 
-    [SerializeField]
-    public string toppingName = "Mushroom";
+    [SerializeField] private Constants.Vegetables vegetableType = Constants.Vegetables.Mushroom;
 
     private Vector3 originalScale = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -42,8 +41,8 @@ public class VeggieQuad : InteractableObject
         {
             if (interactable.name == "Pizza")
             {
+                PlayController.instance.AddVegetable(vegetableType);
                 onPizza = true;
-                (interactable as Pizza).AddTopping(toppingName);
             }
         }
         currInstance.Drop(onPizza);
