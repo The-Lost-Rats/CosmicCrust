@@ -43,6 +43,7 @@ public class DeliveryManager : MonoBehaviour
 
     private List<Constants.Meats> PopulateMeatList(List<Constants.Meats> requiredMeats, int boxesToDeliver)
     {
+        List<Constants.Meats> finalMeats = new List<Constants.Meats>(requiredMeats);
         int initialCount = requiredMeats.Count;
         // Need to fill in with random meat up to boxes to deliver
         for ( int i = 0; i < boxesToDeliver - initialCount; i++ )
@@ -51,9 +52,18 @@ public class DeliveryManager : MonoBehaviour
             Constants.Meats meatType = meatTypes[meatIdx];
 
             // Eh what the heck - let's just add to required meats and return that...
-            requiredMeats.Add(meatType);
+            // This bit me in the butt gosh darn it - make a new list <_<
+            finalMeats.Add(meatType);
         }
 
-        return requiredMeats;
+        // Shuffle list of meats
+        for ( int i = 0; i < finalMeats.Count; i++ ) {
+            Constants.Meats temp = finalMeats[i];
+            int randomIndex = Random.Range(i, finalMeats.Count);
+            finalMeats[i] = finalMeats[randomIndex];
+            finalMeats[randomIndex] = temp;
+        }
+
+        return finalMeats;
     }
 }

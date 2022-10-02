@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 880931967355455930, guid: 4be8f342d9916674698b4720137cc771,
     type: 3}
-  meatType: 0
+  meatType: 3
   openSprite: {fileID: 21300000, guid: f05bf983cacbbec4aac79827ab907bf5, type: 3}
 --- !u!61 &8566946209792051806
 BoxCollider2D:

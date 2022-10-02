@@ -48,6 +48,7 @@ public class DeliveryTable : MonoBehaviour
             return false;
         }
 
+        // Remove previous boxes
         wipeBoxes = true;
 
         foreach (Constants.Meats meatType in meatBoxes)

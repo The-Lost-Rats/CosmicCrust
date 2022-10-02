@@ -126,5 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 880931967355455930, guid: 08ae367308f02894faa63bb0dead8f24,
     type: 3}
-  meatType: 0
+  meatType: 2
   openSprite: {fileID: 21300000, guid: f05bf983cacbbec4aac79827ab907bf5, type: 3}

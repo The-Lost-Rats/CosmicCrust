@@ -53,15 +53,6 @@ public class GameController : MonoBehaviour {
             // Set time to 0 to freeze everything
             Time.timeScale = 0.0f;
         }
-
-        // TODO: remove this - this is just for testing
-        if( Input.GetKeyDown(KeyCode.R) )
-        {
-            List<Constants.Meats> meats = new List<Constants.Meats>();
-            meats.Add(Constants.Meats.Pepperoni);
-
-            DeliveryManager.dmInstance.DeliverMeat(meats);
-        }
     }
 
     private void OnSceneUnloaded( Scene unloadedScene ) {
