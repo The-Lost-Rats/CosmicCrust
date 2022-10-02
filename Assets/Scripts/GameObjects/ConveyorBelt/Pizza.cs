@@ -118,7 +118,7 @@ public class Pizza : InteractableObject
 
     public bool SetSauce(Constants.Sauces sauce)
     {
-        if (pizzaData.sauce == sauce)
+        if (pizzaData.sauce != sauce)
         {
             pizzaData.sauce = sauce;
             for (int i = 0; i < sauceImages.Count; i++)

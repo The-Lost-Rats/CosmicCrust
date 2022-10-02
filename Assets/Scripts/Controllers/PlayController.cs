@@ -8,6 +8,7 @@ public class PlayController : MonoBehaviour
 
     public ConveyorBelt conveyorBelt;
     public Pizza displayPizza;
+    public ToppingsDisplay toppingsDisplay;
 
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
@@ -84,6 +85,8 @@ public class PlayController : MonoBehaviour
         displayPizza.ResetPizza();
         displayPizza.SetPizza(currPizzaOrder);
 
+        toppingsDisplay.SetPizzaOrder(currPizzaOrder);
+
         // Ship meat
         DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
     }
@@ -102,6 +105,7 @@ public class PlayController : MonoBehaviour
             Debug.Log("Pizza incorrect");
         }
         displayPizza.gameObject.SetActive(false);
+        toppingsDisplay.ResetPizza();
 
         // pizzaIndex++; // TODO For now I just want to test with pizza 1
         GameObject.Destroy(currPizza.gameObject);
