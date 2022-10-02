@@ -4,28 +4,9 @@ using UnityEngine;
 
 public class Pineapple : GrabbableObject
 {
-    [Range(5, 20)]
-    [SerializeField]
-    private float fallingSpeed = 5;
-
-    private bool isFollowingMouse = true;
-
     protected override void OnUpdate(Vector2 mousePos)
     {
-        if (isFollowingMouse)
-        {
-            transform.position = mousePos;
-        }
-        else
-        {
-            Vector3 pos = transform.position;
-            pos.y -= fallingSpeed * Time.deltaTime;
-            transform.position = pos;
-            if (pos.y <= -9)
-            {
-                GameObject.Destroy(gameObject);
-            }
-        }
+        transform.position = mousePos;
     }
 
     public void DropPineapple(bool onPizza)
@@ -36,7 +17,7 @@ public class Pineapple : GrabbableObject
         }
         else
         {
-            isFollowingMouse = false;
+            DropObject();
         }
     }
 }
