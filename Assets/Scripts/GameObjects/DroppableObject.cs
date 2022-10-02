@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pineapple : GrabbableObject
+public class DroppableObject : GrabbableObject
 {
-    public void DropPineapple(bool onPizza)
+    public void Drop(bool onPizza)
     {
         if (onPizza)
         {
