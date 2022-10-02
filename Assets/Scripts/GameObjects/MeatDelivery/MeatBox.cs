@@ -19,6 +19,7 @@ public class MeatBox : InteractableObject
     public Sprite openSprite;
 
     private bool isOpen = false;
+    private bool isGrabbable = false;
 
     // private Vector3 originalScale = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -38,6 +39,11 @@ public class MeatBox : InteractableObject
         transform.localScale = new Vector3(1, 1);
     }
 
+    public override bool IsGrabbable()
+    {
+        return isGrabbable;
+    }
+
     public override InputController.InputState OnClick()
     {
         if (!isOpen)
@@ -52,6 +58,11 @@ public class MeatBox : InteractableObject
         }
         else
         {
+            if (!isGrabbable)
+            {
+                isGrabbable = true;
+            }
+            
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
             return InputController.InputState.Grabbing;
