@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Pineapple : GrabbableObject
 {
+    protected override void OnUpdate(Vector2 mousePos)
+    {
+        transform.position = mousePos;
+    }
+
     public void DropPineapple(bool onPizza)
     {
         if (onPizza)
@@ -12,7 +17,7 @@ public class Pineapple : GrabbableObject
         }
         else
         {
-            isFollowingMouse = false;
+            DropObject();
         }
     }
 }

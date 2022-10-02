@@ -7,22 +7,13 @@ public abstract class GrabbableObject : MonoBehaviour
     [Range(5, 20)]
     [SerializeField]
     protected float fallingSpeed = 5;
+    protected bool isFalling = false;
 
-    protected bool isFollowingMouse = true;
+    protected abstract void OnUpdate(Vector2 mousePos);
 
     void Update()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        OnUpdate(mousePosition);
-    }
-
-    protected void OnUpdate(Vector2 mousePos)
-    {
-        if (isFollowingMouse)
-        {
-            transform.position = mousePos;
-        }
-        else
+        if (isFalling)
         {
             Vector3 pos = transform.position;
             pos.y -= fallingSpeed * Time.deltaTime;
@@ -32,5 +23,15 @@ public abstract class GrabbableObject : MonoBehaviour
                 GameObject.Destroy(gameObject);
             }
         }
+        else
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            OnUpdate(mousePosition);
+        }
+    }
+
+    public void DropObject()
+    {
+        isFalling = true;
     }
 }
