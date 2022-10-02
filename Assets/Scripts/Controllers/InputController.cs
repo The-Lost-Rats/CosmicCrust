@@ -139,7 +139,7 @@ public class InputController : MonoBehaviour
             if (interactableList.Count > 0 && interactableList[0].isInteractable)
             {
                 inputState = interactableList[0].OnClick();
-                SetActiveCursor(CursorType.Grabber);
+                SetActiveCursor(interactableList[0].IsGrabbable() ? CursorType.Grabber : CursorType.Default);
                 currGrabbing = interactableList[0];
                 interactableList[0].OnExit();
             }

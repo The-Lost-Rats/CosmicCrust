@@ -20,4 +20,6 @@ public abstract class InteractableObject : MonoBehaviour
     private void OnMouseExit() {
         InputController.Instance.ExitInteractableObject(this);
     }
+
+    public virtual bool IsGrabbable() { return true; }
 }
