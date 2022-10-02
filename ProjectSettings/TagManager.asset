@@ -48,6 +48,9 @@ TagManager:
   - name: GameObjects
     uniqueID: 2878755495
     locked: 0
+  - name: Pizza
+    uniqueID: 1933481547
+    locked: 0
   - name: GrabbableObjects
     uniqueID: 4203311687
     locked: 0

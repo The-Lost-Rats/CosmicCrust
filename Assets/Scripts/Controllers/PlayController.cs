@@ -6,11 +6,14 @@ public class PlayController : MonoBehaviour
 {
     public static PlayController instance = null;
 
-    public Pizza pizzaPrefab;
+    public ConveyorBelt conveyorBelt;
 
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
-    private int numOrdersCompleted;
+    private int pizzaIndex;
+    private int score;
+    private Pizza currPizza;
+    private PizzaOrder currPizzaOrder;
 
     void Start()
     {
@@ -65,6 +68,98 @@ public class PlayController : MonoBehaviour
         }
 
         // Initialize the game
-        numOrdersCompleted = 0;
+        pizzaIndex = 0;
+        score = 0;
+
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        currPizza = conveyorBelt.CreatePizza();
+        currPizzaOrder = pizzaOrders[pizzaIndex];
+    }
+
+    public void EndLevel()
+    {
+        // TODO Check if complete and do other stuff
+        bool pizzaCorrect = currPizza.IsOrderCorrect(currPizzaOrder);
+        if (pizzaCorrect)
+        {
+            score++;
+            Debug.Log("Pizza correct!");
+        }
+        else
+        {
+            Debug.Log("Pizza incorrect");
+        }
+
+        // pizzaIndex++; // TODO For now I just want to test with pizza 1
+        GameObject.Destroy(currPizza.gameObject);
+
+        Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
+    }
+
+    public bool SetSauce(Constants.Sauces sauce)
+    {
+        if (currPizzaOrder.sauce != sauce)
+        {
+            return false;
+        }
+        return currPizza.SetSauce(sauce);
+    }
+
+    public bool SetCheese(Constants.CheeseTypes cheese)
+    {
+        if (currPizzaOrder.cheese != cheese)
+        {
+            return false;
+        }
+        return currPizza.SetCheese(cheese);
+    }
+
+    public bool AddMeat(Constants.Meats meat)
+    {
+        if (!currPizzaOrder.meats.Contains(meat))
+        {
+            return false;
+        }
+        return currPizza.AddMeat(meat);
+    }
+
+    public bool AddPepper(Constants.Peppers pepper)
+    {
+        if (!currPizzaOrder.peppers.Contains(pepper))
+        {
+            return false;
+        }
+        return currPizza.AddPepper(pepper);
+    }
+
+    public bool AddVegetable(Constants.Vegetables vegetable)
+    {
+        if (!currPizzaOrder.vegetables.Contains(vegetable))
+        {
+            return false;
+        }
+        return currPizza.AddVegetable(vegetable);
+    }
+
+    public bool AddGenericTopping(Constants.GenericToppings topping)
+    {
+        if (!currPizzaOrder.genericToppings.Contains(topping))
+        {
+            return false;
+        }
+        return currPizza.AddGenericTopping(topping);
+    }
+
+    public bool AddPineapple()
+    {
+        if (!currPizzaOrder.hasPineapple)
+        {
+            return false;
+        }
+        return currPizza.AddPineapple();
     }
 }
