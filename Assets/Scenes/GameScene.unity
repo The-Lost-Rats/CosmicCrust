@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 96211626}
   m_Layer: 8
   m_Name: Pizza
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1497163430}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &96211626
 SpriteRenderer:
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 168239402}
   m_Layer: 8
   m_Name: Belt
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 593838033}
   m_Layer: 8
   m_Name: Belt (1)
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 1320894803}
   m_Layer: 8
   m_Name: Belt (3)
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 1497163433}
   - component: {fileID: 1497163432}
   m_Layer: 8
-  m_Name: ConveyerBelt
+  m_Name: ConveyorBelt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,9 +1081,9 @@ RectTransform:
   - {fileID: 593838032}
   - {fileID: 1640807611}
   - {fileID: 1320894802}
+  - {fileID: 1624458704}
   - {fileID: 96211625}
   - {fileID: 2146319140}
-  - {fileID: 1624458704}
   m_Father: {fileID: 1640289833}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1624458705}
   m_Layer: 8
   m_Name: Belt (4)
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1157,7 +1157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1497163430}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1624458705
 SpriteRenderer:
@@ -1254,7 +1254,7 @@ GameObject:
   - component: {fileID: 1640807612}
   m_Layer: 8
   m_Name: Belt (2)
-  m_TagString: ConveyerBeltMovable
+  m_TagString: ConveyorBeltMovable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1352,7 +1352,7 @@ Transform:
   m_LocalScale: {x: 20, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 1497163430}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &2146319141
 SpriteMask:

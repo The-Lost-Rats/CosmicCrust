@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConveyerBelt : MonoBehaviour
+public class ConveyorBelt : MonoBehaviour
 {
     [Range(1, 5)]
     [SerializeField]
@@ -17,7 +17,7 @@ public class ConveyerBelt : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.tag == "ConveyerBeltMovable")
+            if (child.tag == "ConveyorBeltMovable")
             {
                 Vector3 pos = child.position;
                 pos.y -= 0.001f * speed;
