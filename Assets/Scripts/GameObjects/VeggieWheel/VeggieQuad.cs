@@ -1,30 +1,37 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrashCan : InteractableObject
+public class VeggieQuad : InteractableObject
 {
     public override bool isInteractable { get { return true; }}
     public override List<string> interactableObjects { get { return new List<string>{ "Pizza" }; }}
 
-    public DroppableObject pineapplePrefab;
+    public DroppableObject objectPrefab;
 
-    private DroppableObject currPineapple;
+    private DroppableObject currInstance;
+
+    [SerializeField]
+    public string toppingName = "Mushroom";
+
+    private Vector3 originalScale = new Vector3(0.0f, 0.0f, 0.0f);
 
     public override void OnEnter()
     {
-        transform.localScale = new Vector3(1.1f, 1.1f);
+        // store old scale and mult by 1.2
+        originalScale = transform.localScale;
+        transform.localScale = originalScale * 1.2f;
     }
 
     public override void OnExit()
     {
-        transform.localScale = new Vector3(1, 1);
+        transform.localScale = originalScale;
     }
 
     public override InputController.InputState OnClick()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currPineapple = Instantiate(pineapplePrefab, mousePosition, Quaternion.identity);
+        currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
         return InputController.InputState.Grabbing;
     }
 
@@ -36,11 +43,11 @@ public class TrashCan : InteractableObject
             if (interactable.name == "Pizza")
             {
                 onPizza = true;
-                (interactable as Pizza).AddTopping("Pineapple");
+                (interactable as Pizza).AddTopping(toppingName);
             }
         }
-        currPineapple.Drop(onPizza);
-        currPineapple = null;
+        currInstance.Drop(onPizza);
+        currInstance = null;
         return InputController.InputState.Default;
     }
 }
