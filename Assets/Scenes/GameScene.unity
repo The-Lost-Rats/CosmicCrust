@@ -1690,12 +1690,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497163429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fa85efd030c944bb81f0663bb61cd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1038562591edb7e4c9eab2e662998e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   beltPrefab: {fileID: 6524689128226065236, guid: d16ef73fc8c74f544ad977743c9633fd,
     type: 3}
-  speed: 5
+  speed: 1
 --- !u!114 &1497163432
 MonoBehaviour:
   m_ObjectHideFlags: 0
