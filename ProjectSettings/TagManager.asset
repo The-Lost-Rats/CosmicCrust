@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ConveyerBeltMovable
+  - ConveyorBeltMovable
   layers:
   - Default
   - TransparentFX
@@ -47,4 +47,7 @@ TagManager:
     locked: 0
   - name: GameObjects
     uniqueID: 2878755495
+    locked: 0
+  - name: GrabbableObjects
+    uniqueID: 4203311687
     locked: 0
