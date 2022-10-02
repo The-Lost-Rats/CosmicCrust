@@ -49,6 +49,9 @@ public class GameController : MonoBehaviour {
         if ( Input.GetKeyDown( KeyCode.Escape ) ) {
             SceneController.LoadLevel( SceneController.Level.PAUSE_MENU );
             SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
+
+            // Set time to 0 to freeze everything
+            Time.timeScale = 0.0f;
         }
     }
 
@@ -61,5 +64,8 @@ public class GameController : MonoBehaviour {
     private void ExitPauseMenu() {
         SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
         SceneManager.UnloadSceneAsync("PauseMenuScene");
+
+        // Unfreeze time
+        Time.timeScale = 1.0f;
     }
 }
