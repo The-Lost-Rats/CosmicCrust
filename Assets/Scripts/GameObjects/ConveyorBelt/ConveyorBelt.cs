@@ -27,7 +27,7 @@ public class ConveyorBelt : MonoBehaviour
             if (child.tag == "ConveyorBeltMovable")
             {
                 Vector3 pos = child.position;
-                pos.y -= 0.002f * speed;
+                pos.y -= speed * Time.deltaTime;
                 child.position = pos;
             }
         }
