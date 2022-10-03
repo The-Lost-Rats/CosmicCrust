@@ -62,6 +62,7 @@ public class InputController : MonoBehaviour
         Grabbing
     }
 
+    // Future Justin note: Don't need a list here, will only ever have 1 entry
     private List<InteractableObject> interactableList;
     private InteractableObject currGrabbing;
 
