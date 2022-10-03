@@ -33,44 +33,17 @@ public class GameController : MonoBehaviour {
             case SceneController.Level.MAIN_LEVEL:
                 RunGame();
                 break;
-            case SceneController.Level.PAUSE_MENU:
-                RunPauseMenu();
-                break;
-        }
-    }
-
-    void RunPauseMenu() {
-        if ( Input.GetKeyDown( KeyCode.Escape ) ) {
-            ExitPauseMenu();
         }
     }
 
     void RunGame() {
-        if ( Input.GetKeyDown( KeyCode.Escape ) ) {
-            SceneController.LoadLevel( SceneController.Level.PAUSE_MENU );
-            SceneManager.LoadScene("PauseMenuScene", LoadSceneMode.Additive);
-
-            // Set time to 0 to freeze everything
-            Time.timeScale = 0.0f;
-        }
     }
 
     private void OnSceneUnloaded( Scene unloadedScene ) {
-        if ( unloadedScene.name == "PauseMenuScene" ) {
-            ExitPauseMenu();
-        }
-        else if ( unloadedScene.name == "GameOverScene" )
+        if ( unloadedScene.name == "GameOverScene" )
         {
             RestartGame();
         }
-    }
-
-    private void ExitPauseMenu() {
-        SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
-        SceneManager.UnloadSceneAsync("PauseMenuScene");
-
-        // Unfreeze time
-        Time.timeScale = 1.0f;
     }
 
     private void RestartGame()

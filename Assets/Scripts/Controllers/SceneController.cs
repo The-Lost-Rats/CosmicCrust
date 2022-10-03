@@ -11,7 +11,6 @@ public class SceneController : MonoBehaviour {
     public enum Level {
         MAIN_MENU,
         MAIN_LEVEL,
-        PAUSE_MENU,
         GAME_OVER_MENU
     };
 
