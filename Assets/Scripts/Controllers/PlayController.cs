@@ -144,6 +144,9 @@ public class PlayController : MonoBehaviour
         // DESTROY THE PLANTS
         PlantManager.pmInstance.WipePlants();
 
+        // Wipe the meat!
+        DeliveryTable.dtInstance.WipeBoxes();
+
         if (numLives == 0)
         {
             GameController.instance.GameOver();
@@ -152,7 +155,7 @@ public class PlayController : MonoBehaviour
             WheelController.wcInstance.Reset();
             DrawerController.dcInstance.Reset();
             PlantManager.pmInstance.ResetWateringCan();
-            DeliveryTable.dtInstance.Reset();
+            DeliveryTable.dtInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
         }
         else
         {
