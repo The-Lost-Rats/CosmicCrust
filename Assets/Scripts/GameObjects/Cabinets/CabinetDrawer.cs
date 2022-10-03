@@ -7,11 +7,9 @@ public class CabinetDrawer : InteractableObject
     public override bool isInteractable { get { return true; }}
     public override List<string> interactableObjects { get { return new List<string>{}; }}
 
-    private const float drawerHeight = .8f;
+    private const float drawerHeight = .19f;
 
     [SerializeField] private Constants.GenericToppings topping;
-
-    private SpriteRenderer sr;
 
     private bool isMoving;
     private float mouseOffset;
@@ -19,18 +17,7 @@ public class CabinetDrawer : InteractableObject
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
         movementBounds = new float[]{transform.position.y - drawerHeight, transform.position.y};
-    }
-
-    public override void OnEnter()
-    {
-        sr.color = new Color(0.9f, 0.9f, 0.9f);
-    }
-
-    public override void OnExit()
-    {
-        sr.color = Color.white;
     }
 
     public override InputController.InputState OnClick()

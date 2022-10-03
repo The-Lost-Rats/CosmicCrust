@@ -8,23 +8,10 @@ public class DrawerTopping : InteractableObject
     public override List<string> interactableObjects { get { return new List<string>{ "Pizza" }; }}
 
     public DroppableObject toppingPrefab;
+    public Texture2D toppingTexture;
     private DroppableObject currInstance;
 
     [SerializeField] private Constants.GenericToppings toppingType = Constants.GenericToppings.Anchovy;
-
-    private Vector3 originalScale = Vector3.zero;
-
-    public override void OnEnter()
-    {
-        // store old scale and mult by 1.1
-        originalScale = transform.localScale;
-        transform.localScale = originalScale * 1.1f;
-    }
-
-    public override void OnExit()
-    {
-        transform.localScale = originalScale;
-    }
 
     public override InputController.InputState OnClick()
     {
@@ -32,8 +19,7 @@ public class DrawerTopping : InteractableObject
         currInstance = Instantiate(toppingPrefab, mousePosition, Quaternion.identity);
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         SpriteRenderer toppingRenderer = currInstance.GetComponent<SpriteRenderer>();
-        Texture2D currTexture = sr.sprite.texture;
-        toppingRenderer.sprite = Sprite.Create(currTexture, new Rect(0, 0, currTexture.width, currTexture.height), new Vector2(0.5f, 0.5f));
+        toppingRenderer.sprite = Sprite.Create(toppingTexture, new Rect(0, 0, toppingTexture.width, toppingTexture.height), new Vector2(0.5f, 0.5f));
         return InputController.InputState.Grabbing;
     }
 
