@@ -31,6 +31,8 @@ public class VeggieQuad : InteractableObject
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
+        SoundController.instance.PlaySingle("ingredientPickUp");
+
         return InputController.InputState.Grabbing;
     }
 
