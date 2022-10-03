@@ -54,15 +54,42 @@ public class ToppingsDisplay : MonoBehaviour
 
     [SerializeField] public Texture2D pineappleImage;
 
-    List<GameObject> toppingCells;
+    private List<SpriteRenderer> toppingCells;
+
+    private IDictionary<Constants.Meats, string> meatMapping = new Dictionary<Constants.Meats, string>{
+        {Constants.Meats.Beef, "Beef"},
+        {Constants.Meats.Chicken, "Chicken"},
+        {Constants.Meats.Pepperoni, "Pepperoni"},
+        {Constants.Meats.Sausage, "Sausage"},
+    };
+    private IDictionary<Constants.Peppers, string> peppersMapping = new Dictionary<Constants.Peppers, string>{
+        {Constants.Peppers.Bell, "Bell"},
+        {Constants.Peppers.Jalapeno, "Jalapeno"},
+        {Constants.Peppers.Serrano, "Serrano"},
+    };
+    private IDictionary<Constants.Vegetables, string> vegetablesMapping = new Dictionary<Constants.Vegetables, string>{
+        {Constants.Vegetables.BlackOlive, "BlackOlive"},
+        {Constants.Vegetables.GreenOlive, "GreenOlive"},
+        {Constants.Vegetables.Mushroom, "Mushroom"},
+        {Constants.Vegetables.Tomato, "Tomato"},
+    };
+    private IDictionary<Constants.GenericToppings, string> genericToppingMapping = new Dictionary<Constants.GenericToppings, string>{
+        {Constants.GenericToppings.Anchovy, "Anchovy"},
+        {Constants.GenericToppings.Garlic, "Garlic"},
+        {Constants.GenericToppings.Onion, "Onion"},
+        {Constants.GenericToppings.Shrimp, "Shrimp"},
+        {Constants.GenericToppings.Spinach, "Spinach"},
+        {Constants.GenericToppings.Squid, "Squid"},
+    };
+    private string pineappleMapping = "Pineapple";
 
     // Start is called before the first frame update
     void Awake()
     {
-        toppingCells = new List<GameObject>();
+        toppingCells = new List<SpriteRenderer>();
         foreach (Transform child in transform)
         {
-            toppingCells.Add(child.gameObject);
+            toppingCells.Add(child.gameObject.GetComponent<SpriteRenderer>());
         }
     }
 
@@ -137,12 +164,69 @@ public class ToppingsDisplay : MonoBehaviour
     {
         for (int i = 0; i < toppingCells.Count; i++)
         {
-            SpriteRenderer sr = toppingCells[i].GetComponent<SpriteRenderer>();
-            sr.sprite = null;
+            toppingCells[i].sprite = null;
             if (i < toppings.Count)
             {
-                sr.sprite = Sprite.Create(toppings[i], new Rect(0, 0, toppings[i].width, toppings[i].height), new Vector2(0.5f, 0.5f));
+                toppingCells[i].sprite = Sprite.Create(toppings[i], new Rect(0, 0, toppings[i].width, toppings[i].height), new Vector2(0.5f, 0.5f));
+                toppingCells[i].sprite.name = toppings[i].name;
+            }
+            SetToppingCellCheckmark(i, false);
+        }
+    }
+
+    private void SetToppingCellCheckmark(int idx, bool active)
+    {
+        toppingCells[idx].transform.GetChild(0).gameObject.SetActive(active);
+    }
+
+    public void SetSauceComplete()
+    {
+        SetToppingCellCheckmark(0, true);
+    }
+
+    public void SetCheeseComplete()
+    {
+        SetToppingCellCheckmark(1, true);
+    }
+
+    private void SetToppingComplete(string key)
+    {
+        for (int i = 0; i < toppingCells.Count; i++)
+        {
+            if (toppingCells[i].sprite == null)
+            {
+                return;
+            }
+            Debug.Log(toppingCells[i].sprite.name);
+            if (toppingCells[i].sprite.name == key)
+            {
+                SetToppingCellCheckmark(i, true);
             }
         }
+    }
+
+    public void SetMeatComplete(Constants.Meats meat)
+    {
+        SetToppingComplete(meatMapping[meat]);
+    }
+
+    public void SetPepperComplete(Constants.Peppers pepper)
+    {
+        SetToppingComplete(peppersMapping[pepper]);
+    }
+
+    public void SetVegetableComplete(Constants.Vegetables vegetable)
+    {
+        SetToppingComplete(vegetablesMapping[vegetable]);
+    }
+
+    public void SetGenericToppingComplete(Constants.GenericToppings topping)
+    {
+        SetToppingComplete(genericToppingMapping[topping]);
+    }
+
+    public void SetPineappleComplete()
+    {
+        SetToppingComplete(pineappleMapping);
     }
 }
