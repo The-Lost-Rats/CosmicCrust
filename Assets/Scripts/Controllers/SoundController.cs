@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundController : MonoBehaviour {
-    public static SoundController instance = null;
+    public static SoundController scInstance = null;
     public AudioSource efxSource;
     public AudioSource secondaryEfxSource;
     public AudioSource tertiaryEfxSource;
@@ -19,10 +19,10 @@ public class SoundController : MonoBehaviour {
 
     void Awake ()
     {
-        if (instance == null) {
-            instance = this;
+        if (scInstance == null) {
+            scInstance = this;
         }
-        else if (instance != this) {
+        else if (scInstance != this) {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
