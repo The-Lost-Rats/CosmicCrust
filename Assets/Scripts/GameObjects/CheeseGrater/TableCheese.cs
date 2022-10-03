@@ -25,7 +25,7 @@ public class TableCheese : InteractableObject
     public override InputController.InputState OnClick()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        grabbedCheese = Instantiate(grabCheesePrefab, mousePosition, Quaternion.identity);
+        grabbedCheese = Instantiate(grabCheesePrefab, mousePosition, Quaternion.identity, transform);
         grabbedCheese.CopyCheeseValues(this);
         SetVisible(false);
         return InputController.InputState.Grabbing;
