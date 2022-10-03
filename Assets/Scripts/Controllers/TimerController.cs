@@ -52,7 +52,7 @@ public class TimerController : MonoBehaviour
         {
             if (timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime * BeltController.bcInstance.GetSpeed();
+                timeRemaining -= Time.deltaTime * BeltController.bcInstance.GetSpeed() * 5;
                 DisplayTime(timeRemaining);
             }
             else

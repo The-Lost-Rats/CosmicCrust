@@ -14,8 +14,9 @@ public class SauceHandle : InteractableObject
     public ParticleSystem sauceParticles;
     public SauceWheel sauceWheel;
 
-    private float[] movementBounds = new float[]{ -2, 0.5f };
+    private float[] movementBounds = new float[]{ -0.2f, 0.185f };
     private float[] saucePositions;
+    private float[] localSaucePositions = new float[]{ 1, -10.5f, -22 };
 
     private const int numSauces = 3;
 
@@ -29,6 +30,16 @@ public class SauceHandle : InteractableObject
         Constants.Sauces.BBQ
     };
 
+    public override void OnEnter()
+    {
+        transform.localScale = new Vector3(1.1f, 1.1f);
+    }
+
+    public override void OnExit()
+    {
+        transform.localScale = new Vector3(1, 1);
+    }
+
     private void Start()
     {
         float step = (movementBounds[1] - movementBounds[0]) / numSauces;
@@ -39,16 +50,6 @@ public class SauceHandle : InteractableObject
         }
 
         SetSauce();
-    }
-
-    public override void OnEnter()
-    {
-        transform.localScale = new Vector3(1.1f, 1.1f);
-    }
-
-    public override void OnExit()
-    {
-        transform.localScale = Vector3.one;
     }
 
     public override InputController.InputState OnClick()
@@ -90,7 +91,7 @@ public class SauceHandle : InteractableObject
                 minSauceDistance = delta;
             }
         }
-        transform.position = new Vector2(transform.position.x, saucePositions[closestSauce]);
+        transform.localPosition = new Vector2(transform.localPosition.x, localSaucePositions[closestSauce]);
         currSauce = sauces[closestSauce];
         sauceWheel.currSauce = currSauce;
 

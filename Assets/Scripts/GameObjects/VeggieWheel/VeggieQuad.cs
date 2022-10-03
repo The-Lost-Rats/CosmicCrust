@@ -13,19 +13,7 @@ public class VeggieQuad : InteractableObject
 
     [SerializeField] private Constants.Vegetables vegetableType = Constants.Vegetables.Mushroom;
 
-    private Vector3 originalScale = new Vector3(0.0f, 0.0f, 0.0f);
-
-    public override void OnEnter()
-    {
-        // store old scale and mult by 1.2
-        originalScale = transform.localScale;
-        transform.localScale = originalScale * 1.2f;
-    }
-
-    public override void OnExit()
-    {
-        transform.localScale = originalScale;
-    }
+    // TODO Tint on hover
 
     public override InputController.InputState OnClick()
     {

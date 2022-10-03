@@ -25,7 +25,7 @@ public abstract class GrabbableObject : MonoBehaviour
         }
         else
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + InputController.grabMouseOffset;
             OnUpdate(mousePosition);
         }
     }

@@ -8,10 +8,11 @@ public class WateringCan : InteractableObject
     [SerializeField]
     protected float fallingSpeed = 5;
 
+    public ParticleSystem waterParticleSystem;
+
     public override bool isInteractable { get { return true; }}
     public override List<string> interactableObjects { get { return new List<string>(); }}
 
-    private bool hitGround = true;
     private bool amHolding = false;
 
     [SerializeField]
@@ -20,13 +21,11 @@ public class WateringCan : InteractableObject
     [SerializeField]
     public Sprite inactive;
 
-    private Vector3 finalPos;
-    private Vector3 initialPos;
+    private Vector3 initPos;
 
     void Start()
     {
-        GetComponent<ParticleSystem>().Stop();
-        initialPos = transform.position;
+        initPos = transform.position;
     }
 
     public override void OnEnter()
@@ -42,8 +41,7 @@ public class WateringCan : InteractableObject
     public override InputController.InputState OnClick()
     {
         amHolding = true;
-        hitGround = false;
-        GetComponent<ParticleSystem>().Play();
+        waterParticleSystem.Play();
         GetComponent<SpriteRenderer>().sprite  = active;
 
         return InputController.InputState.Grabbing;
@@ -56,34 +54,22 @@ public class WateringCan : InteractableObject
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePosition;
         }
-
-        if (!amHolding && !hitGround)
-        {
-            Vector3 pos = transform.position;
-            pos.y -= fallingSpeed * Time.deltaTime;
-            transform.position = pos;
-            
-            if ( Mathf.Abs( pos.y - finalPos.y ) < 0.5f )
-            {
-                hitGround = true;
-            }
-        }
     }
 
     public override InputController.InputState OnRelease(List<InteractableObject> interactedObjects)
     {
         amHolding = false;
-        finalPos = transform.position;
-        finalPos.y -= 1.0f;
 
-        GetComponent<ParticleSystem>().Stop();
+        waterParticleSystem.Stop();
         GetComponent<SpriteRenderer>().sprite  = inactive;
+
+        transform.position = initPos;
 
         return InputController.InputState.Default;
     }
 
     public void Reset()
     {
-        transform.position = initialPos;
+        transform.position = initPos;
     }
 }

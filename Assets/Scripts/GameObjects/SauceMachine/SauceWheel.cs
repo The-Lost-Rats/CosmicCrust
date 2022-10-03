@@ -36,7 +36,7 @@ public class SauceWheel : InteractableObject
 
     public override void OnExit()
     {
-        transform.localScale = Vector3.one;
+        transform.localScale = new Vector3(1, 1);
     }
 
     public override InputController.InputState OnClick()
