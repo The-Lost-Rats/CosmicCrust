@@ -25,7 +25,6 @@ public class GameController : MonoBehaviour {
 
         // Start with main game level
         SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     void Update() {
@@ -33,15 +32,18 @@ public class GameController : MonoBehaviour {
             case SceneController.Level.MAIN_LEVEL:
                 RunGame();
                 break;
+            case SceneController.Level.GAME_OVER_MENU:
+            case SceneController.Level.WIN_MENU:
+                RunGameEnd();
+                break;
         }
     }
 
-    void RunGame() {
-    }
+    void RunGame() {}
 
-    private void OnSceneUnloaded( Scene unloadedScene ) {
-        if ( unloadedScene.name == "GameOverScene" )
-        {
+    void RunGameEnd()
+    {
+        if ( Input.GetKeyDown( KeyCode.Return ) ) {
             RestartGame();
         }
     }
@@ -59,7 +61,13 @@ public class GameController : MonoBehaviour {
     public void GameOver()
     {
         SceneController.LoadLevel(SceneController.Level.GAME_OVER_MENU);
-        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Additive);
+
+        Time.timeScale = 0.0f;
+    }
+
+    public void GameWon()
+    {
+        SceneController.LoadLevel(SceneController.Level.WIN_MENU);
 
         Time.timeScale = 0.0f;
     }

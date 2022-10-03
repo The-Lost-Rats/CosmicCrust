@@ -152,7 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad3cb7e5960cbc41b062d2d882b4549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverMenu: {fileID: 0}
+  gameOverOverlay: {fileID: 0}
+  scoreTens: {fileID: 0}
+  scoreOnes: {fileID: 0}
 --- !u!4 &733370636
 Transform:
   m_ObjectHideFlags: 0

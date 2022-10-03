@@ -41,6 +41,8 @@ public class PepperPlant : InteractableObject
 
     private Vector3 currentBoundGoal;
 
+    private bool isWatering = false;
+
     public override void OnEnter()
     {
         if (isGrown)
@@ -84,35 +86,53 @@ public class PepperPlant : InteractableObject
             // 1/3 way through
             GetComponent<SpriteRenderer>().sprite  = grownPlant;
         }
+
+        if (!isGrown && isWatering)
+        {
+            WaterPlant();
+        }
     }
 
     //Overlapping a collider 2D
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "WaterCollider" && !isGrown)
         {
-            accTime += Time.deltaTime;
-            if (!timer.activeSelf)
-            {
-                timer.SetActive(true);
-            }
+            isWatering = true;
+        }
+    }
 
-            if (timer.activeSelf)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "WaterCollider" && !isGrown)
+        {
+            isWatering = false;
+        }
+    }
+
+    private void WaterPlant()
+    {
+        accTime += Time.deltaTime;
+        if (!timer.activeSelf)
+        {
+            timer.SetActive(true);
+        }
+
+        if (timer.activeSelf)
+        {
+            // Timer is active so lets scale up and down as an anim
+            timer.transform.localScale = Vector3.MoveTowards(timer.transform.localScale, currentBoundGoal, 0.006f);
+            
+            // Have we reached goal?
+            if (timer.transform.localScale == currentBoundGoal)
             {
-                // Timer is active so lets scale up and down as an anim
-                timer.transform.localScale = Vector3.MoveTowards(timer.transform.localScale, currentBoundGoal, 0.06f);
-                
-                // Have we reached goal?
-                if (timer.transform.localScale == currentBoundGoal)
+                if (currentBoundGoal == upperScaleLimit)
                 {
-                    if (currentBoundGoal == upperScaleLimit)
-                    {
-                        currentBoundGoal = lowerScaleLimit;
-                    }
-                    else
-                    {
-                        currentBoundGoal = upperScaleLimit;
-                    }
+                    currentBoundGoal = lowerScaleLimit;
+                }
+                else
+                {
+                    currentBoundGoal = upperScaleLimit;
                 }
             }
         }
@@ -151,6 +171,7 @@ public class PepperPlant : InteractableObject
     public void Reset()
     {
         isGrown = false;
+        isWatering = false;
         accTime = 0;
         timer.SetActive(false);
         fruit.SetActive(false);
