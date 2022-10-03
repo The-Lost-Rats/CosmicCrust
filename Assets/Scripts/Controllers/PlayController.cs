@@ -176,7 +176,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.SetSauce(sauce);
+        bool success = currPizza.SetSauce(sauce);
+        if (success)
+        {
+            toppingsDisplay.SetSauceComplete();
+        }
+        return success;
     }
 
     public bool SetCheese(Constants.CheeseTypes cheese)
@@ -185,7 +190,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.SetCheese(cheese);
+        bool success = currPizza.SetCheese(cheese);
+        if (success)
+        {
+            toppingsDisplay.SetCheeseComplete();
+        }
+        return success;
     }
 
     public bool AddMeat(Constants.Meats meat)
@@ -194,7 +204,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.AddMeat(meat);
+        bool success = currPizza.AddMeat(meat);
+        if (success)
+        {
+            toppingsDisplay.SetMeatComplete(meat);
+        }
+        return success;
     }
 
     public bool AddPepper(Constants.Peppers pepper)
@@ -203,7 +218,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.AddPepper(pepper);
+        bool success = currPizza.AddPepper(pepper);
+        if (success)
+        {
+            toppingsDisplay.SetPepperComplete(pepper);
+        }
+        return success;
     }
 
     public bool AddVegetable(Constants.Vegetables vegetable)
@@ -212,7 +232,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.AddVegetable(vegetable);
+        bool success = currPizza.AddVegetable(vegetable);
+        if (success)
+        {
+            toppingsDisplay.SetVegetableComplete(vegetable);
+        }
+        return success;
     }
 
     public bool AddGenericTopping(Constants.GenericToppings topping)
@@ -221,7 +246,12 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.AddGenericTopping(topping);
+        bool success = currPizza.AddGenericTopping(topping);
+        if (success)
+        {
+            toppingsDisplay.SetGenericToppingComplete(topping);
+        }
+        return success;
     }
 
     public bool AddPineapple()
@@ -230,6 +260,11 @@ public class PlayController : MonoBehaviour
         {
             return false;
         }
-        return currPizza.AddPineapple();
+        bool success = currPizza.AddPineapple();
+        if (success)
+        {
+            toppingsDisplay.SetPineappleComplete();
+        }
+        return success;
     }
 }
