@@ -9,7 +9,7 @@ public class GrabCheese : GrabbableObject
     public Gradient triangleCheeseGradient;
 
     private ParticleSystem cheeseGraterParticles;
-    private CheeseBounds cheeseBounds;
+    private Bounds cheeseBounds;
 
     private Constants.CheeseTypes cheeseType;
     private Vector2 lastPos;
@@ -91,7 +91,14 @@ public class GrabCheese : GrabbableObject
                 break;
         }
 
-        cheeseBounds = GameObject.FindObjectOfType<CheeseBounds>();
+        Bounds[] boundsArr = GameObject.FindObjectsOfType<Bounds>();
+        foreach (Bounds bounds in boundsArr)
+        {
+            if (bounds.name == "CheeseBounds")
+            {
+                cheeseBounds = bounds;
+            }
+        }
 
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         renderer.sprite = parentCheese.GetComponent<SpriteRenderer>().sprite;

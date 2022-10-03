@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheeseBounds : MonoBehaviour
+public class Bounds : MonoBehaviour
 {
     public bool pizzaInBounds = false;
 
