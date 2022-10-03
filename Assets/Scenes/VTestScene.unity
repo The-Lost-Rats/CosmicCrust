@@ -12010,7 +12010,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -16635,6 +16635,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6fe858408816bc4dba05e57fff59c46, type: 2}
   - {fileID: 11400000, guid: 617265c43d2ac124eae4cf504d7cc152, type: 2}
   - {fileID: 11400000, guid: 903c1dc88a2bb6d459fd115b49a941ac, type: 2}
+  - {fileID: 11400000, guid: 51c0af5bea15ec5409d29ba01c895fba, type: 2}
+  - {fileID: 11400000, guid: 68576a76e12f92c468e53d0632624319, type: 2}
+  - {fileID: 11400000, guid: 56380fc3c4ac49b4fae8cb666acbfb73, type: 2}
+  - {fileID: 11400000, guid: a303485ecb9cfc84691c9f5cbd4b2082, type: 2}
+  - {fileID: 11400000, guid: a42a0b432c8dd9146b53b029930d089f, type: 2}
+  - {fileID: 11400000, guid: 74b4dce12e8f1774d9b86886cf983bee, type: 2}
+  - {fileID: 11400000, guid: 453062d28c82a3640818c1ee5f4dad25, type: 2}
+  - {fileID: 11400000, guid: af1790bb2bfe4a44490ebd545a2b1a48, type: 2}
+  - {fileID: 11400000, guid: fc3ad85c050e8c84ba0b25f3ee6ce847, type: 2}
+  - {fileID: 11400000, guid: 9c590f2fb1ad24e4d81b082b173261f6, type: 2}
+  - {fileID: 11400000, guid: 11e3bff7a923b45459f49e9680496e4f, type: 2}
+  - {fileID: 11400000, guid: 7d84758f297d2d0478ef5c3c942ef96c, type: 2}
+  - {fileID: 11400000, guid: 3bcabae2520c8ec4faad9d9cb1ea0671, type: 2}
+  - {fileID: 11400000, guid: cda193e73d12fe844b64fe545ca9147e, type: 2}
+  - {fileID: 11400000, guid: 89586885d3df72a4183a1241633295f0, type: 2}
 --- !u!4 &1626913188
 Transform:
   m_ObjectHideFlags: 0
