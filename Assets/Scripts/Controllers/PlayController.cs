@@ -108,8 +108,8 @@ public class PlayController : MonoBehaviour
         // Ship meat
         DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
     
-        // // Init is done for level, so let's start the timer! (that doesn't really mean anything haha)
-        // TimerController.tcInstance.StartTimer();
+        // Init is done for level, so let's start the timer! (that doesn't really mean anything haha)
+        TimerController.tcInstance.StartTimer();
     }
 
     public void EndLevel()
