@@ -198,7 +198,7 @@ public class ToppingsDisplay : MonoBehaviour
             {
                 return;
             }
-            if (toppingCells[i].sr.sprite.name == key)
+            if (toppingCells[i].name == key)
             {
                 toppingCells[i].SetCheckmarkActive(true);
             }
