@@ -57,6 +57,6 @@ TagManager:
   - name: GrabbableObjects
     uniqueID: 4203311687
     locked: 0
-  - name: UI
+  - name: Help
     uniqueID: 1024135411
     locked: 0

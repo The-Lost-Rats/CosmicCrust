@@ -50,8 +50,7 @@ public class DeliveryFactory : MonoBehaviour
 
         if (meatBoxPrefab != null)
         {
-            meatBox = Instantiate(meatBoxPrefab, meatBoxPrefab.transform.position, Quaternion.identity);
-            meatBox.transform.localScale = new Vector2(0.01f, 0.01f);
+            meatBox = Instantiate(meatBoxPrefab, meatBoxPrefab.transform.position, Quaternion.identity, transform);
             meatBox.SetActive(true);
         }
 

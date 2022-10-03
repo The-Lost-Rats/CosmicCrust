@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ToppingsDisplay : MonoBehaviour
 {
+    public GameObject overlay;
+ 
     [System.Serializable]
     public struct SauceImage
     {
@@ -54,7 +56,9 @@ public class ToppingsDisplay : MonoBehaviour
 
     [SerializeField] public Texture2D pineappleImage;
 
-    private List<SpriteRenderer> toppingCells;
+    [SerializeField] public List<DisplayCell.HelpObject> helpObjects;
+
+    private List<DisplayCell> toppingCells;
 
     private IDictionary<Constants.Meats, string> meatMapping = new Dictionary<Constants.Meats, string>{
         {Constants.Meats.Beef, "Beef"},
@@ -86,10 +90,13 @@ public class ToppingsDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        toppingCells = new List<SpriteRenderer>();
+        toppingCells = new List<DisplayCell>();
         foreach (Transform child in transform)
         {
-            toppingCells.Add(child.gameObject.GetComponent<SpriteRenderer>());
+            DisplayCell cell = child.gameObject.GetComponent<DisplayCell>();
+            cell.overlay = overlay;
+            cell.helpObjects = helpObjects;
+            toppingCells.Add(cell);
         }
     }
 
@@ -164,42 +171,36 @@ public class ToppingsDisplay : MonoBehaviour
     {
         for (int i = 0; i < toppingCells.Count; i++)
         {
-            toppingCells[i].sprite = null;
+            toppingCells[i].sr.sprite = null;
             if (i < toppings.Count)
             {
-                toppingCells[i].sprite = Sprite.Create(toppings[i], new Rect(0, 0, toppings[i].width, toppings[i].height), new Vector2(0.5f, 0.5f));
-                toppingCells[i].sprite.name = toppings[i].name;
+                toppingCells[i].SetTexture(toppings[i]);
             }
-            SetToppingCellCheckmark(i, false);
+            toppingCells[i].SetCheckmarkActive(false);
         }
-    }
-
-    private void SetToppingCellCheckmark(int idx, bool active)
-    {
-        toppingCells[idx].transform.GetChild(0).gameObject.SetActive(active);
     }
 
     public void SetSauceComplete()
     {
-        SetToppingCellCheckmark(0, true);
+        toppingCells[0].SetCheckmarkActive(true);
     }
 
     public void SetCheeseComplete()
     {
-        SetToppingCellCheckmark(1, true);
+        toppingCells[1].SetCheckmarkActive(true);
     }
 
     private void SetToppingComplete(string key)
     {
         for (int i = 0; i < toppingCells.Count; i++)
         {
-            if (toppingCells[i].sprite == null)
+            if (toppingCells[i].sr.sprite == null)
             {
                 return;
             }
-            if (toppingCells[i].sprite.name == key)
+            if (toppingCells[i].sr.sprite.name == key)
             {
-                SetToppingCellCheckmark(i, true);
+                toppingCells[i].SetCheckmarkActive(true);
             }
         }
     }

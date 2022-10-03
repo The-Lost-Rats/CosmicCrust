@@ -77,7 +77,7 @@ public class InputController : MonoBehaviour
     private List<InteractableObject> interactableList;
     private InteractableObject currGrabbing;
 
-    private InputState inputState;
+    public InputState inputState;
 
     void Start()
     {
