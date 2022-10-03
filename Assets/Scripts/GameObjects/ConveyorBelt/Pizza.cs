@@ -237,7 +237,7 @@ public class Pizza : InteractableObject
         pizzaLayer.name = layerTexture.name;
         pizzaLayer.transform.parent = transform;
         pizzaLayer.transform.localPosition = Vector2.zero;
-        pizzaLayer.transform.localScale = Vector3.one;
+        pizzaLayer.transform.localScale = new Vector3(100, 100);
 
         SpriteRenderer layerRenderer = pizzaLayer.AddComponent<SpriteRenderer>();
         layerRenderer.sprite = Sprite.Create(layerTexture, new Rect(0, 0, layerTexture.width, layerTexture.height), new Vector2(0.5f, 0.5f));

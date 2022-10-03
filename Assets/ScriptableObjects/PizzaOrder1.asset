@@ -17,5 +17,5 @@ MonoBehaviour:
   meats: 0100000000000000
   peppers: 02000000
   vegetables: 
-  genericToppings: 00000000010000000200000003000000
+  genericToppings: 000000000100000002000000
   hasPineapple: 1
