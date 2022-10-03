@@ -60,3 +60,6 @@ TagManager:
   - name: Help
     uniqueID: 1024135411
     locked: 0
+  - name: GameEnded
+    uniqueID: 1012314879
+    locked: 0
