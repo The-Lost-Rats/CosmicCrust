@@ -194,11 +194,7 @@ public class ToppingsDisplay : MonoBehaviour
     {
         for (int i = 0; i < toppingCells.Count; i++)
         {
-            if (toppingCells[i].sr.sprite == null)
-            {
-                return;
-            }
-            if (toppingCells[i].name == key)
+            if (toppingCells[i].cellName == key)
             {
                 toppingCells[i].SetCheckmarkActive(true);
             }

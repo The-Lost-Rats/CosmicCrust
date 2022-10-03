@@ -11,9 +11,9 @@ public class ConveyorBelt : MonoBehaviour
     private const float beltBottomBound = -73;
     private const float newBeltOffset = 130;
 
-    [Range(0.01f, 1)]
+    [Range(0.005f, 1)]
     [SerializeField]
-    public float speed = 0.01f;
+    public float speed = 0.005f;
 
     public float startSpeed;
 
