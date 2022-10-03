@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ccd07a3d8a4d14a99f9e246b1a1b5c, type: 3}
   m_Name: PizzaOrder4
   m_EditorClassIdentifier: 
-  sauce: 0
-  cheese: 0
+  sauce: 1
+  cheese: 2
   meats: 
   peppers: 
-  vegetables: 
-  genericToppings: 
-  hasPineapple: 1
+  vegetables: 01000000
+  genericToppings: 010000000200000003000000
+  hasPineapple: 0
+  numMeatToShip: 0

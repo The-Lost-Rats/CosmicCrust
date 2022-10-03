@@ -11,4 +11,5 @@ public class PizzaOrder : ScriptableObject
     public List<Constants.Vegetables> vegetables;
     public List<Constants.GenericToppings> genericToppings;
     public bool hasPineapple;
+    public int numMeatToShip;
 }
