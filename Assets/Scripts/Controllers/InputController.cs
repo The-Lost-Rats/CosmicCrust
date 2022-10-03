@@ -42,14 +42,23 @@ public class InputController : MonoBehaviour
     }
 
     [SerializeField] private List<CursorInfo> cursors;
+    [SerializeField] private List<CursorInfo> webGLCursors;
 
     private void SetActiveCursor(CursorType cursorType)
     {
+#if UNITY_WEBGL
+        foreach (CursorInfo cursorInfo in webGLCursors)
+#else
         foreach (CursorInfo cursorInfo in cursors)
+#endif
         {
             if (cursorInfo.cursorType == cursorType)
             {
+#if UNITY_WEBGL
+                Cursor.SetCursor(cursorInfo.texture, cursorInfo.hotspot, CursorMode.ForceSoftware);
+#else
                 Cursor.SetCursor(cursorInfo.texture, cursorInfo.hotspot, CursorMode.Auto);
+#endif
             }
         }
     }

@@ -197,7 +197,6 @@ public class ToppingsDisplay : MonoBehaviour
             {
                 return;
             }
-            Debug.Log(toppingCells[i].sprite.name);
             if (toppingCells[i].sprite.name == key)
             {
                 SetToppingCellCheckmark(i, true);
