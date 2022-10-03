@@ -68,4 +68,10 @@ public class GameController : MonoBehaviour {
         // Unfreeze time
         Time.timeScale = 1.0f;
     }
+
+    public void GameOver()
+    {
+        SceneController.LoadLevel(SceneController.Level.GAME_OVER_MENU);
+        // What do we do here?
+    }
 }
