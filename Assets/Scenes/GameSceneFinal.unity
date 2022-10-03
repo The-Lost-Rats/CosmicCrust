@@ -21409,15 +21409,15 @@ GameObject:
   m_Component:
   - component: {fileID: 2015988182}
   - component: {fileID: 2015988185}
-  - component: {fileID: 2015988184}
   - component: {fileID: 2015988183}
+  - component: {fileID: 2015988184}
   m_Layer: 0
   m_Name: TrashCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2015988182
 Transform:
   m_ObjectHideFlags: 0
@@ -21426,7 +21426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015988181}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.69, y: -3.13, z: 0}
+  m_LocalPosition: {x: 37.5, y: -49.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 368936599}
@@ -21446,8 +21446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pineapplePrefab: {fileID: 880931967355455930, guid: e83b81aa3f53ec044ae02dc6e6bd4e96,
     type: 3}
---- !u!61 &2015988184
-BoxCollider2D:
+--- !u!60 &2015988184
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21463,15 +21463,28 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.36, y: 1.86}
+    oldSize: {x: 33, y: 25}
     newSize: {x: 1.36, y: 1.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.36, y: 1.86}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.06375122, y: 12.682552}
+      - {x: 0.25476074, y: 8.715569}
+      - {x: -9.0838375, y: 4.5323105}
+      - {x: -10.923349, y: 1.4335403}
+      - {x: -16.682547, y: -2.6986504}
+      - {x: -17.056955, y: -8.457401}
+      - {x: -12.30135, y: -12.134907}
+      - {x: -0.06726074, y: -12.758347}
+      - {x: 4.05505, y: -9.498028}
+      - {x: 8.674503, y: -8.849007}
+      - {x: 15.587265, y: -4.2060547}
+      - {x: 15.850094, y: 4.785568}
+      - {x: 13.106644, y: 7.082321}
+      - {x: 12.483898, y: 12.5}
 --- !u!212 &2015988185
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21511,7 +21524,7 @@ SpriteRenderer:
   m_SortingLayerID: -1416211801
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 669acf1980c8dc54580221885da86500, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90677a50e40139544a514b66790c7272, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
