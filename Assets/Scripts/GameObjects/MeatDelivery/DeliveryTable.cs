@@ -29,15 +29,16 @@ public class DeliveryTable : MonoBehaviour
         } else {
             Destroy( this.gameObject );
         }
-    }
-
-    void Start()
-    {
+        
         deliveredBoxes = new List<GameObject>();
         boxesToDeliver = new List<GameObject>();
         boxesToDelete = new List<GameObject>();
         deliverySpotIdx = 0;
         currentBox = null;
+    }
+
+    void Start()
+    {
     }
 
     public bool Deliver(List<Constants.Meats> meatBoxes)
