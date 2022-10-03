@@ -29,6 +29,16 @@ public class SauceWheel : InteractableObject
 
     public Constants.Sauces currSauce = Constants.Sauces.Marinara; // Set by SauceHandle
 
+    public override void OnEnter()
+    {
+        transform.localScale = new Vector3(1.1f, 1.1f);
+    }
+
+    public override void OnExit()
+    {
+        transform.localScale = new Vector3(1, 1);
+    }
+
     public override InputController.InputState OnClick()
     {
         isGrabbed = true;

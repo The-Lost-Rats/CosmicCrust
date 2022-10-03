@@ -70,7 +70,7 @@ public class PlayController : MonoBehaviour
         if (invalidLevels.Count > 0)
         {
             string invalidLevelsStr = "";
-            foreach (0nt level in invalidLevels)
+            foreach (int level in invalidLevels)
             {
                 invalidLevelsStr += (invalidLevelsStr != "" ? ", " : "") + level;
             }

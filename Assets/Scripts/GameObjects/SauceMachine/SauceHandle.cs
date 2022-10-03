@@ -30,6 +30,16 @@ public class SauceHandle : InteractableObject
         Constants.Sauces.BBQ
     };
 
+    public override void OnEnter()
+    {
+        transform.localScale = new Vector3(1.1f, 1.1f);
+    }
+
+    public override void OnExit()
+    {
+        transform.localScale = new Vector3(1, 1);
+    }
+
     private void Start()
     {
         float step = (movementBounds[1] - movementBounds[0]) / numSauces;

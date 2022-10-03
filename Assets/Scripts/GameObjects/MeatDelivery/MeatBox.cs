@@ -26,6 +26,16 @@ public class MeatBox : InteractableObject
         return isGrabbable;
     }
 
+    public override void OnEnter()
+    {
+        transform.localScale = new Vector3(0.011f, 0.011f);
+    }
+
+    public override void OnExit()
+    {
+        transform.localScale = new Vector3(0.01f, 0.01f);
+    }
+
     public override InputController.InputState OnClick()
     {
         if (!isOpen)

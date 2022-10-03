@@ -13,6 +13,16 @@ public class DrawerTopping : InteractableObject
 
     [SerializeField] private Constants.GenericToppings toppingType = Constants.GenericToppings.Anchovy;
 
+    public override void OnEnter()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.9f);
+    }
+
+    public override void OnExit()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     public override InputController.InputState OnClick()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

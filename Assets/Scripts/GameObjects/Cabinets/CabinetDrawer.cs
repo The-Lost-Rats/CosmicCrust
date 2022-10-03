@@ -20,6 +20,16 @@ public class CabinetDrawer : InteractableObject
         movementBounds = new float[]{transform.position.y - drawerHeight, transform.position.y};
     }
 
+    public override void OnEnter()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.9f);
+    }
+
+    public override void OnExit()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     public override InputController.InputState OnClick()
     {
         isMoving = true;
