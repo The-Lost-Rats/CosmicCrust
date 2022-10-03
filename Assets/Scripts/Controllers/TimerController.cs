@@ -68,7 +68,14 @@ public class TimerController : MonoBehaviour
         timeToDisplay += 1;
         int seconds = Mathf.FloorToInt(timeToDisplay % 60);
         
-        timerSprite.GetComponent<SpriteRenderer>().sprite = numerics[seconds];
+        if (seconds < numerics.Count)
+        {
+            timerSprite.GetComponent<SpriteRenderer>().sprite = numerics[seconds];
+        }
+        else
+        {
+            timerSprite.GetComponent<SpriteRenderer>().sprite = numerics[0];
+        }       
     }
 
     public void ResetTimer()

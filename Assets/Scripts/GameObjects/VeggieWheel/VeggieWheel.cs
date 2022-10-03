@@ -15,9 +15,12 @@ public class VeggieWheel : MonoBehaviour
 
     private float angle = 0.0f;
 
+    public float initialSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
+        initialSpeed = rotationSpeed;
     }
 
     // Update is called once per frame

@@ -9,6 +9,9 @@ public class PlantManager : MonoBehaviour
     [SerializeField]
     List<PepperPlant> plants;
 
+    [SerializeField]
+    private WateringCan wateringCan;
+
     public void Awake() {
         if ( null == pmInstance ) {
             pmInstance = this;
@@ -24,5 +27,10 @@ public class PlantManager : MonoBehaviour
         {
             plant.Reset();
         }
+    }
+
+    public void ResetWateringCan()
+    {
+        wateringCan.Reset();
     }
 }
