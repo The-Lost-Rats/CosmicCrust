@@ -18724,17 +18724,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursors:
   - cursorType: 0
-    texture: {fileID: 0}
-    hotspot: {x: 0, y: 0}
+    texture: {fileID: 2800000, guid: 5641f98ef48ba924f96a6abe34b1571a, type: 3}
+    hotspot: {x: 10, y: 10}
   - cursorType: 1
-    texture: {fileID: 2800000, guid: 5bd8f39cb2f647d46bb11514d850d4db, type: 3}
-    hotspot: {x: 0, y: 0}
+    texture: {fileID: 2800000, guid: 0a79fead5988fd7498469c0baab9e6ad, type: 3}
+    hotspot: {x: 10, y: 40}
   - cursorType: 2
-    texture: {fileID: 2800000, guid: d9631956debb9fa4096d25a1f992b6f4, type: 3}
-    hotspot: {x: 54, y: 54}
+    texture: {fileID: 2800000, guid: 69b92cfa730665b429ebec18b5796291, type: 3}
+    hotspot: {x: 70, y: 70}
   - cursorType: 3
-    texture: {fileID: 2800000, guid: 9de94972c5494884ebcc5fb514b8ef5b, type: 3}
-    hotspot: {x: 54, y: 54}
+    texture: {fileID: 2800000, guid: 53bcb48f7a3e924499576ce04cf61deb, type: 3}
+    hotspot: {x: 70, y: 70}
 --- !u!4 &1371542149
 Transform:
   m_ObjectHideFlags: 0

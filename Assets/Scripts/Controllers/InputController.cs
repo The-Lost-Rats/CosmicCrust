@@ -6,6 +6,8 @@ public class InputController : MonoBehaviour
 {
     public static InputController Instance { get; private set; }
 
+    public static Vector3 grabMouseOffset = new Vector3(-.06f, .06f);
+
     private void Awake()
     {
         if (Instance == null)
