@@ -14,6 +14,10 @@ public class PlayController : MonoBehaviour
 
     private int pizzaIndex;
     private int score;
+    private const int MAX_SCORE = 99;
+    private const int MAX_LIFE = 3;
+    private int numLives;
+
     private Pizza currPizza;
     private PizzaOrder currPizzaOrder;
 
@@ -55,6 +59,11 @@ public class PlayController : MonoBehaviour
         return invalidLevels;
     }
 
+    public void Restart()
+    {
+        InitalizeGame();
+    }
+
     private void InitalizeGame()
     {
         List<int> invalidLevels = ValidatePizzaOrders();
@@ -72,6 +81,15 @@ public class PlayController : MonoBehaviour
         // Initialize the game
         pizzaIndex = 0;
         score = 0;
+        numLives = MAX_LIFE;
+
+        // // Update score
+        // UIController.uicInstance.SetScore(score);
+
+        // // Initialize hearts
+        // for ( int i = 0; i < MAX_LIFE; i++ ) {
+        //     UIController.uicInstance.SetHearts( false );
+        // }
 
         StartLevel();
     }
@@ -89,6 +107,9 @@ public class PlayController : MonoBehaviour
 
         // Ship meat
         DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
+    
+        // // Init is done for level, so let's start the timer! (that doesn't really mean anything haha)
+        // TimerController.tcInstance.StartTimer();
     }
 
     public void EndLevel()
@@ -98,10 +119,20 @@ public class PlayController : MonoBehaviour
         if (pizzaCorrect)
         {
             score++;
+            if (score > MAX_SCORE)
+            {
+                score = MAX_SCORE;
+            }
+            // // Update score
+            // UIController.uicInstance.SetScore(score);
+
             Debug.Log("Pizza correct!");
         }
         else
         {
+            // UIController.uicInstance.SetHearts( true );
+            numLives--;
+
             Debug.Log("Pizza incorrect");
         }
         displayPizza.gameObject.SetActive(false);
@@ -113,7 +144,29 @@ public class PlayController : MonoBehaviour
         // DESTROY THE PLANTS
         PlantManager.pmInstance.WipePlants();
 
-        Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
+        // Wipe the meat!
+        DeliveryTable.dtInstance.WipeBoxes();
+
+        if (numLives == 0)
+        {
+            GameController.instance.GameOver();
+
+            BeltController.bcInstance.Reset();
+            WheelController.wcInstance.Reset();
+            DrawerController.dcInstance.Reset();
+            PlantManager.pmInstance.ResetWateringCan();
+            DeliveryTable.dtInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
+        }
+        else
+        {
+            // Increase belt speed!
+            BeltController.bcInstance.UpdateSpeed();
+
+            // Increase veggie wheel speed/or change direction
+            WheelController.wcInstance.UpdateSpeedAndDirection();
+
+            Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
+        }
     }
 
     public bool SetSauce(Constants.Sauces sauce)

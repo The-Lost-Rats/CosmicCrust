@@ -5,16 +5,22 @@ using UnityEngine;
 public class VeggieWheel : MonoBehaviour
 {
     [SerializeField]
-    public float rotationSpeed = 5.0f;
+    public float rotationSpeed = 10.0f;
+
+    [SerializeField]
+    public float maxSpeed = 300.0f;
 
     [SerializeField]
     public float direction = 1;
 
     private float angle = 0.0f;
 
+    public float initialSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
+        initialSpeed = rotationSpeed;
     }
 
     // Update is called once per frame

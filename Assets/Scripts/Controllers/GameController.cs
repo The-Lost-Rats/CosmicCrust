@@ -59,6 +59,10 @@ public class GameController : MonoBehaviour {
         if ( unloadedScene.name == "PauseMenuScene" ) {
             ExitPauseMenu();
         }
+        else if ( unloadedScene.name == "GameOverScene" )
+        {
+            RestartGame();
+        }
     }
 
     private void ExitPauseMenu() {
@@ -67,5 +71,23 @@ public class GameController : MonoBehaviour {
 
         // Unfreeze time
         Time.timeScale = 1.0f;
+    }
+
+    private void RestartGame()
+    {
+        // Reset game
+        PlayController.instance.Restart();
+        SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
+
+        // Unfreeze time
+        Time.timeScale = 1.0f;
+    }
+
+    public void GameOver()
+    {
+        SceneController.LoadLevel(SceneController.Level.GAME_OVER_MENU);
+        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Additive);
+
+        Time.timeScale = 0.0f;
     }
 }

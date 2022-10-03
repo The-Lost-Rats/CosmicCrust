@@ -23,6 +23,9 @@ public class DeliveryTable : MonoBehaviour
 
     private int deliverySpotIdx;
 
+    // Duplicate code jesus
+    private const int MAX_SPOTS = 4;
+
     public void Awake() {
         if ( null == dtInstance ) {
             dtInstance = this;
@@ -39,6 +42,11 @@ public class DeliveryTable : MonoBehaviour
 
     void Start()
     {
+    }
+
+    public void WipeBoxes()
+    {
+        wipeBoxes = true;
     }
 
     public bool Deliver(List<Constants.Meats> meatBoxes)
@@ -106,7 +114,7 @@ public class DeliveryTable : MonoBehaviour
                 }
             }
 
-            if (currentBox != null)
+            if (currentBox != null && deliverySpotIdx < MAX_SPOTS)
             {
                 currentBox.transform.position = Vector3.MoveTowards(currentBox.transform.position, deliverySpots[deliverySpotIdx].transform.position, 0.02f);
                 if (currentBox.transform.position == deliverySpots[deliverySpotIdx].transform.position)
@@ -118,6 +126,28 @@ public class DeliveryTable : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Reset()
+    {
+        for (int i = deliveredBoxes.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(deliveredBoxes[i]);
+        }
+        
+        for (int i = boxesToDeliver.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(boxesToDeliver[i]);
+        }
+
+        for (int i = boxesToDelete.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(boxesToDelete[i]);
+        }
+
+        deliveredBoxes = new List<GameObject>();
+        boxesToDeliver = new List<GameObject>();
+        boxesToDelete = new List<GameObject>();
     }
 
 }
