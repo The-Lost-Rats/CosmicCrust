@@ -14,6 +14,9 @@ public class PlayController : MonoBehaviour
 
     private int pizzaIndex;
     private int score;
+    private const int MAX_SCORE = 99;
+    private const int MAX_LIFE = 3;
+
     private Pizza currPizza;
     private PizzaOrder currPizzaOrder;
 
@@ -73,6 +76,14 @@ public class PlayController : MonoBehaviour
         pizzaIndex = 0;
         score = 0;
 
+        // Update score
+        UIController.uicInstance.SetScore(score);
+
+        // Initialize hearts
+        for ( int i = 0; i < MAX_LIFE; i++ ) {
+            UIController.uicInstance.SetHearts( false );
+        }
+
         StartLevel();
     }
 
@@ -101,10 +112,18 @@ public class PlayController : MonoBehaviour
         if (pizzaCorrect)
         {
             score++;
+            if (score > MAX_SCORE)
+            {
+                score = MAX_SCORE;
+            }
+            // Update score
+            UIController.uicInstance.SetScore(score);
+
             Debug.Log("Pizza correct!");
         }
         else
         {
+            UIController.uicInstance.SetHearts( true );
             Debug.Log("Pizza incorrect");
         }
         displayPizza.gameObject.SetActive(false);
