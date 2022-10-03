@@ -79,7 +79,7 @@ public class PlayController : MonoBehaviour
         }
 
         // Initialize the game
-        pizzaIndex = 18;
+        pizzaIndex = 0;
         score = 0;
         numLives = MAX_LIFE;
 
