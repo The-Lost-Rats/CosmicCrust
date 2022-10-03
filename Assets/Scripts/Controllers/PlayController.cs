@@ -16,6 +16,7 @@ public class PlayController : MonoBehaviour
     private int score;
     private const int MAX_SCORE = 99;
     private const int MAX_LIFE = 3;
+    private int numLives;
 
     private Pizza currPizza;
     private PizzaOrder currPizzaOrder;
@@ -75,6 +76,7 @@ public class PlayController : MonoBehaviour
         // Initialize the game
         pizzaIndex = 0;
         score = 0;
+        numLives = MAX_LIFE;
 
         // Update score
         UIController.uicInstance.SetScore(score);
@@ -124,7 +126,14 @@ public class PlayController : MonoBehaviour
         else
         {
             UIController.uicInstance.SetHearts( true );
+            numLives--;
+
             Debug.Log("Pizza incorrect");
+
+            if (numLives == 0)
+            {
+                GameController.instance.GameOver();
+            }
         }
         displayPizza.gameObject.SetActive(false);
         toppingsDisplay.ResetPizza();
