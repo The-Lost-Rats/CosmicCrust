@@ -15,7 +15,13 @@ public class PepperPlant : InteractableObject
     private Sprite grownPlant;
 
     [SerializeField]
+    private Sprite adultPlant;
+
+    [SerializeField]
     private Sprite ungrownPlant;
+
+    [SerializeField]
+    private GameObject fruit;
 
     [SerializeField] private Constants.Peppers instanceType = Constants.Peppers.Serrano;
 
@@ -49,6 +55,7 @@ public class PepperPlant : InteractableObject
         upperScaleLimit.z = timer.transform.localScale.z;
         lowerScaleLimit.z = timer.transform.localScale.z;
         timer.SetActive(false);
+        fruit.SetActive(false);
     }
 
     public override void OnExit()
@@ -63,6 +70,18 @@ public class PepperPlant : InteractableObject
             accTime = 0;
             isGrown = true;
             timer.SetActive(false);
+
+            // Show fruit!
+            fruit.SetActive(true);
+        }
+        else if (accTime > 0.66f * totalTime)
+        {
+            // 2/3 way through
+            GetComponent<SpriteRenderer>().sprite  = adultPlant;
+        }
+        else if (accTime > 0.33f * totalTime)
+        {
+            // 1/3 way through
             GetComponent<SpriteRenderer>().sprite  = grownPlant;
         }
     }
@@ -70,7 +89,7 @@ public class PepperPlant : InteractableObject
     //Overlapping a collider 2D
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "WateringCan" && !isGrown)
+        if (collision.gameObject.name == "WaterCollider" && !isGrown)
         {
             accTime += Time.deltaTime;
             if (!timer.activeSelf)
@@ -134,6 +153,7 @@ public class PepperPlant : InteractableObject
         isGrown = false;
         accTime = 0;
         timer.SetActive(false);
+        fruit.SetActive(false);
         GetComponent<SpriteRenderer>().sprite  = ungrownPlant;
     }
 }
