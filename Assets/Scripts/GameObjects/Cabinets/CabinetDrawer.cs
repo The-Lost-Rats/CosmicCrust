@@ -7,7 +7,7 @@ public class CabinetDrawer : InteractableObject
     public override bool isInteractable { get { return true; }}
     public override List<string> interactableObjects { get { return new List<string>{}; }}
 
-    private const float drawerHeight = .61f;
+    private const float drawerHeight = .8f;
 
     [SerializeField] private Constants.GenericToppings topping;
 
