@@ -20,6 +20,11 @@ public class BeltController : MonoBehaviour
 
     public void UpdateSpeed()
     {
-        belt.speed = belt.speed * 1.2f;
+        belt.speed = belt.speed * 1.08f;
     }
+
+    public float GetSpeed()
+    {
+        return belt.speed;
+    } 
 }

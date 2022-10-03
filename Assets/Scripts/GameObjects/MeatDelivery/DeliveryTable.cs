@@ -23,6 +23,9 @@ public class DeliveryTable : MonoBehaviour
 
     private int deliverySpotIdx;
 
+    // Duplicate code jesus
+    private const int MAX_SPOTS = 4;
+
     public void Awake() {
         if ( null == dtInstance ) {
             dtInstance = this;
@@ -106,7 +109,7 @@ public class DeliveryTable : MonoBehaviour
                 }
             }
 
-            if (currentBox != null)
+            if (currentBox != null && deliverySpotIdx < MAX_SPOTS)
             {
                 currentBox.transform.position = Vector3.MoveTowards(currentBox.transform.position, deliverySpots[deliverySpotIdx].transform.position, 0.02f);
                 if (currentBox.transform.position == deliverySpots[deliverySpotIdx].transform.position)
