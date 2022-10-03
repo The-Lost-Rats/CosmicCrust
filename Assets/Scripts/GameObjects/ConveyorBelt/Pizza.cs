@@ -81,6 +81,41 @@ public class Pizza : InteractableObject
         pizzaData = new PizzaData();
     }
 
+    public void ResetPizza()
+    {
+        pizzaData = new PizzaData();
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void SetPizza(PizzaOrder pizzaOrder)
+    {
+        SetSauce(pizzaOrder.sauce);
+        SetCheese(pizzaOrder.cheese);
+        foreach (Constants.Meats meat in pizzaOrder.meats)
+        {
+            AddMeat(meat);
+        }
+        foreach (Constants.Peppers pepper in pizzaOrder.peppers)
+        {
+            AddPepper(pepper);
+        }
+        foreach (Constants.Vegetables vegetable in pizzaOrder.vegetables)
+        {
+            AddVegetable(vegetable);
+        }
+        foreach (Constants.GenericToppings topping in pizzaOrder.genericToppings)
+        {
+            AddGenericTopping(topping);
+        }
+        if (pizzaOrder.hasPineapple)
+        {
+            AddPineapple();
+        }
+    }
+
     public bool SetSauce(Constants.Sauces sauce)
     {
         if (pizzaData.sauce == sauce)
