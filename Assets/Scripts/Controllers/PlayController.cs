@@ -85,7 +85,7 @@ public class PlayController : MonoBehaviour
         displayPizza.ResetPizza();
         displayPizza.SetPizza(currPizzaOrder);
 
-        toppingsDisplay.SetPizzaOrder(currPizzaOrder);
+        // toppingsDisplay.SetPizzaOrder(currPizzaOrder);
 
         // Ship meat
         DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
@@ -105,7 +105,7 @@ public class PlayController : MonoBehaviour
             Debug.Log("Pizza incorrect");
         }
         displayPizza.gameObject.SetActive(false);
-        toppingsDisplay.ResetPizza();
+        // toppingsDisplay.ResetPizza();
 
         // pizzaIndex++; // TODO For now I just want to test with pizza 1
         GameObject.Destroy(currPizza.gameObject);

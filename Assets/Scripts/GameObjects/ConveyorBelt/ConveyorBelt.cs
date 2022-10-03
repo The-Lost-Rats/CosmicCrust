@@ -7,13 +7,13 @@ public class ConveyorBelt : MonoBehaviour
     public GameObject beltPrefab;
     public Pizza pizzaPrefab;
 
-    private const float beltTopBound = 1;
-    private const float beltBottomBound = -9;
-    private const float newBeltOffset = 12.15f;
+    private const float beltTopBound = 73;
+    private const float beltBottomBound = -73;
+    private const float newBeltOffset = 130;
 
-    [Range(1, 5)]
+    [Range(0.01f, 1)]
     [SerializeField]
-    private float speed = 1;
+    private float speed = 0.01f;
 
     void Update()
     {
@@ -45,7 +45,8 @@ public class ConveyorBelt : MonoBehaviour
                 {
                     if (!beltData.spawnedNextBelt && child.localPosition.y <= beltTopBound)
                     {
-                        Instantiate(beltPrefab, child.position + new Vector3(0, newBeltOffset), Quaternion.identity, transform);
+                        GameObject newBelt = Instantiate(beltPrefab, child.position, Quaternion.identity, transform);
+                        newBelt.transform.localPosition = new Vector2(newBelt.transform.localPosition.x, child.localPosition.y + newBeltOffset);
                         beltData.spawnedNextBelt = true;
                     }
                 }
@@ -67,7 +68,8 @@ public class ConveyorBelt : MonoBehaviour
 
     public Pizza CreatePizza()
     {
-        Pizza pizza = Instantiate(pizzaPrefab, transform.position + new Vector3(0, beltTopBound), Quaternion.identity, transform);
+        Pizza pizza = Instantiate(pizzaPrefab, transform.position, Quaternion.identity, transform);
+        pizza.transform.localPosition = new Vector2(transform.localPosition.x, beltTopBound);
         pizza.name = "Pizza";
         return pizza;
     }
