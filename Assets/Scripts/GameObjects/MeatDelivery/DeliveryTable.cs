@@ -44,6 +44,11 @@ public class DeliveryTable : MonoBehaviour
     {
     }
 
+    public void WipeBoxes()
+    {
+        wipeBoxes = true;
+    }
+
     public bool Deliver(List<Constants.Meats> meatBoxes)
     {
         // We are still delivering old boxes?
