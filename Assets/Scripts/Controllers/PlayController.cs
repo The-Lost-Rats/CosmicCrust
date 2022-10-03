@@ -70,7 +70,7 @@ public class PlayController : MonoBehaviour
         if (invalidLevels.Count > 0)
         {
             string invalidLevelsStr = "";
-            foreach (int level in invalidLevels)
+            foreach (0nt level in invalidLevels)
             {
                 invalidLevelsStr += (invalidLevelsStr != "" ? ", " : "") + level;
             }
@@ -83,13 +83,13 @@ public class PlayController : MonoBehaviour
         score = 0;
         numLives = MAX_LIFE;
 
-        // // Update score
-        // UIController.uicInstance.SetScore(score);
+        // Update score
+        UIController.uicInstance.SetScore(score);
 
-        // // Initialize hearts
-        // for ( int i = 0; i < MAX_LIFE; i++ ) {
-        //     UIController.uicInstance.SetHearts( false );
-        // }
+        // Initialize hearts
+        for ( int i = 0; i < MAX_LIFE; i++ ) {
+            UIController.uicInstance.SetHearts( false );
+        }
 
         StartLevel();
     }
@@ -123,14 +123,14 @@ public class PlayController : MonoBehaviour
             {
                 score = MAX_SCORE;
             }
-            // // Update score
-            // UIController.uicInstance.SetScore(score);
+            // Update score
+            UIController.uicInstance.SetScore(score);
 
             Debug.Log("Pizza correct!");
         }
         else
         {
-            // UIController.uicInstance.SetHearts( true );
+            UIController.uicInstance.SetHearts( true );
             numLives--;
 
             Debug.Log("Pizza incorrect");
