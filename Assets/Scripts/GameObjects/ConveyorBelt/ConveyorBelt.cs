@@ -13,7 +13,7 @@ public class ConveyorBelt : MonoBehaviour
 
     [Range(1, 5)]
     [SerializeField]
-    private float speed = 1;
+    public float speed = 1;
 
     void Update()
     {
