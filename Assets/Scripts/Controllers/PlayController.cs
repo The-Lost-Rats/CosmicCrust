@@ -110,6 +110,9 @@ public class PlayController : MonoBehaviour
         // pizzaIndex++; // TODO For now I just want to test with pizza 1
         GameObject.Destroy(currPizza.gameObject);
 
+        // DESTROY THE PLANTS
+        PlantManager.pmInstance.WipePlants();
+
         Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
     }
 
