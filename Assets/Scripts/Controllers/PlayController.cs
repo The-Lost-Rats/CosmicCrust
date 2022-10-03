@@ -79,7 +79,7 @@ public class PlayController : MonoBehaviour
         }
 
         // Initialize the game
-        pizzaIndex = 0;
+        pizzaIndex = 18;
         score = 0;
         numLives = MAX_LIFE;
 
@@ -118,7 +118,7 @@ public class PlayController : MonoBehaviour
         bool pizzaCorrect = currPizza.IsOrderCorrect(currPizzaOrder);
         if (pizzaCorrect)
         {
-            score++;
+            score += 4;
             if (score > MAX_SCORE)
             {
                 score = MAX_SCORE;
@@ -147,16 +147,19 @@ public class PlayController : MonoBehaviour
         // Wipe the meat!
         DeliveryTable.dtInstance.WipeBoxes();
 
-        if (numLives == 0 || pizzaIndex == pizzaOrders.Count - 1)
-        // if (pizzaIndex == pizzaOrders.Count - 1)
+        if (numLives == 0)
         {
+            // You lost :(
             GameController.instance.GameOver();
-
-            BeltController.bcInstance.Reset();
-            WheelController.wcInstance.Reset();
-            DrawerController.dcInstance.Reset();
-            PlantManager.pmInstance.ResetWateringCan();
-            DeliveryTable.dtInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
+            GameOverController.gocInstance.UpdateFinalScore(score);
+            ResetScene();
+        }
+        else 
+        if (pizzaIndex == pizzaOrders.Count - 1)
+        {
+            // You won!
+            GameController.instance.GameWon();
+            ResetScene();
         }
         else
         {
@@ -168,6 +171,16 @@ public class PlayController : MonoBehaviour
 
             Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
         }
+    }
+
+    private void ResetScene()
+    {
+        // TODO: there are 100% things I have missed to reset -> must be a better way to do this
+        BeltController.bcInstance.Reset();
+        WheelController.wcInstance.Reset();
+        DrawerController.dcInstance.Reset();
+        PlantManager.pmInstance.ResetWateringCan();
+        DeliveryTable.dtInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
     }
 
     public bool SetSauce(Constants.Sauces sauce)
