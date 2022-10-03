@@ -88,7 +88,7 @@ public class PlayController : MonoBehaviour
         toppingsDisplay.SetPizzaOrder(currPizzaOrder);
 
         // Ship meat
-        // DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
+        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
     }
 
     public void EndLevel()

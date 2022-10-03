@@ -21,24 +21,6 @@ public class MeatBox : InteractableObject
     private bool isOpen = false;
     private bool isGrabbable = false;
 
-    // private Vector3 originalScale = new Vector3(0.0f, 0.0f, 0.0f);
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // originalScale = transform.localScale;
-    }
-
-    public override void OnEnter()
-    {
-        transform.localScale = new Vector3(1.1f, 1.1f);
-    }
-
-    public override void OnExit()
-    {
-        transform.localScale = new Vector3(1, 1);
-    }
-
     public override bool IsGrabbable()
     {
         return isGrabbable;
