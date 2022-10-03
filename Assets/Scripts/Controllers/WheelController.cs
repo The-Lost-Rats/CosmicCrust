@@ -20,26 +20,26 @@ public class WheelController : MonoBehaviour
 
     public void UpdateSpeedAndDirection()
     {
-        if (veggieWheel.rotationSpeed < veggieWheel.maxSpeed)
-        {
-            veggieWheel.rotationSpeed = Mathf.Pow(veggieWheel.rotationSpeed, 1.12f);
-        }
+        // if (veggieWheel.rotationSpeed < veggieWheel.maxSpeed)
+        // {
+        //     veggieWheel.rotationSpeed = Mathf.Pow(veggieWheel.rotationSpeed, 1.12f);
+        // }
 
-        if (veggieWheel.rotationSpeed > veggieWheel.maxSpeed)
-        {
-            veggieWheel.rotationSpeed = veggieWheel.maxSpeed;
-        }
+        // if (veggieWheel.rotationSpeed > veggieWheel.maxSpeed)
+        // {
+        //     veggieWheel.rotationSpeed = veggieWheel.maxSpeed;
+        // }
 
-        float flipDirection = Random.Range(0.0f, 1.0f);
-        if (flipDirection > 0.78)
-        {
-            veggieWheel.direction *= -1;
-        }
+        // float flipDirection = Random.Range(0.0f, 1.0f);
+        // if (flipDirection > 0.78)
+        // {
+        //     veggieWheel.direction *= -1;
+        // }
     }
 
     public void Reset()
     {
-        veggieWheel.direction = 1;
-        veggieWheel.rotationSpeed = veggieWheel.initialSpeed;
+        // veggieWheel.direction = 1;
+        // veggieWheel.rotationSpeed = veggieWheel.initialSpeed;
     }
 }
