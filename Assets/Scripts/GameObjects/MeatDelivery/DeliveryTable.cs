@@ -123,4 +123,26 @@ public class DeliveryTable : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        for (int i = deliveredBoxes.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(deliveredBoxes[i]);
+        }
+        
+        for (int i = boxesToDeliver.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(boxesToDeliver[i]);
+        }
+
+        for (int i = boxesToDelete.Count - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(boxesToDelete[i]);
+        }
+
+        deliveredBoxes = new List<GameObject>();
+        boxesToDeliver = new List<GameObject>();
+        boxesToDelete = new List<GameObject>();
+    }
+
 }

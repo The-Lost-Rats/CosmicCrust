@@ -15,6 +15,13 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField]
     public float speed = 1.3f;
 
+    public float startSpeed;
+
+    void Awake()
+    {
+        startSpeed = speed;
+    }
+
     void Update()
     {
         Move();

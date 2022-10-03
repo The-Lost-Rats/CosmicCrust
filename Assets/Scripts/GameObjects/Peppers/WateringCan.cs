@@ -21,10 +21,12 @@ public class WateringCan : InteractableObject
     public Sprite inactive;
 
     private Vector3 finalPos;
+    private Vector3 initialPos;
 
     void Start()
     {
         GetComponent<ParticleSystem>().Stop();
+        initialPos = transform.position;
     }
 
     public override void OnEnter()
@@ -78,5 +80,10 @@ public class WateringCan : InteractableObject
         GetComponent<SpriteRenderer>().sprite  = inactive;
 
         return InputController.InputState.Default;
+    }
+
+    public void Reset()
+    {
+        transform.position = initialPos;
     }
 }

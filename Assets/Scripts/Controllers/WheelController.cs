@@ -36,4 +36,10 @@ public class WheelController : MonoBehaviour
             veggieWheel.direction *= -1;
         }
     }
+
+    public void Reset()
+    {
+        veggieWheel.direction = 1;
+        veggieWheel.rotationSpeed = veggieWheel.initialSpeed;
+    }
 }

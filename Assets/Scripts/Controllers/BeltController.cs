@@ -26,5 +26,10 @@ public class BeltController : MonoBehaviour
     public float GetSpeed()
     {
         return belt.speed;
-    } 
+    }
+
+    public void Reset()
+    {
+        belt.speed = belt.startSpeed;
+    }
 }

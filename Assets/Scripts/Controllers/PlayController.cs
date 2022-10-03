@@ -59,6 +59,11 @@ public class PlayController : MonoBehaviour
         return invalidLevels;
     }
 
+    public void Restart()
+    {
+        InitalizeGame();
+    }
+
     private void InitalizeGame()
     {
         List<int> invalidLevels = ValidatePizzaOrders();
@@ -129,11 +134,6 @@ public class PlayController : MonoBehaviour
             numLives--;
 
             Debug.Log("Pizza incorrect");
-
-            if (numLives == 0)
-            {
-                GameController.instance.GameOver();
-            }
         }
         displayPizza.gameObject.SetActive(false);
         toppingsDisplay.ResetPizza();
@@ -144,13 +144,26 @@ public class PlayController : MonoBehaviour
         // DESTROY THE PLANTS
         PlantManager.pmInstance.WipePlants();
 
-        // Increase belt speed!
-        BeltController.bcInstance.UpdateSpeed();
+        if (numLives == 0)
+        {
+            GameController.instance.GameOver();
 
-        // Increase veggie wheel speed/or change direction
-        WheelController.wcInstance.UpdateSpeedAndDirection();
+            BeltController.bcInstance.Reset();
+            WheelController.wcInstance.Reset();
+            DrawerController.dcInstance.Reset();
+            PlantManager.pmInstance.ResetWateringCan();
+            DeliveryTable.dtInstance.Reset();
+        }
+        else
+        {
+            // Increase belt speed!
+            BeltController.bcInstance.UpdateSpeed();
 
-        Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
+            // Increase veggie wheel speed/or change direction
+            WheelController.wcInstance.UpdateSpeedAndDirection();
+
+            Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
+        }
     }
 
     public bool SetSauce(Constants.Sauces sauce)
