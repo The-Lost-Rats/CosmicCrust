@@ -106,7 +106,7 @@ public class PlayController : MonoBehaviour
         toppingsDisplay.SetPizzaOrder(currPizzaOrder);
 
         // Ship meat
-        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
+        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats, currPizzaOrder.numMeatToShip);
     
         // Init is done for level, so let's start the timer! (that doesn't really mean anything haha)
         TimerController.tcInstance.StartTimer();
@@ -138,7 +138,7 @@ public class PlayController : MonoBehaviour
         displayPizza.gameObject.SetActive(false);
         toppingsDisplay.ResetPizza();
 
-        // pizzaIndex++; // TODO For now I just want to test with pizza 1
+        pizzaIndex++; // TODO For now I just want to test with pizza 1
         GameObject.Destroy(currPizza.gameObject);
 
         // DESTROY THE PLANTS
@@ -147,7 +147,8 @@ public class PlayController : MonoBehaviour
         // Wipe the meat!
         DeliveryTable.dtInstance.WipeBoxes();
 
-        if (numLives == 0)
+        if (numLives == 0 || pizzaIndex == pizzaOrders.Count - 1)
+        // if (pizzaIndex == pizzaOrders.Count - 1)
         {
             GameController.instance.GameOver();
 

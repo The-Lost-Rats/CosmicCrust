@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69ccd07a3d8a4d14a99f9e246b1a1b5c, type: 3}
-  m_Name: PizzaOrder3
+  m_Name: PizzaOrder19
   m_EditorClassIdentifier: 
   sauce: 0
-  cheese: 1
-  meats: 
-  peppers: 
-  vegetables: 0200000003000000
-  genericToppings: 05000000
+  cheese: 0
+  meats: 03000000
+  peppers: 0200000000000000
+  vegetables: 
+  genericToppings: 01000000020000000300000000000000
   hasPineapple: 0
-  numMeatToShip: 0
+  numMeatToShip: 4
