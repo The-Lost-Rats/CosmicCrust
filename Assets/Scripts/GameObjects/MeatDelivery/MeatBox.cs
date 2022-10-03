@@ -28,12 +28,12 @@ public class MeatBox : InteractableObject
 
     public override void OnEnter()
     {
-        transform.localScale = new Vector3(0.011f, 0.011f);
+        transform.localScale = new Vector3(1.1f, 1.1f);
     }
 
     public override void OnExit()
     {
-        transform.localScale = new Vector3(0.01f, 0.01f);
+        transform.localScale = Vector3.one;
     }
 
     public override InputController.InputState OnClick()
