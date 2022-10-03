@@ -155,7 +155,7 @@ public class PlayController : MonoBehaviour
             ResetScene();
         }
         else 
-        if (pizzaIndex == pizzaOrders.Count - 1)
+        if (pizzaIndex >= pizzaOrders.Count - 1)
         {
             // You won!
             GameController.instance.GameWon();

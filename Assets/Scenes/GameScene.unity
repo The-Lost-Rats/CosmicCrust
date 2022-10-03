@@ -17321,7 +17321,7 @@ MonoBehaviour:
     type: 3}
   pizzaPrefab: {fileID: 5932832228954432098, guid: a626d9d9f72081943b3551930d835372,
     type: 3}
-  speed: 0.05
+  speed: 0.075
   startSpeed: 0
 --- !u!1 &1776720774
 GameObject:
