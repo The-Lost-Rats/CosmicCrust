@@ -78,6 +78,9 @@ public class PlayController : MonoBehaviour
     {
         currPizza = conveyorBelt.CreatePizza();
         currPizzaOrder = pizzaOrders[pizzaIndex];
+
+        // Ship meat
+        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats);
     }
 
     public void EndLevel()
