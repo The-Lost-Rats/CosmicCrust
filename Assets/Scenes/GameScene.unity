@@ -16393,6 +16393,7 @@ GameObject:
   - component: {fileID: 1520059949}
   - component: {fileID: 1520059951}
   - component: {fileID: 1520059950}
+  - component: {fileID: 1520059952}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
@@ -16408,7 +16409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520059948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16431,10 +16432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dbce1eb0be2374182fa65de27deee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 5
-  maxSpeed: 300
-  direction: 1
-  initialSpeed: 0
 --- !u!212 &1520059951
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16487,6 +16484,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1520059952
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520059948}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 88, y: 88}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -19.263176, y: 39.30141}
+      - {x: -32.97589, y: 28.644451}
+      - {x: -42.10141, y: 6.6421585}
+      - {x: -39.770813, y: -14.966282}
+      - {x: -31.31243, y: -30.515238}
+      - {x: -15.695776, y: -41.74443}
+      - {x: 2.3264742, y: -43.395622}
+      - {x: 18.6212, y: -39.905865}
+      - {x: 39.2016, y: -18.997364}
+      - {x: 43.824432, y: 1.9571915}
+      - {x: 39.50785, y: 18.423313}
+      - {x: 24.308119, y: 35.989548}
+      - {x: -1.4004173, y: 43.172497}
 --- !u!1 &1520305849
 GameObject:
   m_ObjectHideFlags: 0
