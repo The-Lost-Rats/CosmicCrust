@@ -7,6 +7,8 @@ public class VeggieWheel : InteractableObject
     public override bool isInteractable { get { return true; }}
     public override List<string> interactableObjects { get { return new List<string>{}; }}
 
+    public List<VeggieQuad> veggieQuads;
+
     private bool isGrabbed;
     private float angleOffset;
     private float lastAngleDiff;
@@ -47,18 +49,22 @@ public class VeggieWheel : InteractableObject
 
     private void Update()
     {
+        float angle;
         if (isGrabbed)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = mousePosition - transform.position;
-            float angle = Vector2.SignedAngle(Vector2.right, direction) - angleOffset;
+            angle = Vector2.SignedAngle(Vector2.right, direction) - angleOffset;
             lastAngleDiff = angle - transform.eulerAngles.z;
-            transform.eulerAngles = new Vector3 (0, 0, angle);
         }
         else
         {
-            float newAngle = transform.eulerAngles.z + (rotationSpeed * turnDirection * Time.deltaTime);
-            transform.eulerAngles = new Vector3 (0, 0, newAngle);
+            angle = transform.eulerAngles.z + (rotationSpeed * turnDirection * Time.deltaTime);
+        }
+        transform.eulerAngles = new Vector3 (0, 0, angle);
+        for (int i = 0; i < veggieQuads.Count; i++)
+        {
+            veggieQuads[i].transform.eulerAngles = new Vector3(0, 0, angle + (90 * i));
         }
     }
 }
