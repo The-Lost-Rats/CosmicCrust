@@ -113,6 +113,12 @@ public class PlayController : MonoBehaviour
         // DESTROY THE PLANTS
         PlantManager.pmInstance.WipePlants();
 
+        // Increase belt speed!
+        BeltController.bcInstance.UpdateSpeed();
+
+        // Increase veggie wheel speed/or change direction
+        WheelController.wcInstance.UpdateSpeedAndDirection();
+
         Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
     }
 

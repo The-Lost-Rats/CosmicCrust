@@ -5,7 +5,10 @@ using UnityEngine;
 public class VeggieWheel : MonoBehaviour
 {
     [SerializeField]
-    public float rotationSpeed = 5.0f;
+    public float rotationSpeed = 10.0f;
+
+    [SerializeField]
+    public float maxSpeed = 300.0f;
 
     [SerializeField]
     public float direction = 1;
