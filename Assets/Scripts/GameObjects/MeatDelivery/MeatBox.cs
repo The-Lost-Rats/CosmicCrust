@@ -45,6 +45,7 @@ public class MeatBox : InteractableObject
 
             // Update sprite
             GetComponent<SpriteRenderer>().sprite  = openSprite;
+            SoundController.scInstance.PlaySingle("meatBoxOpen");
 
             return InputController.InputState.Default;
         }
@@ -54,6 +55,7 @@ public class MeatBox : InteractableObject
             {
                 isGrabbable = true;
             }
+            SoundController.scInstance.PlaySingle("itemGrab");
             
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);

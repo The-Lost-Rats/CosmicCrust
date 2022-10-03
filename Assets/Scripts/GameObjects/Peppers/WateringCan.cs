@@ -43,6 +43,8 @@ public class WateringCan : InteractableObject
         amHolding = true;
         waterParticleSystem.Play();
         GetComponent<SpriteRenderer>().sprite  = active;
+        SoundController.scInstance.PlaySingle("itemGrab");
+        SoundController.scInstance.PlayLoopingSound("wateringCan");
 
         return InputController.InputState.Grabbing;
     }
@@ -62,6 +64,7 @@ public class WateringCan : InteractableObject
 
         waterParticleSystem.Stop();
         GetComponent<SpriteRenderer>().sprite  = inactive;
+        SoundController.scInstance.StopLoopingSound();
 
         transform.position = initPos;
 

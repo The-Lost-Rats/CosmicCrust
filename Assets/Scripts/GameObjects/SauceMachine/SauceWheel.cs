@@ -53,6 +53,7 @@ public class SauceWheel : InteractableObject
     {
         isGrabbed = false;
         sauceParticles.Stop();
+        SoundController.scInstance.StopLoopingSound();
         turnTimer = 0;
         sauceTimer = 0;
         sauceAdded = false;
@@ -74,6 +75,7 @@ public class SauceWheel : InteractableObject
                 turnTimer -= Time.deltaTime;
                 if (turnTimer <= 0)
                 {
+                    SoundController.scInstance.StopLoopingSound();
                     sauceParticles.Stop();
                 }
                 else if (bounds.pizzaInBounds)
@@ -97,6 +99,7 @@ public class SauceWheel : InteractableObject
         {
             if (!sauceParticles.isPlaying)
             {
+                SoundController.scInstance.PlayLoopingSound("sauceSpray");
                 sauceParticles.Play();
             }
             turnTimer = turnTimerStart;

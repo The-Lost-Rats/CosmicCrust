@@ -7,13 +7,17 @@ public class SoundController : MonoBehaviour {
     public AudioSource efxSource;
     public AudioSource secondaryEfxSource;
     public AudioSource tertiaryEfxSource;
+    public AudioSource loopingEfxSource;
     public AudioSource musicSource;
 
-    public AudioClip ingredientPickUp;
-    public AudioClip drawerOpening;
-    public AudioClip gameStart;
+    public AudioClip itemGrab;
     public AudioClip pizzaCorrect;
     public AudioClip pizzaWrong;
+    public AudioClip drawerOpening;
+    public AudioClip meatBoxOpen;
+    public AudioClip cheeseGrate;
+    public AudioClip sauceSpray;
+    public AudioClip wateringCan;
 
     private Hashtable soundEffects;
 
@@ -33,11 +37,14 @@ public class SoundController : MonoBehaviour {
     void InitSounds()
     {
         soundEffects = new Hashtable();
-        soundEffects["ingredientPickUp"] = ingredientPickUp;
-        soundEffects["drawerOpenhing"] = drawerOpening;
-        soundEffects["gameStart"] = gameStart;
+        soundEffects["itemGrab"] = itemGrab;
         soundEffects["pizzaCorrect"] = pizzaCorrect;
         soundEffects["pizzaWrong"] = pizzaWrong;
+        soundEffects["drawerOpening"] = drawerOpening;
+        soundEffects["meatBoxOpen"] = meatBoxOpen;
+        soundEffects["cheeseGrate"] = cheeseGrate;
+        soundEffects["sauceSpray"] = sauceSpray;
+        soundEffects["wateringCan"] = wateringCan;
     }
 
     public void PlaySingle(string clipName)
@@ -66,6 +73,18 @@ public class SoundController : MonoBehaviour {
         efxSource.Stop();
         secondaryEfxSource.Stop();
         tertiaryEfxSource.Stop();
+        loopingEfxSource.Stop();
+    }
+
+    public void PlayLoopingSound(string clipName)
+    {
+        loopingEfxSource.clip = (AudioClip)soundEffects[clipName];
+        loopingEfxSource.Play();
+    }
+
+    public void StopLoopingSound()
+    {
+        loopingEfxSource.Stop();
     }
 
     public void StopMusic()

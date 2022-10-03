@@ -126,12 +126,16 @@ public class PlayController : MonoBehaviour
             // Update score
             UIController.uicInstance.SetScore(score);
 
+            SoundController.scInstance.PlaySingle("pizzaCorrect");
+
             Debug.Log("Pizza correct!");
         }
         else
         {
             UIController.uicInstance.SetHearts( true );
             numLives--;
+
+            SoundController.scInstance.PlaySingle("pizzaWrong");
 
             Debug.Log("Pizza incorrect");
         }

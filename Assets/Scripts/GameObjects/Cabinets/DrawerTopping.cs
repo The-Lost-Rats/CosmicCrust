@@ -25,6 +25,7 @@ public class DrawerTopping : InteractableObject
 
     public override InputController.InputState OnClick()
     {
+        SoundController.scInstance.PlaySingle("itemGrab");
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currInstance = Instantiate(toppingPrefab, mousePosition, Quaternion.identity);
         SpriteRenderer sr = GetComponent<SpriteRenderer>();

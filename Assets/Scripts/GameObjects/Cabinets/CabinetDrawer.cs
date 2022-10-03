@@ -14,6 +14,7 @@ public class CabinetDrawer : InteractableObject
     private bool isMoving;
     private float mouseOffset;
     private float[] movementBounds;
+    private bool playedSound;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class CabinetDrawer : InteractableObject
         isMoving = true;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseOffset = transform.position.y - mousePosition.y;
+        playedSound = false;
         return InputController.InputState.Grabbing;
     }
  
@@ -51,12 +53,16 @@ public class CabinetDrawer : InteractableObject
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // Add an offset so the anchor point of the sprite can be ignored
             float posY = Mathf.Clamp(mousePosition.y + mouseOffset, movementBounds[0], movementBounds[1]);
-            transform.position = new Vector2(transform.position.x, posY);
+            if (!playedSound && posY != transform.position.y)
+            {
+                SoundController.scInstance.PlaySingle("drawerOpening");
+            }
+            transform.position = new Vector3(transform.position.x, posY, transform.position.z);
         }
     }
 
     public void Reset()
     {
-        transform.position = new Vector2(transform.position.x, movementBounds[1]);
+        transform.position = new Vector3(transform.position.x, movementBounds[1], transform.position.z);
     }
 }

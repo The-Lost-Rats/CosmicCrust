@@ -36,6 +36,7 @@ public class GrabCheese : GrabbableObject
             grateTimer -= Time.deltaTime;
             if (grateTimer <= 0)
             {
+                SoundController.scInstance.StopLoopingSound();
                 cheeseGraterParticles.Stop();
             }
             else if (cheeseBounds.pizzaInBounds)
@@ -59,6 +60,7 @@ public class GrabCheese : GrabbableObject
         {
             if (!cheeseGraterParticles.isPlaying)
             {
+                SoundController.scInstance.PlayLoopingSound("cheeseGrate");
                 cheeseGraterParticles.Play();
             }
             grateTimer = grateTimerStart;
@@ -136,6 +138,7 @@ public class GrabCheese : GrabbableObject
 
     private void OnDestroy()
     {
+        SoundController.scInstance.StopLoopingSound();
         cheeseGraterParticles.Stop();
     }
 }

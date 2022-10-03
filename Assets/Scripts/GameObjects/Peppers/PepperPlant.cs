@@ -142,6 +142,7 @@ public class PepperPlant : InteractableObject
     {
         if (isGrown)
         {
+            SoundController.scInstance.PlaySingle("itemGrab");
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
         }
