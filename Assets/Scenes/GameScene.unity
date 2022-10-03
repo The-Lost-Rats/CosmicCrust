@@ -669,7 +669,6 @@ MonoBehaviour:
   drawerOpening: {fileID: 8300000, guid: f17ef23436980dc428d3b9c35ca1ef6c, type: 3}
   meatBoxOpen: {fileID: 8300000, guid: 642027e6ddd0bb84aa8b872f8eed522c, type: 3}
   cheeseGrate: {fileID: 8300000, guid: e2d8a9dc1777f554e905bd75be29d479, type: 3}
-  sauceLever: {fileID: 8300000, guid: 7fa74744d034009488d931bb1f1b7fac, type: 3}
   sauceSpray: {fileID: 8300000, guid: 8af5e8ae0040ae04180ab4debce9353e, type: 3}
   wateringCan: {fileID: 8300000, guid: fe330ca9087e5e94d974c2305f8e41ef, type: 3}
 --- !u!4 &139467390
@@ -17183,7 +17182,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -8.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 1, y: 0.5}
