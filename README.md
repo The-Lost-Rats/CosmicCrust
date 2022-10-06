@@ -8,6 +8,13 @@
 > 
 > Try and take on this tough challenge and beat all 20 levels!
 
+## Trailer
+
+
+https://user-images.githubusercontent.com/28954155/194207362-2260d2c9-cee9-4b09-ab64-06207fbf5e39.mp4
+
+
+
 ## Screenshots
 Main Menu | Kitchen | Game Over |
 :-------------------------:|:-------------------------:|:-------------------------:|
@@ -18,7 +25,7 @@ Main Menu | Kitchen | Game Over |
 This game was made for the Ludum Dare 51 - "Every 10 Seconds"
 
 
-<p align="left" style="display: flex">
+<p style="display: flex">
 <img src="https://i.imgur.com/UyvRtEf.png" style="width: 32px" alt="The Lost Rats" /> 
 <span style="align-items: center; padding: 4px">Justin Roderman . Sean Poole . Varun Chadha</span>
 </p>
