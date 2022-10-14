@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PizzaOrder16
   m_EditorClassIdentifier: 
   sauce: 0
-  cheese: 0
-  meats: 01000000020000000300000000000000
-  peppers: 02000000
+  cheese: 1
+  meats: 01000000
+  peppers: 
   vegetables: 00000000
-  genericToppings: 
-  hasPineapple: 1
-  numMeatToShip: 4
+  genericToppings: 02000000
+  hasPineapple: 0
+  numMeatToShip: 1

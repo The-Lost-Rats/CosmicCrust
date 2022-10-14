@@ -16,7 +16,7 @@ MonoBehaviour:
   cheese: 1
   meats: 
   peppers: 
-  vegetables: 0200000003000000
-  genericToppings: 05000000
+  vegetables: 01000000
+  genericToppings: 
   hasPineapple: 0
   numMeatToShip: 0

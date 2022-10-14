@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sauce: 1
   cheese: 1
-  meats: 03000000
-  peppers: 00000000
-  vegetables: 
-  genericToppings: 
+  meats: 
+  peppers: 
+  vegetables: 0100000002000000
+  genericToppings: 01000000
   hasPineapple: 0
-  numMeatToShip: 3
+  numMeatToShip: 0
