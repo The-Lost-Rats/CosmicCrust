@@ -20,7 +20,7 @@ public class BeltController : MonoBehaviour
 
     public void UpdateSpeed()
     {
-        belt.speed = belt.speed * 1.08f;
+        // belt.speed = belt.speed * 1.08f; // Deactivate speeding up the conveyor belt for now
     }
 
     public float GetSpeed()
