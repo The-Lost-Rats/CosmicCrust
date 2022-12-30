@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundController : MonoBehaviour {
+    // To make the hashtable kinda serializable
+    [System.Serializable]
+    public struct SoundEffectItem
+    {
+        // Effect name in hash table
+        [SerializeField]
+        public string id;
+
+        // Audio clip
+        [SerializeField]
+        public AudioClip clip;
+    }
+
     public static SoundController scInstance = null;
-    public AudioSource efxSource;
-    public AudioSource secondaryEfxSource;
-    public AudioSource tertiaryEfxSource;
+
     public AudioSource loopingEfxSource;
     public AudioSource musicSource;
 
-    public AudioClip itemGrab;
-    public AudioClip pizzaCorrect;
-    public AudioClip pizzaWrong;
-    public AudioClip drawerOpening;
-    public AudioClip meatBoxOpen;
-    public AudioClip cheeseGrate;
-    public AudioClip sauceSpray;
-    public AudioClip wateringCan;
+    // List of sources to play singles
+    // 0 - primary
+    // n - nth efx source
+    [SerializeField]
+    public List<AudioSource> efxSources;
+
+    [SerializeField]
+    private List<SoundEffectItem> soundEffectItems;
 
     private Hashtable soundEffects;
 
@@ -36,43 +47,45 @@ public class SoundController : MonoBehaviour {
 
     void InitSounds()
     {
+        // Translate list to hash table
         soundEffects = new Hashtable();
-        soundEffects["itemGrab"] = itemGrab;
-        soundEffects["pizzaCorrect"] = pizzaCorrect;
-        soundEffects["pizzaWrong"] = pizzaWrong;
-        soundEffects["drawerOpening"] = drawerOpening;
-        soundEffects["meatBoxOpen"] = meatBoxOpen;
-        soundEffects["cheeseGrate"] = cheeseGrate;
-        soundEffects["sauceSpray"] = sauceSpray;
-        soundEffects["wateringCan"] = wateringCan;
+        foreach (SoundEffectItem item in soundEffectItems)
+        {
+            soundEffects[item.id] = item.clip;
+        }
     }
 
-    public void PlaySingle(string clipName)
+    // Return true if we found a source to play efx
+    public bool PlaySingle(string clipName)
     {
+        bool playedSource = false;
+
+        // Get audio clip name
         AudioClip clip = (AudioClip)soundEffects[clipName];
 
-        if(!efxSource.isPlaying)
+        // Find first available source
+        foreach (AudioSource efxSource in efxSources)
         {
-            efxSource.clip = clip;
-            efxSource.Play();
+            if(!efxSource.isPlaying)
+            {
+                efxSource.clip = clip;
+                efxSource.Play();
+                playedSource = true;
+
+                break;
+            }
         }
-        else if (!secondaryEfxSource.isPlaying)
-        {
-            secondaryEfxSource.clip = clip;
-            secondaryEfxSource.Play();
-        }
-        else
-        {
-            tertiaryEfxSource.clip = clip;
-            tertiaryEfxSource.Play();
-        }
+
+        return ( playedSource );
     }
 
     public void StopSounds()
     {
-        efxSource.Stop();
-        secondaryEfxSource.Stop();
-        tertiaryEfxSource.Stop();
+        foreach (AudioSource efxSource in efxSources)
+        {
+            efxSource.Stop();
+        }
+
         loopingEfxSource.Stop();
     }
 

@@ -27,6 +27,7 @@ public class DeliveryFactory : MonoBehaviour
         }
     }
 
+    // Create a meatBox
     public GameObject CreateMeatBox(Constants.Meats meatType)
     {
         GameObject meatBoxPrefab = null;
