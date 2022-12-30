@@ -5,26 +5,34 @@ using UnityEngine;
 // Spawn and move box from spawn loc to next free loc in list
 public class DeliveryTable : MonoBehaviour
 {
+    // Singleton - there can only be one delivery table
     public static DeliveryTable dtInstance = null;
 
+    // Delivery spots for boxes
     [SerializeField]
     public List<GameObject> deliverySpots;
 
+    // Where boxes go when a round ends
     [SerializeField]
     public GameObject destroyTarget;
 
+    // Set to true to remove boxes
     private bool wipeBoxes = false;
 
+    // List of boxes delivered
     private List<GameObject> deliveredBoxes;
+
+    // List of boxes to deliver
     private List<GameObject> boxesToDeliver;
+
+    // List of boxes to delete
     private List<GameObject> boxesToDelete;
 
+    // Current box to delete or deliver
     private GameObject currentBox;
 
+    // Spot to deliver box
     private int deliverySpotIdx;
-
-    // Duplicate code jesus
-    private const int MAX_SPOTS = 4;
 
     public void Awake() {
         if ( null == dtInstance ) {
@@ -44,29 +52,37 @@ public class DeliveryTable : MonoBehaviour
     {
     }
 
+    // Wipe boxes
     public void WipeBoxes()
     {
+        // Wipe boxes
         wipeBoxes = true;
+
+        // Set delivery index to 0
+        deliverySpotIdx = 0;
     }
 
+    // Deliver a set of boxes
     public bool Deliver(List<Constants.Meats> meatBoxes)
     {
         // We are still delivering old boxes?
+        // If so, ignore this
         if ( boxesToDeliver.Count > 0 )
         {
             return false;
         }
 
-        // Remove previous boxes
-        wipeBoxes = true;
+        // Remove previous boxes incase they are still around.
+        // This will only be usefull if we do multiple deliveries in one round...
+        WipeBoxes();
 
+        // Create boxes of meat to deliver
         foreach (Constants.Meats meatType in meatBoxes)
         {
             boxesToDeliver.Add(DeliveryFactory.dfInstance.CreateMeatBox(meatType));
         }
 
-        deliverySpotIdx = 0;
-
+        // We have started delivery
         return true;
     }
 
@@ -85,6 +101,8 @@ public class DeliveryTable : MonoBehaviour
                 }
             }
 
+            // Instead of doing this in a loop which is slightly more complicated and verbose with having to loop backwards etc
+            // I just pop the head off the list and delete that every call to update  until all boxes are gone
             if ( boxesToDelete.Count > 0 )
             {
                 GameObject boxToDelete = boxesToDelete[0];
@@ -95,6 +113,8 @@ public class DeliveryTable : MonoBehaviour
             }
 
             // We have destroyed old boxes
+            // Man there are so many extra checks here that are a result of bad code
+            // Ideally this first check would never happen, but here we are
             if (deliveredBoxes.Count == 0 && boxesToDelete.Count == 0)
             {
                 wipeBoxes = false;
@@ -114,7 +134,9 @@ public class DeliveryTable : MonoBehaviour
                 }
             }
 
-            if (currentBox != null && deliverySpotIdx < MAX_SPOTS)
+            // We don't need the second check here. We only every deliver that correct ammount...
+            // But this makes it so if someone does try and force call deliver with too many, we don't error
+            if (currentBox != null && deliverySpotIdx < Constants.MAX_MEAT_DELIVERY_SPOTS)
             {
                 currentBox.transform.position = Vector3.MoveTowards(currentBox.transform.position, deliverySpots[deliverySpotIdx].transform.position, 0.02f);
                 if (currentBox.transform.position == deliverySpots[deliverySpotIdx].transform.position)
@@ -130,6 +152,7 @@ public class DeliveryTable : MonoBehaviour
 
     public void Reset()
     {
+        // Loop backwards and destroy boxes in every list
         for (int i = deliveredBoxes.Count - 1; i >= 0; i--)
         {
             GameObject.Destroy(deliveredBoxes[i]);
@@ -145,9 +168,9 @@ public class DeliveryTable : MonoBehaviour
             GameObject.Destroy(boxesToDelete[i]);
         }
 
-        deliveredBoxes = new List<GameObject>();
-        boxesToDeliver = new List<GameObject>();
-        boxesToDelete = new List<GameObject>();
+        deliveredBoxes.Clear();
+        boxesToDeliver.Clear();
+        boxesToDelete.Clear();
     }
 
 }
