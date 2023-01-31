@@ -28,6 +28,7 @@ public class WateringCan : InteractableObject
         initPos = transform.position;
     }
 
+    // TODO: create a popup object class or something that has this on enter and exit
     public override void OnEnter()
     {
         transform.localScale = new Vector3(1.1f, 1.1f);
@@ -74,5 +75,10 @@ public class WateringCan : InteractableObject
     public void Reset()
     {
         transform.position = initPos;
+    }
+
+    public void Show(bool showWateringCan)
+    {
+        gameObject.SetActive(showWateringCan);
     }
 }

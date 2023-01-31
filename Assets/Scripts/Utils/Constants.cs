@@ -55,4 +55,6 @@ public class Constants
     }
 
     public const int maxIngredients = 10;
+
+    public const int MAX_MEAT_DELIVERY_SPOTS = 4;
 }

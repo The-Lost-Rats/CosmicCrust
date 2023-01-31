@@ -8,9 +8,11 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
     public static GameController instance = null;
 
+    [SerializeField]
+    private bool gameOver = false;
 
-    public bool gameOver = false;
-    private bool isRunning;
+    [SerializeField]
+    private bool pauseGame = false;
 
     private SceneController.Level currentLevel;
 
@@ -23,12 +25,17 @@ public class GameController : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
 
-        // Start with main game level
-        SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
+        // Start with main menu
+        SceneController.LoadLevel( SceneController.Level.MAIN_MENU );
     }
 
     void Update() {
         switch( SceneController.GetCurrentLevel() ) {
+            case SceneController.Level.MAIN_MENU:
+                RunMenu();
+                break;
+            case SceneController.Level.PAUSE_MENU:
+                break;
             case SceneController.Level.MAIN_LEVEL:
                 RunGame();
                 break;
@@ -39,7 +46,19 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    void RunGame() {}
+    void RunMenu()
+    {
+        if ( Input.GetKeyDown( KeyCode.Return ) ) {
+            SceneController.LoadLevel( SceneController.Level.MAIN_LEVEL );
+        }
+
+        Time.timeScale = 0.0f;
+    }
+
+    void RunGame()
+    {
+        Time.timeScale = 1.0f;
+    }
 
     void RunGameEnd()
     {
@@ -58,9 +77,10 @@ public class GameController : MonoBehaviour {
         Time.timeScale = 1.0f;
     }
 
-    public void GameOver()
+    public void GameOver(int score)
     {
         SceneController.LoadLevel(SceneController.Level.GAME_OVER_MENU);
+        UIController.uicInstance.SetFinalScore(score);
 
         Time.timeScale = 0.0f;
     }
@@ -70,5 +90,26 @@ public class GameController : MonoBehaviour {
         SceneController.LoadLevel(SceneController.Level.WIN_MENU);
 
         Time.timeScale = 0.0f;
+    }
+
+    public bool IsGameOver()
+    {
+        bool isGameOver = gameOver;
+
+        SceneController.Level currLevel = SceneController.GetCurrentLevel();
+        isGameOver = isGameOver || (currLevel == SceneController.Level.GAME_OVER_MENU);
+        isGameOver = isGameOver || (currLevel == SceneController.Level.WIN_MENU);
+
+        return ( isGameOver );
+    }
+
+    public bool IsGamePaused()
+    {
+        bool isGamePaused = pauseGame;
+
+        SceneController.Level currLevel = SceneController.GetCurrentLevel();
+        isGamePaused = isGamePaused || (currLevel == SceneController.Level.PAUSE_MENU);
+
+        return ( isGamePaused );
     }
 }

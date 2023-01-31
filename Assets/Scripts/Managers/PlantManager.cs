@@ -21,6 +21,7 @@ public class PlantManager : MonoBehaviour
         }
     }
 
+    // Reset plants
     public void WipePlants()
     {
         foreach (PepperPlant plant in plants)
@@ -29,8 +30,21 @@ public class PlantManager : MonoBehaviour
         }
     }
 
+    // Reset watering can
     public void ResetWateringCan()
     {
         wateringCan.Reset();
+    }
+
+    // Reset everything
+    public void Reset()
+    {
+        WipePlants();
+        ResetWateringCan();
+    }
+
+    public void ShowWateringCan(bool showWateringCan)
+    {
+        wateringCan.Show(showWateringCan);
     }
 }

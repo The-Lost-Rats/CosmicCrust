@@ -14,7 +14,7 @@ public class PlayController : MonoBehaviour
 
     private int pizzaIndex;
     private int score;
-    private const int MAX_SCORE = 99;
+    private const int MAX_SCORE = 999;
     private const int MAX_LIFE = 3;
     private int numLives;
 
@@ -66,6 +66,7 @@ public class PlayController : MonoBehaviour
 
     private void InitalizeGame()
     {
+        // TODO: we probably don't want to revalidate the same orders everytime
         List<int> invalidLevels = ValidatePizzaOrders();
         if (invalidLevels.Count > 0)
         {
@@ -83,11 +84,11 @@ public class PlayController : MonoBehaviour
         score = 0;
         numLives = MAX_LIFE;
 
-        // Update score
-        UIController.uicInstance.SetScore(score);
+        // Update score displayed by chef bot
+        UIController.uicInstance.SetCurrentScore(score);
 
         // Initialize hearts
-        for ( int i = 0; i < MAX_LIFE; i++ ) {
+        for ( int i = 0; i < numLives; i++ ) {
             UIController.uicInstance.SetHearts( false );
         }
 
@@ -124,7 +125,7 @@ public class PlayController : MonoBehaviour
                 score = MAX_SCORE;
             }
             // Update score
-            UIController.uicInstance.SetScore(score);
+            UIController.uicInstance.SetCurrentScore(score);
 
             SoundController.scInstance.PlaySingle("pizzaCorrect");
 
@@ -142,7 +143,7 @@ public class PlayController : MonoBehaviour
         displayPizza.gameObject.SetActive(false);
         toppingsDisplay.ResetPizza();
 
-        pizzaIndex++; // TODO For now I just want to test with pizza 1
+        pizzaIndex++;
         GameObject.Destroy(currPizza.gameObject);
 
         // DESTROY THE PLANTS
@@ -154,8 +155,7 @@ public class PlayController : MonoBehaviour
         if (numLives == 0)
         {
             // You lost :(
-            GameController.instance.GameOver();
-            GameOverController.gocInstance.UpdateFinalScore(score);
+            GameController.instance.GameOver(score);
             ResetScene();
         }
         else 
@@ -167,12 +167,6 @@ public class PlayController : MonoBehaviour
         }
         else
         {
-            // Increase belt speed!
-            BeltController.bcInstance.UpdateSpeed();
-
-            // Increase veggie wheel speed/or change direction
-            WheelController.wcInstance.UpdateSpeedAndDirection();
-
             Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
         }
     }
@@ -180,11 +174,10 @@ public class PlayController : MonoBehaviour
     private void ResetScene()
     {
         // TODO: there are 100% things I have missed to reset -> must be a better way to do this
-        BeltController.bcInstance.Reset();
-        WheelController.wcInstance.Reset();
         DrawerController.dcInstance.Reset();
-        PlantManager.pmInstance.ResetWateringCan();
-        DeliveryTable.dtInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
+
+        PlantManager.pmInstance.Reset();
+        DeliveryManager.dmInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
     }
 
     public bool SetSauce(Constants.Sauces sauce)
