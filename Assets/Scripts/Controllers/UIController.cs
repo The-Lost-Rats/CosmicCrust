@@ -67,33 +67,58 @@ public class UIController : MonoBehaviour {
 
     private void SetScore( int score, List<Transform> digitsDisplayed, Transform digitTransform, Transform scoreGridTransform )
     {
-        // Loop backwards and destroy digits before rendering
-        for (int i = digitsDisplayed.Count - 1; i >= 0; i--)
-        {
-            GameObject.Destroy(digitsDisplayed[i].gameObject);
-        }
-        digitsDisplayed.Clear();
-
         int numDigits = Utilities.countDigitsInt(score);
-
         // Default to 2 digits if less than 2
         if (numDigits < minNumDigits)
         {
             numDigits = minNumDigits;
         }
 
-        // Add digit to horizontal ordering
+        if (numDigits > digitsDisplayed.Count)
+        {
+            int numToCreate = numDigits - digitsDisplayed.Count;
+            CreateDisplayedDigits(numToCreate, digitsDisplayed, digitTransform, scoreGridTransform);
+        }
+        else if (numDigits < digitsDisplayed.Count)
+        {
+            int numToDelete = digitsDisplayed.Count - numDigits;
+            DestroyDisplayedDigits(numToDelete, digitsDisplayed);
+        }
+
+        // Update score
         for (int i = 0; i < numDigits; i++)
         {
             int digit = score % 10;
             score = score / 10;
 
+            digitsDisplayed[i].gameObject.GetComponent<SpriteRenderer>().sprite = digits[digit];
+        }
+    }
+
+    // Deletes leading elements in list
+    private void DestroyDisplayedDigits( int numToDelete, List<Transform> digitsDisplayed )
+    {
+        // Loop backwards and destroy digits before rendering
+        int numDigits = digitsDisplayed.Count;
+        for (int i = numDigits - 1; i >= numDigits - numToDelete; i--)
+        {
+            GameObject.Destroy(digitsDisplayed[i].gameObject);
+            digitsDisplayed.RemoveAt(i);
+        }
+    }
+
+    private void CreateDisplayedDigits( int numToCreate, List<Transform> digitsDisplayed, Transform digitTransform, Transform scoreGridTransform )
+    {
+        // Add digit to horizontal ordering
+        for (int i = 0; i < numToCreate; i++)
+        {
             Transform num = Instantiate(digitTransform, scoreGridTransform);
-            num.gameObject.GetComponent<SpriteRenderer>().sprite = digits[digit];
+            num.gameObject.GetComponent<SpriteRenderer>().sprite = digits[0];
             num.gameObject.SetActive(true);
 
             digitsDisplayed.Add(num);
         }
+
     }
 
     public void SetHearts( bool lifeLost ) {
