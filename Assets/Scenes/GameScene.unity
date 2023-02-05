@@ -1503,90 +1503,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 24}
   m_EdgeRadius: 0
---- !u!1 &342012988
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 342012990}
-  - component: {fileID: 342012989}
-  m_Layer: 0
-  m_Name: Countdown
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &342012989
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342012988}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -91655609
-  m_SortingLayer: 5
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b5cdebb51799c394cb644860c480776c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.8}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &342012990
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342012988}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 65.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 368936599}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &368936598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1545,6 @@ Transform:
   - {fileID: 1610822089}
   - {fileID: 1673397034}
   - {fileID: 498721159}
-  - {fileID: 342012990}
   - {fileID: 504978696}
   - {fileID: 1029333878}
   - {fileID: 1823266751}
@@ -1774,65 +1689,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &411621899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 411621901}
-  - component: {fileID: 411621900}
-  m_Layer: 0
-  m_Name: TimerController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &411621900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411621899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82b6e9fdbb158d34d9ec09a00784e445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTime: 10
-  timerIsRunning: 0
-  timerSprite: {fileID: 342012988}
-  numerics:
-  - {fileID: 21300000, guid: 936c42b9e6f6681498b3329e677a5768, type: 3}
-  - {fileID: 21300000, guid: 8e724284b52630a4da24674fea214a43, type: 3}
-  - {fileID: 21300000, guid: 7103deaab9737be4eaeb0259d5f2cf5e, type: 3}
-  - {fileID: 21300000, guid: a8a6d87c15db838428552659ed7c7001, type: 3}
-  - {fileID: 21300000, guid: e921a1f1405c80e4a8e119d3924ad837, type: 3}
-  - {fileID: 21300000, guid: c20fefcfa17400a459a15cdc630e058b, type: 3}
-  - {fileID: 21300000, guid: efe5fac80f486864ea2502c5f23d09fe, type: 3}
-  - {fileID: 21300000, guid: a6cf74c7c2631404c991551737b2f943, type: 3}
-  - {fileID: 21300000, guid: 8d50d18a0ae9f0341ab5ff8530da32a5, type: 3}
-  - {fileID: 21300000, guid: 38b366dd0420aec4e8b995a446c517a8, type: 3}
-  - {fileID: 21300000, guid: b5cdebb51799c394cb644860c480776c, type: 3}
---- !u!4 &411621901
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411621899}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3393836, y: 1.0080897, z: -0.027984818}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1734024778}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420319314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1721,7 @@ Transform:
   - {fileID: 1964896778}
   - {fileID: 562111710}
   m_Father: {fileID: 1734024778}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425020179
 GameObject:
@@ -2235,7 +2091,7 @@ Transform:
   m_Children:
   - {fileID: 1074110126}
   m_Father: {fileID: 368936599}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &504978697
 SpriteRenderer:
@@ -9051,7 +8907,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 368936599}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064216537
 GameObject:
@@ -17356,7 +17212,6 @@ Transform:
   - {fileID: 139467390}
   - {fileID: 1166237584}
   - {fileID: 480513842}
-  - {fileID: 411621901}
   - {fileID: 420319315}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -18421,7 +18276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 368936599}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1823266752
 SpriteRenderer:
