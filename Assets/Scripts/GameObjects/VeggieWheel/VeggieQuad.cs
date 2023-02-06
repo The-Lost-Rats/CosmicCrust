@@ -31,7 +31,7 @@ public class VeggieQuad : InteractableObject
         {
             if (interactable.name == "Pizza")
             {
-                PlayController.instance.AddVegetable(vegetableType);
+                PlayController.pcInstance.AddVegetable(vegetableType);
                 onPizza = true;
             }
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractableObject : MonoBehaviour
+public abstract class InteractableObject : PauseableBehaviour
 {
     public abstract bool isInteractable { get; }
     public abstract List<string> interactableObjects { get; }
@@ -14,11 +14,19 @@ public abstract class InteractableObject : MonoBehaviour
     public virtual void OnExit() {}
 
     private void OnMouseEnter() {
-        InputController.Instance.EnterInteractableObject(this);
+        // Only while not paused
+        if ( !UnsafeGetGameController().IsGamePaused() )
+        {
+            InputController.Instance.EnterInteractableObject(this);
+        }
     }
 
     private void OnMouseExit() {
-        InputController.Instance.ExitInteractableObject(this);
+        // Only while not paused
+        if ( !UnsafeGetGameController().IsGamePaused() )
+        {
+            InputController.Instance.ExitInteractableObject(this);
+        }
     }
 
     public virtual bool IsGrabbable() { return true; }

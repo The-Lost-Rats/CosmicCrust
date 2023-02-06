@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class InputController : PauseableBehaviour
 {
     public static InputController Instance { get; private set; }
 
@@ -87,6 +87,14 @@ public class InputController : MonoBehaviour
         interactableList = new List<InteractableObject>();
     }
 
+    public void SetDefaultCursor()
+    {
+        SetActiveCursor(CursorType.Default);
+        inputState = InputState.Default;
+
+        interactableList.Clear();
+    }
+
     public void EnterInteractableObject(InteractableObject interactableObject)
     {
         if (interactableList.Count > 0)
@@ -143,7 +151,7 @@ public class InputController : MonoBehaviour
         interactableList.Remove(interactableObject);
     }
 
-    private void Update()
+    protected override void LocalUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {

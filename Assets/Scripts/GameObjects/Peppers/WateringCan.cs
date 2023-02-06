@@ -50,7 +50,7 @@ public class WateringCan : InteractableObject
         return InputController.InputState.Grabbing;
     }
 
-    void Update()
+    protected override void LocalUpdate()
     {
         if (amHolding)
         {

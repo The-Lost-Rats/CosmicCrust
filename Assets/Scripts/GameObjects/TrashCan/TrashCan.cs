@@ -37,7 +37,7 @@ public class TrashCan : InteractableObject
             if (interactable.name == "Pizza")
             {
                 onPizza = true;
-                PlayController.instance.AddPineapple();
+                PlayController.pcInstance.AddPineapple();
             }
         }
         currPineapple.Drop(onPizza);

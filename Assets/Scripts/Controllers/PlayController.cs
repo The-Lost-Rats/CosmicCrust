@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayController : ISceneController
 {
+<<<<<<< HEAD
     override protected GameState GetGameState() { return GameState.PLAY; }
 
     public static PlayController instance = null;
+=======
+    public static PlayController pcInstance = null;
+>>>>>>> 12a08ae (Add beginnings of universal pause)
 
     public ConveyorBelt conveyorBelt;
     public Pizza displayPizza;
@@ -26,11 +30,11 @@ public class PlayController : ISceneController
 
     void Start()
     {
-        if (instance == null)
+        if (pcInstance == null)
         {
-            instance = this;
+            pcInstance = this;
         }
-        else if (instance != this)
+        else if (pcInstance != this)
         {
             Destroy(gameObject);
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GrabbableObject : MonoBehaviour
+public abstract class GrabbableObject : PauseableBehaviour
 {
     [Range(5, 20)]
     [SerializeField]
@@ -11,7 +11,7 @@ public abstract class GrabbableObject : MonoBehaviour
 
     protected abstract void OnUpdate(Vector2 mousePos);
 
-    void Update()
+    protected override void LocalUpdate()
     {
         if (isFalling)
         {

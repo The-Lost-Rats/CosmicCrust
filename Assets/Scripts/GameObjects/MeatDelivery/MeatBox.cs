@@ -89,7 +89,7 @@ public class MeatBox : InteractableObject
                 if (interactable.name == "Pizza")
                 {
                     onPizza = true;
-                    PlayController.instance.AddMeat(meatType);
+                    PlayController.pcInstance.AddMeat(meatType);
                 }
             }
             currInstance.Drop(onPizza);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayCell : MonoBehaviour
+public class DisplayCell : PauseableBehaviour
 {
     public SpriteRenderer sr;
     public GameObject checkmark;
@@ -51,6 +51,12 @@ public class DisplayCell : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        // Abort if we are paused
+        if ( UnsafeGetGameController().IsGamePaused() )
+        {
+            return;
+        }
+
         if (InputController.Instance.inputState == InputController.InputState.Default && sr.sprite != null)
         {
             overlay.SetActive(true);
@@ -70,6 +76,12 @@ public class DisplayCell : MonoBehaviour
 
     private void OnMouseExit()
     {
+        // Abort if we are paused
+        if ( UnsafeGetGameController().IsGamePaused() )
+        {
+            return;
+        }
+
         sr.sortingLayerName = "GameObjects";
         if (overlay.activeInHierarchy)
         {

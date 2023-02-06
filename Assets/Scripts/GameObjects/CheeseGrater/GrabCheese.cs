@@ -45,7 +45,7 @@ public class GrabCheese : GrabbableObject
                 if (!cheeseAdded && cheeseTimer >= cheeseAddedTime)
                 {
                     // TODO Force release mouse
-                    PlayController.instance.SetCheese(cheeseType);
+                    PlayController.pcInstance.SetCheese(cheeseType);
                     cheeseAdded = true;
                 }
             }
