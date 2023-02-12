@@ -9,6 +9,8 @@ public class TrashCan : InteractableObject
 
     public DroppableObject pineapplePrefab;
 
+    public Texture2D texture;
+
     private DroppableObject currPineapple;
 
     public override void OnEnter()
@@ -25,6 +27,7 @@ public class TrashCan : InteractableObject
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currPineapple = Instantiate(pineapplePrefab, mousePosition, Quaternion.identity);
+        currPineapple.SetDroppableSprite(texture);
         SoundController.scInstance.PlaySingle("itemGrab");
         return InputController.InputState.Grabbing;
     }

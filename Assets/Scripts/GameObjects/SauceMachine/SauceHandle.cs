@@ -23,11 +23,11 @@ public class SauceHandle : InteractableObject
     private bool isMoving;
     private float mouseOffset;
 
-    private Constants.Sauces currSauce = Constants.Sauces.Marinara;
-    private Constants.Sauces[] sauces = new Constants.Sauces[]{
-        Constants.Sauces.Marinara,
-        Constants.Sauces.Alfredo,
-        Constants.Sauces.BBQ
+    private Types.Sauces currSauce = Types.Sauces.Marinara;
+    private Types.Sauces[] sauces = new Types.Sauces[]{
+        Types.Sauces.Marinara,
+        Types.Sauces.Alfredo,
+        Types.Sauces.BBQ
     };
 
     public override void OnEnter()
@@ -98,13 +98,13 @@ public class SauceHandle : InteractableObject
         ParticleSystem.MainModule particleSystemMain = sauceParticles.main;
         switch (currSauce)
         {
-            case Constants.Sauces.Marinara:
+            case Types.Sauces.Marinara:
                 particleSystemMain.startColor = marinaraGradient;
                 break;
-            case Constants.Sauces.Alfredo:
+            case Types.Sauces.Alfredo:
                 particleSystemMain.startColor = alfredoGradient;
                 break;
-            case Constants.Sauces.BBQ:
+            case Types.Sauces.BBQ:
                 particleSystemMain.startColor = bbqGradient;
                 break;
         }

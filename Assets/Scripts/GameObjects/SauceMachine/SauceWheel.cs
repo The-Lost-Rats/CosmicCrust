@@ -27,7 +27,7 @@ public class SauceWheel : InteractableObject
     private float sauceTimer = 0;
     private bool sauceAdded = false;
 
-    public Constants.Sauces currSauce = Constants.Sauces.Marinara; // Set by SauceHandle
+    public Types.Sauces currSauce = Types.Sauces.Marinara; // Set by SauceHandle
 
     public override void OnEnter()
     {

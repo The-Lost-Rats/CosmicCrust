@@ -9,9 +9,11 @@ public class VeggieQuad : InteractableObject
 
     public DroppableObject objectPrefab;
 
+    public Texture2D objectImage;
+
     private DroppableObject currInstance;
 
-    [SerializeField] private Constants.Vegetables vegetableType = Constants.Vegetables.Mushroom;
+    [SerializeField] private Types.Vegetables vegetableType = Types.Vegetables.Mushroom;
 
     // TODO Tint on hover
 
@@ -19,6 +21,7 @@ public class VeggieQuad : InteractableObject
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
+        currInstance.SetDroppableSprite(objectImage);
         SoundController.scInstance.PlaySingle("itemGrab");
 
         return InputController.InputState.Grabbing;
