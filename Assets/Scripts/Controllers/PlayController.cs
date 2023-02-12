@@ -12,6 +12,12 @@ public class PlayController : ISceneController
     public Pizza displayPizza;
     public ToppingsDisplay toppingsDisplay;
 
+    // TODO: temporary until we create a better way to reset scenes
+    // TODO: and when we finalize game mechanics
+    public VeggieWheel veggieWheel;
+    public SauceHandle sauceHandle;
+    public SauceWheel sauceWheel;
+
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
     public int score { get; private set; }
@@ -190,6 +196,10 @@ public class PlayController : ISceneController
 
         PlantManager.pmInstance.Reset();
         DeliveryManager.dmInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
+
+        sauceHandle.Reset();
+        sauceWheel.Reset();
+        veggieWheel.Reset();
     }
 
     public bool SetSauce(Constants.Sauces sauce)

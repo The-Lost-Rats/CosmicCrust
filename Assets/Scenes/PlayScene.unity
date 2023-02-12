@@ -15366,6 +15366,9 @@ MonoBehaviour:
   conveyorBelt: {fileID: 1768114138}
   displayPizza: {fileID: 1025243426}
   toppingsDisplay: {fileID: 1544065717}
+  veggieWheel: {fileID: 1520059950}
+  sauceHandle: {fileID: 1761402850}
+  sauceWheel: {fileID: 1300427415}
   pizzaOrders:
   - {fileID: 11400000, guid: 24dfa18e14fd7a14cb5dbb5faf2b7fd0, type: 2}
   - {fileID: 11400000, guid: 377db48397771834689071ad5244921e, type: 2}
@@ -15539,6 +15542,8 @@ MonoBehaviour:
   - {fileID: 1776720776}
   - {fileID: 1705060111}
   rotationSpeed: 10
+  initialWheelAngle: {x: 0, y: 0, z: 0}
+  initialQuadAngles: []
 --- !u!212 &1520059951
 SpriteRenderer:
   m_ObjectHideFlags: 0
