@@ -152,14 +152,17 @@ public class PlayController : MonoBehaviour
         if (numLives == 0)
         {
             // You lost :(
-            GameController.instance.GameOver(score);
+            UIController.uicInstance.SetFinalScore(score);
+            GameController.instance.ChangeState(GameState.GAME_OVER_SCREEN);
+            Time.timeScale = 0.0f; // TODO Move to GameOverScreen
             ResetScene();
         }
         else 
         if (pizzaIndex >= pizzaOrders.Count - 1)
         {
             // You won!
-            GameController.instance.GameWon();
+            GameController.instance.ChangeState(GameState.WIN_SCREEN);
+            Time.timeScale = 0.0f;
             ResetScene();
         }
         else

@@ -12,9 +12,6 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private GameObject menuOverlay;
 
-    [SerializeField]
-    private SceneController.Level levelType;
-
     public void Awake() {
         menuOverlay.SetActive(isActive);
         Init();
@@ -22,7 +19,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        bool showImage = isActive || SceneController.GetCurrentLevel() == levelType;
+        bool showImage = isActive;
         menuOverlay.SetActive(showImage);
 
         if (!showImage)
