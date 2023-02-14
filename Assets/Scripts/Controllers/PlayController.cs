@@ -36,6 +36,14 @@ public class PlayController : MonoBehaviour
         InitalizeGame();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameController.instance.ChangeState(GameState.PAUSE);
+        }
+    }
+
     private List<int> ValidatePizzaOrders()
     {
         List<int> invalidLevels = new List<int>();
@@ -66,6 +74,8 @@ public class PlayController : MonoBehaviour
 
     private void InitalizeGame()
     {
+        Time.timeScale = 1.0f;
+
         // TODO: we probably don't want to revalidate the same orders everytime
         List<int> invalidLevels = ValidatePizzaOrders();
         if (invalidLevels.Count > 0)

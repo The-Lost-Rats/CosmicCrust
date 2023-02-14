@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
     {
         if (newGameState == currGameState)
         {
+            Debug.Log($"Tried to change game state but already {currGameState}");
             return;
         }
         // TODO Create state machine chart showing states
@@ -90,11 +91,6 @@ public class GameController : MonoBehaviour {
                 if (newGameState == GameState.PLAY)
                 {
                     sceneController.UnloadScene(Scenes.Pause);
-                }
-                else if (newGameState == GameState.MAIN_MENU)
-                {
-                    sceneController.UnloadScene(Scenes.Pause);
-                    nextSceneName = Scenes.MainMenu;
                 }
                 else
                 {
@@ -138,7 +134,8 @@ public class GameController : MonoBehaviour {
         if (nextSceneName != null)
         {
             sceneController.LoadScene(nextSceneName, false); // TODO Look into if we need to use async
-            currGameState = newGameState;
         }
+        Debug.Log($"Changing game state to {newGameState}");
+        currGameState = newGameState;
     }
 }
