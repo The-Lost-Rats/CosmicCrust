@@ -139,6 +139,8 @@ public class PlayController : ISceneController
 
             SoundController.scInstance.PlaySingle("pizzaCorrect");
 
+            pizzaIndex++;
+
             Debug.Log("Pizza correct!");
         }
         else
@@ -153,7 +155,6 @@ public class PlayController : ISceneController
         displayPizza.gameObject.SetActive(false);
         toppingsDisplay.ResetPizza();
 
-        pizzaIndex++;
         GameObject.Destroy(currPizza.gameObject);
 
         // DESTROY THE PLANTS
@@ -174,7 +175,6 @@ public class PlayController : ISceneController
         {
             // You won!
             GameController.instance.ChangeState(GameState.WIN_SCREEN);
-            Time.timeScale = 0.0f;
             ResetScene();
         }
         else
