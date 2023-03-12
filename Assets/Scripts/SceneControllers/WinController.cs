@@ -1,8 +1,10 @@
 using UnityEngine;
 using TMPro;
 
-public class WinController : MonoBehaviour
+public class WinController : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.WIN_SCREEN; }
+
     [SerializeField] private TMP_Text scoreText;
 
     void Start()
@@ -11,7 +13,7 @@ public class WinController : MonoBehaviour
         scoreText.text = "" + PlayController.instance.score;
     }
 
-    void Update()
+    override protected void SceneUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {

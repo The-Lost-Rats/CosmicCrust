@@ -1,8 +1,10 @@
 using UnityEngine;
 using TMPro;
 
-public class GameOverController : MonoBehaviour
+public class GameOverController : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.GAME_OVER_SCREEN; }
+
     [SerializeField] private TMP_Text scoreText;
 
     // Start is called before the first frame update
@@ -12,8 +14,7 @@ public class GameOverController : MonoBehaviour
         scoreText.text = "" + PlayController.instance.score;
     }
 
-    // Update is called once per frame
-    void Update()
+    override protected void SceneUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {

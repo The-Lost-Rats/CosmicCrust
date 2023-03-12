@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuController : MonoBehaviour
+public class MainMenuController : ISceneController
 {
-    void Update()
+    override protected GameState GetGameState() { return GameState.MAIN_MENU; }
+
+    override protected void SceneUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayController : MonoBehaviour
+public class PlayController : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.PLAY; }
+
     public static PlayController instance = null;
 
     public ConveyorBelt conveyorBelt;
@@ -37,7 +39,7 @@ public class PlayController : MonoBehaviour
         InitalizeGame();
     }
 
-    void Update()
+    override protected void SceneUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
