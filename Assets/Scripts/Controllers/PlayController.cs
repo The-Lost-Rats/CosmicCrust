@@ -12,8 +12,9 @@ public class PlayController : MonoBehaviour
 
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
+    public int score { get; private set; }
+
     private int pizzaIndex;
-    private int score;
     private const int MAX_SCORE = 999;
     private const int MAX_LIFE = 3;
     private int numLives;
@@ -164,7 +165,6 @@ public class PlayController : MonoBehaviour
             // You lost :(
             UIController.uicInstance.SetFinalScore(score);
             GameController.instance.ChangeState(GameState.GAME_OVER_SCREEN);
-            Time.timeScale = 0.0f; // TODO Move to GameOverScreen
             ResetScene();
         }
         else 
