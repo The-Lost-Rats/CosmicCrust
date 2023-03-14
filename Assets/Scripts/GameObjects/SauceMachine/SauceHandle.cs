@@ -23,8 +23,6 @@ public class SauceHandle : InteractableObject
     private bool isMoving;
     private float mouseOffset;
 
-    private Vector3 initalPosition;
-
     private Constants.Sauces currSauce = Constants.Sauces.Marinara;
     private Constants.Sauces[] sauces = new Constants.Sauces[]{
         Constants.Sauces.Marinara,
@@ -44,7 +42,6 @@ public class SauceHandle : InteractableObject
 
     private void Start()
     {
-        initalPosition = transform.position;
         float step = (movementBounds[1] - movementBounds[0]) / numSauces;
         saucePositions = new float[numSauces];
         for (int i = 0; i < numSauces; i++)
@@ -111,11 +108,5 @@ public class SauceHandle : InteractableObject
                 particleSystemMain.startColor = bbqGradient;
                 break;
         }
-    }
-
-    public void Reset()
-    {
-        transform.position = initalPosition;
-        SetSauce();
     }
 }

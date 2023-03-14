@@ -29,22 +29,4 @@ public class PlantManager : MonoBehaviour
             plant.Reset();
         }
     }
-
-    // Reset watering can
-    public void ResetWateringCan()
-    {
-        wateringCan.Reset();
-    }
-
-    // Reset everything
-    public void Reset()
-    {
-        WipePlants();
-        ResetWateringCan();
-    }
-
-    public void ShowWateringCan(bool showWateringCan)
-    {
-        wateringCan.Show(showWateringCan);
-    }
 }

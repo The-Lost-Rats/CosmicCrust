@@ -18,10 +18,6 @@ public class VeggieWheel : InteractableObject
     [SerializeField]
     public float rotationSpeed = 10.0f;
 
-    public Vector3 initialWheelAngle;
-
-    public List<Vector3> initialQuadAngles;
-
     public override void OnEnter()
     {
         GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.9f, 0.9f);
@@ -51,16 +47,6 @@ public class VeggieWheel : InteractableObject
         return InputController.InputState.Default;
     }
 
-    private void Start()
-    {
-        initialWheelAngle = transform.eulerAngles;
-        initialQuadAngles = new List<Vector3>();
-        for (int i = 0; i < veggieQuads.Count; i++)
-        {
-            initialQuadAngles.Add(veggieQuads[i].transform.eulerAngles);
-        }
-    }
-
     private void Update()
     {
         float angle;
@@ -79,15 +65,6 @@ public class VeggieWheel : InteractableObject
         for (int i = 0; i < veggieQuads.Count; i++)
         {
             veggieQuads[i].transform.eulerAngles = new Vector3(0, 0, angle + (90 * i));
-        }
-    }
-
-    public void Reset()
-    {
-        transform.eulerAngles = initialWheelAngle;
-        for (int i = 0; i < veggieQuads.Count; i++)
-        {
-            veggieQuads[i].transform.eulerAngles = initialQuadAngles[i];
         }
     }
 }

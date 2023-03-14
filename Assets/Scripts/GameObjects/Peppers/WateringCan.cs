@@ -71,14 +71,4 @@ public class WateringCan : InteractableObject
 
         return InputController.InputState.Default;
     }
-
-    public void Reset()
-    {
-        transform.position = initPos;
-    }
-
-    public void Show(bool showWateringCan)
-    {
-        gameObject.SetActive(showWateringCan);
-    }
 }

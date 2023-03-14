@@ -12,12 +12,6 @@ public class PlayController : ISceneController
     public Pizza displayPizza;
     public ToppingsDisplay toppingsDisplay;
 
-    // TODO: temporary until we create a better way to reset scenes
-    // TODO: and when we finalize game mechanics
-    public VeggieWheel veggieWheel;
-    public SauceHandle sauceHandle;
-    public SauceWheel sauceWheel;
-
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
     public int score { get; private set; }
@@ -174,32 +168,17 @@ public class PlayController : ISceneController
             // You lost :(
             UIController.uicInstance.SetFinalScore(score);
             GameController.instance.ChangeState(GameState.GAME_OVER_SCREEN);
-            ResetScene();
         }
         else 
         if (pizzaIndex >= pizzaOrders.Count - 1)
         {
             // You won!
             GameController.instance.ChangeState(GameState.WIN_SCREEN);
-            ResetScene();
         }
         else
         {
             Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
         }
-    }
-
-    private void ResetScene()
-    {
-        // TODO: there are 100% things I have missed to reset -> must be a better way to do this
-        DrawerController.dcInstance.Reset();
-
-        PlantManager.pmInstance.Reset();
-        DeliveryManager.dmInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
-
-        sauceHandle.Reset();
-        sauceWheel.Reset();
-        veggieWheel.Reset();
     }
 
     public bool SetSauce(Constants.Sauces sauce)

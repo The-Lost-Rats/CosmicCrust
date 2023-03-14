@@ -81,10 +81,4 @@ public class DeliveryManager : MonoBehaviour
 
         return finalMeats;
     }
-
-    // Reset delivery table
-    public void Reset()
-    {
-        DeliveryTable.dtInstance.Reset();
-    }
 }

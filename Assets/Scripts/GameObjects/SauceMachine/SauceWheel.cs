@@ -27,8 +27,6 @@ public class SauceWheel : InteractableObject
     private float sauceTimer = 0;
     private bool sauceAdded = false;
 
-    private Vector3 initialRotation;
-
     public Constants.Sauces currSauce = Constants.Sauces.Marinara; // Set by SauceHandle
 
     public override void OnEnter()
@@ -60,11 +58,6 @@ public class SauceWheel : InteractableObject
         sauceTimer = 0;
         sauceAdded = false;
         return InputController.InputState.Default;
-    }
-
-    private void Start()
-    {
-        initialRotation = transform.eulerAngles;
     }
 
     private void Update()
@@ -111,10 +104,5 @@ public class SauceWheel : InteractableObject
             }
             turnTimer = turnTimerStart;
         }
-    }
-
-    public void Reset()
-    {
-        transform.eulerAngles = initialRotation;
     }
 }
