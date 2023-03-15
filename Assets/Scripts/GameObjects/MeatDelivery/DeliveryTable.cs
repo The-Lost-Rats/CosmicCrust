@@ -63,7 +63,7 @@ public class DeliveryTable : MonoBehaviour
     }
 
     // Deliver a set of boxes
-    public bool Deliver(List<Types.Meats> meatBoxes)
+    public bool Deliver(List<IngredientTypes.Meats> meatBoxes)
     {
         // We are still delivering old boxes?
         // If so, ignore this
@@ -77,7 +77,7 @@ public class DeliveryTable : MonoBehaviour
         WipeBoxes();
 
         // Create boxes of meat to deliver
-        foreach (Types.Meats meatType in meatBoxes)
+        foreach (IngredientTypes.Meats meatType in meatBoxes)
         {
             boxesToDeliver.Add(DeliveryFactory.dfInstance.CreateMeatBox(meatType));
         }

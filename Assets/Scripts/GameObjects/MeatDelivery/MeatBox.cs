@@ -22,7 +22,7 @@ public class MeatBox : InteractableObject
 
     // Box meat type
     [SerializeField]
-    private Types.Meats meatType = Types.Meats.Pepperoni;
+    private IngredientTypes.Meats meatType = IngredientTypes.Meats.Pepperoni;
 
     // Box open sprite to switch to when opened
     [SerializeField]
@@ -104,7 +104,7 @@ public class MeatBox : InteractableObject
         return InputController.InputState.Default;
     }
 
-    public void SetMeat(Types.Meats type, Texture2D image)
+    public void SetMeat(IngredientTypes.Meats type, Texture2D image)
     {
         meatImage = image;
         meatType = type;

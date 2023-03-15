@@ -11,7 +11,7 @@ public class DrawerTopping : InteractableObject
     public Texture2D toppingTexture;
     private DroppableObject currInstance;
 
-    [SerializeField] private Types.GenericToppings toppingType = Types.GenericToppings.Anchovy;
+    [SerializeField] private IngredientTypes.GenericToppings toppingType = IngredientTypes.GenericToppings.Anchovy;
 
     public override void OnEnter()
     {

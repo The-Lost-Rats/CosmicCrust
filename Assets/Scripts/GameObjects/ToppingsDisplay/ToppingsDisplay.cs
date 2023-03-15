@@ -9,7 +9,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct SauceImage
     {
-        public Types.Sauces sauce;
+        public IngredientTypes.Sauces sauce;
         public Texture2D image;
     }
     [SerializeField] public List<SauceImage> sauceImages;
@@ -17,7 +17,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct CheeseImage
     {
-        public Types.CheeseTypes cheese;
+        public IngredientTypes.CheeseTypes cheese;
         public Texture2D image;
     }
     [SerializeField] public List<CheeseImage> cheeseImages;
@@ -25,7 +25,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct MeatImage
     {
-        public Types.Meats meat;
+        public IngredientTypes.Meats meat;
         public Texture2D image;
     }
     [SerializeField] public List<MeatImage> meatImages;
@@ -33,7 +33,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct PepperImage
     {
-        public Types.Peppers pepper;
+        public IngredientTypes.Peppers pepper;
         public Texture2D image;
     }
     [SerializeField] public List<PepperImage> pepperImages;
@@ -41,7 +41,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct VegetableImage
     {
-        public Types.Vegetables vegetable;
+        public IngredientTypes.Vegetables vegetable;
         public Texture2D image;
     }
     [SerializeField] public List<VegetableImage> vegetableImages;
@@ -49,7 +49,7 @@ public class ToppingsDisplay : MonoBehaviour
     [System.Serializable]
     public struct ToppingImage
     {
-        public Types.GenericToppings topping;
+        public IngredientTypes.GenericToppings topping;
         public Texture2D image;
     }
     [SerializeField] public List<ToppingImage> toppingImages;
@@ -60,30 +60,30 @@ public class ToppingsDisplay : MonoBehaviour
 
     private List<DisplayCell> toppingCells;
 
-    private IDictionary<Types.Meats, string> meatMapping = new Dictionary<Types.Meats, string>{
-        {Types.Meats.Beef, "Beef"},
-        {Types.Meats.Chicken, "Chicken"},
-        {Types.Meats.Pepperoni, "Pepperoni"},
-        {Types.Meats.Sausage, "Sausage"},
+    private IDictionary<IngredientTypes.Meats, string> meatMapping = new Dictionary<IngredientTypes.Meats, string>{
+        {IngredientTypes.Meats.Beef, "Beef"},
+        {IngredientTypes.Meats.Chicken, "Chicken"},
+        {IngredientTypes.Meats.Pepperoni, "Pepperoni"},
+        {IngredientTypes.Meats.Sausage, "Sausage"},
     };
-    private IDictionary<Types.Peppers, string> peppersMapping = new Dictionary<Types.Peppers, string>{
-        {Types.Peppers.Bell, "Bell"},
-        {Types.Peppers.Jalapeno, "Jalapeno"},
-        {Types.Peppers.Serrano, "Serrano"},
+    private IDictionary<IngredientTypes.Peppers, string> peppersMapping = new Dictionary<IngredientTypes.Peppers, string>{
+        {IngredientTypes.Peppers.Bell, "Bell"},
+        {IngredientTypes.Peppers.Jalapeno, "Jalapeno"},
+        {IngredientTypes.Peppers.Serrano, "Serrano"},
     };
-    private IDictionary<Types.Vegetables, string> vegetablesMapping = new Dictionary<Types.Vegetables, string>{
-        {Types.Vegetables.BlackOlive, "BlackOlive"},
-        {Types.Vegetables.GreenOlive, "GreenOlive"},
-        {Types.Vegetables.Mushroom, "Mushroom"},
-        {Types.Vegetables.Tomato, "Tomato"},
+    private IDictionary<IngredientTypes.Vegetables, string> vegetablesMapping = new Dictionary<IngredientTypes.Vegetables, string>{
+        {IngredientTypes.Vegetables.BlackOlive, "BlackOlive"},
+        {IngredientTypes.Vegetables.GreenOlive, "GreenOlive"},
+        {IngredientTypes.Vegetables.Mushroom, "Mushroom"},
+        {IngredientTypes.Vegetables.Tomato, "Tomato"},
     };
-    private IDictionary<Types.GenericToppings, string> genericToppingMapping = new Dictionary<Types.GenericToppings, string>{
-        {Types.GenericToppings.Anchovy, "Anchovy"},
-        {Types.GenericToppings.Garlic, "Garlic"},
-        {Types.GenericToppings.Onion, "Onion"},
-        {Types.GenericToppings.Shrimp, "Shrimp"},
-        {Types.GenericToppings.Spinach, "Spinach"},
-        {Types.GenericToppings.Squid, "Squid"},
+    private IDictionary<IngredientTypes.GenericToppings, string> genericToppingMapping = new Dictionary<IngredientTypes.GenericToppings, string>{
+        {IngredientTypes.GenericToppings.Anchovy, "Anchovy"},
+        {IngredientTypes.GenericToppings.Garlic, "Garlic"},
+        {IngredientTypes.GenericToppings.Onion, "Onion"},
+        {IngredientTypes.GenericToppings.Shrimp, "Shrimp"},
+        {IngredientTypes.GenericToppings.Spinach, "Spinach"},
+        {IngredientTypes.GenericToppings.Squid, "Squid"},
     };
     private string pineappleMapping = "Pineapple";
 
@@ -201,22 +201,22 @@ public class ToppingsDisplay : MonoBehaviour
         }
     }
 
-    public void SetMeatComplete(Types.Meats meat)
+    public void SetMeatComplete(IngredientTypes.Meats meat)
     {
         SetToppingComplete(meatMapping[meat]);
     }
 
-    public void SetPepperComplete(Types.Peppers pepper)
+    public void SetPepperComplete(IngredientTypes.Peppers pepper)
     {
         SetToppingComplete(peppersMapping[pepper]);
     }
 
-    public void SetVegetableComplete(Types.Vegetables vegetable)
+    public void SetVegetableComplete(IngredientTypes.Vegetables vegetable)
     {
         SetToppingComplete(vegetablesMapping[vegetable]);
     }
 
-    public void SetGenericToppingComplete(Types.GenericToppings topping)
+    public void SetGenericToppingComplete(IngredientTypes.GenericToppings topping)
     {
         SetToppingComplete(genericToppingMapping[topping]);
     }

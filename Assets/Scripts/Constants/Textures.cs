@@ -7,7 +7,7 @@ public class Textures
     [System.Serializable]
     public struct SauceImage
     {
-        public Types.Sauces sauce;
+        public IngredientTypes.Sauces sauce;
         public Texture2D image;
     }
     [SerializeField] public List<SauceImage> sauceImages;
@@ -15,7 +15,7 @@ public class Textures
     [System.Serializable]
     public struct CheeseImage
     {
-        public Types.CheeseTypes cheese;
+        public IngredientTypes.CheeseTypes cheese;
         public Texture2D image;
     }
     [SerializeField] public List<CheeseImage> cheeseImages;
@@ -23,7 +23,7 @@ public class Textures
     [System.Serializable]
     public struct MeatImage
     {
-        public Types.Meats meat;
+        public IngredientTypes.Meats meat;
         public Texture2D image;
     }
     [SerializeField] public List<MeatImage> meatImages;
@@ -31,7 +31,7 @@ public class Textures
     [System.Serializable]
     public struct PepperImage
     {
-        public Types.Peppers pepper;
+        public IngredientTypes.Peppers pepper;
         public Texture2D image;
     }
     [SerializeField] public List<PepperImage> pepperImages;
@@ -39,7 +39,7 @@ public class Textures
     [System.Serializable]
     public struct VegetableImage
     {
-        public Types.Vegetables vegetable;
+        public IngredientTypes.Vegetables vegetable;
         public Texture2D image;
     }
     [SerializeField] public List<VegetableImage> vegetableImages;
@@ -47,7 +47,7 @@ public class Textures
     [System.Serializable]
     public struct ToppingImage
     {
-        public Types.GenericToppings topping;
+        public IngredientTypes.GenericToppings topping;
         public Texture2D image;
     }
     [SerializeField] public List<ToppingImage> toppingImages;

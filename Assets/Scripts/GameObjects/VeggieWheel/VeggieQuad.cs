@@ -13,7 +13,7 @@ public class VeggieQuad : InteractableObject
 
     private DroppableObject currInstance;
 
-    [SerializeField] private Types.Vegetables vegetableType = Types.Vegetables.Mushroom;
+    [SerializeField] private IngredientTypes.Vegetables vegetableType = IngredientTypes.Vegetables.Mushroom;
 
     // TODO Tint on hover
 

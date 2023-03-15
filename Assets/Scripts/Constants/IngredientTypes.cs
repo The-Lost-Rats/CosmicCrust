@@ -1,4 +1,4 @@
-public class Types
+public class IngredientTypes
 {
     public enum ToppingTypes
     {

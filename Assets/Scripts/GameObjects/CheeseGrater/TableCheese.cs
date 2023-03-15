@@ -10,7 +10,7 @@ public class TableCheese : InteractableObject
     public GrabCheese grabCheesePrefab;
     private GrabCheese grabbedCheese;
 
-    public Types.CheeseTypes cheeseType;
+    public IngredientTypes.CheeseTypes cheeseType;
 
     public override void OnEnter()
     {

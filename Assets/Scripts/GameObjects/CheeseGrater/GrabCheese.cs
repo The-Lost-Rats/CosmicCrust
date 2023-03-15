@@ -11,7 +11,7 @@ public class GrabCheese : GrabbableObject
     private ParticleSystem cheeseGraterParticles;
     private Bounds cheeseBounds;
 
-    private Types.CheeseTypes cheeseType;
+    private IngredientTypes.CheeseTypes cheeseType;
     private Vector2 lastPos;
     private bool overGrater = false;
 
@@ -82,13 +82,13 @@ public class GrabCheese : GrabbableObject
         ParticleSystem.MainModule particleSystemMain = cheeseGraterParticles.main;
         switch (cheeseType)
         {
-            case Types.CheeseTypes.Ball:
+            case IngredientTypes.CheeseTypes.Ball:
                 particleSystemMain.startColor = ballCheeseGradient;
                 break;
-            case Types.CheeseTypes.Cube:
+            case IngredientTypes.CheeseTypes.Cube:
                 particleSystemMain.startColor = cubeCheeseGradient;
                 break;
-            case Types.CheeseTypes.Triangle:
+            case IngredientTypes.CheeseTypes.Triangle:
                 particleSystemMain.startColor = triangleCheeseGradient;
                 break;
         }

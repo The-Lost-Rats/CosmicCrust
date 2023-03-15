@@ -16,7 +16,7 @@ public class DeliveryFactory : MonoBehaviour
     [System.Serializable]
     public struct MeatImage
     {
-        public Types.Meats meatType;
+        public IngredientTypes.Meats meatType;
         public Texture2D image;
     }
     [SerializeField] public List<MeatImage> meatImages;
@@ -39,7 +39,7 @@ public class DeliveryFactory : MonoBehaviour
     }
 
     // Create a meatBox
-    public GameObject CreateMeatBox(Types.Meats meatType)
+    public GameObject CreateMeatBox(IngredientTypes.Meats meatType)
     {
         GameObject meatBox = null;
 

@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2d117dc34bc6845b2438c2035e9d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meatBoxPrefab: {fileID: 4842135132255285407, guid: 644962dc4490c3c41bcde8eac8154858,
+  meatBoxPrefab: {fileID: 4842135132255285407, guid: e1d74ddc0a190364f939f33a0b76caac,
     type: 3}
   initializeLocation: {fileID: 1787182971}
   meatImages:
@@ -18362,7 +18362,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

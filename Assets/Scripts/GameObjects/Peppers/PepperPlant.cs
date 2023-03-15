@@ -32,7 +32,7 @@ public class PepperPlant : InteractableObject
     private Vector3 fruitLocalScale;
 
     // Type of pepper plant
-    [SerializeField] private Types.Peppers instanceType = Types.Peppers.Serrano;
+    [SerializeField] private IngredientTypes.Peppers instanceType = IngredientTypes.Peppers.Serrano;
 
     // Is done growing bool
     private bool isGrown = false;
