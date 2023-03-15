@@ -93,7 +93,7 @@ public class PepperPlant : InteractableObject
         }
     }
 
-    protected override void LocalUpdate()
+    protected override void SceneUpdate()
     {
         // Only do this stuff if the plant isn't grown
         // Plant can do nothing once it is grown
@@ -195,7 +195,7 @@ public class PepperPlant : InteractableObject
             {
                 if (interactable.name == "Pizza")
                 {
-                    PlayController.pcInstance.AddPepper(instanceType);
+                    PlayController.instance.AddPepper(instanceType);
                     onPizza = true;
                 }
             }

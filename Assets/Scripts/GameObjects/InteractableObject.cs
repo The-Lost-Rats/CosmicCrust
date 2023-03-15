@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractableObject : PauseableBehaviour
+public abstract class InteractableObject : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.PLAY; }
+
     public abstract bool isInteractable { get; }
     public abstract List<string> interactableObjects { get; }
 
@@ -14,19 +16,23 @@ public abstract class InteractableObject : PauseableBehaviour
     public virtual void OnExit() {}
 
     private void OnMouseEnter() {
-        // Only while not paused
-        if ( !UnsafeGetGameController().IsGamePaused() )
+        // Abort if we are not in play
+        if (!SceneActive())
         {
-            InputController.Instance.EnterInteractableObject(this);
+            return;
         }
+
+        InputController.Instance.EnterInteractableObject(this);
     }
 
     private void OnMouseExit() {
-        // Only while not paused
-        if ( !UnsafeGetGameController().IsGamePaused() )
+        // Abort if we are not in play
+        if (!SceneActive())
         {
-            InputController.Instance.ExitInteractableObject(this);
+            return;
         }
+
+        InputController.Instance.ExitInteractableObject(this);
     }
 
     public virtual bool IsGrabbable() { return true; }

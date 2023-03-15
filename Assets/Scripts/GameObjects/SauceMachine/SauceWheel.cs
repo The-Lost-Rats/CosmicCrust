@@ -60,7 +60,7 @@ public class SauceWheel : InteractableObject
         return InputController.InputState.Default;
     }
 
-    protected override void LocalUpdate()
+    protected override void SceneUpdate()
     {
         if (isGrabbed)
         {
@@ -83,7 +83,7 @@ public class SauceWheel : InteractableObject
                     sauceTimer += Time.deltaTime;
                     if (!sauceAdded && sauceTimer >= sauceAddedTime)
                     {
-                        PlayController.pcInstance.SetSauce(currSauce);
+                        PlayController.instance.SetSauce(currSauce);
                         sauceAdded = true;
                     }
                 }

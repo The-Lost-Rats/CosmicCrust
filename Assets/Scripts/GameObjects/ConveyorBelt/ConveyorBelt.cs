@@ -66,7 +66,7 @@ public class ConveyorBelt : MonoBehaviour
                     }
                     else
                     {
-                        PlayController.pcInstance.EndLevel();
+                        PlayController.instance.EndLevel();
                     }
                 }
             }

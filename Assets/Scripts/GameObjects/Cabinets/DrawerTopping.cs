@@ -41,7 +41,7 @@ public class DrawerTopping : InteractableObject
         {
             if (interactable.name == "Pizza")
             {
-                PlayController.pcInstance.AddGenericTopping(toppingType);
+                PlayController.instance.AddGenericTopping(toppingType);
                 onPizza = true;
             }
         }

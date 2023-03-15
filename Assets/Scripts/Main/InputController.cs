@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputController : PauseableBehaviour
+public class InputController : MonoBehaviour
 {
     public static InputController Instance { get; private set; }
 
@@ -151,7 +151,7 @@ public class InputController : PauseableBehaviour
         interactableList.Remove(interactableObject);
     }
 
-    protected override void LocalUpdate()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

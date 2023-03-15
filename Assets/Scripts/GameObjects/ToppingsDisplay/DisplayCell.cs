@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayCell : PauseableBehaviour
+public class DisplayCell : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.PLAY; }
+
     public SpriteRenderer sr;
     public GameObject checkmark;
     public GameObject overlay;
@@ -51,8 +53,8 @@ public class DisplayCell : PauseableBehaviour
 
     private void OnMouseEnter()
     {
-        // Abort if we are paused
-        if ( UnsafeGetGameController().IsGamePaused() )
+       // Abort if we are not in play
+        if (!SceneActive())
         {
             return;
         }
@@ -76,8 +78,8 @@ public class DisplayCell : PauseableBehaviour
 
     private void OnMouseExit()
     {
-        // Abort if we are paused
-        if ( UnsafeGetGameController().IsGamePaused() )
+        // Abort if we are not in play
+        if (!SceneActive())
         {
             return;
         }

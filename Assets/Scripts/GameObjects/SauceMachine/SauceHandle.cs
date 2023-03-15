@@ -67,7 +67,7 @@ public class SauceHandle : InteractableObject
         return InputController.InputState.Default;
     }
 
-    protected override void LocalUpdate()
+    protected override void SceneUpdate()
     {
         if (isMoving)
         {
