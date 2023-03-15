@@ -105,7 +105,7 @@ public class ToppingsDisplay : MonoBehaviour
         List<Texture2D> toppings = new List<Texture2D>();
         foreach (MeatImage meatImage in meatImages)
         {
-            if (pizzaOrder.meats.Contains(meatImage.meat))
+            if (Utilities.containsMeat(pizzaOrder.meats, meatImage.meat))
             {
                 toppings.Add(meatImage.image);
             }
