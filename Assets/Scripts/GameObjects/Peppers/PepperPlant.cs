@@ -95,7 +95,7 @@ public class PepperPlant : InteractableObject
         }
     }
 
-    void Update()
+    protected override void SceneUpdate()
     {
         // Only do this stuff if the plant isn't grown
         // Plant can do nothing once it is grown

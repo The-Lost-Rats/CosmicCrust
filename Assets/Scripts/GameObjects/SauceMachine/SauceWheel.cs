@@ -60,7 +60,7 @@ public class SauceWheel : InteractableObject
         return InputController.InputState.Default;
     }
 
-    private void Update()
+    protected override void SceneUpdate()
     {
         if (isGrabbed)
         {

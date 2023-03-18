@@ -87,6 +87,14 @@ public class InputController : MonoBehaviour
         interactableList = new List<InteractableObject>();
     }
 
+    public void SetDefaultCursor()
+    {
+        SetActiveCursor(CursorType.Default);
+        inputState = InputState.Default;
+
+        interactableList.Clear();
+    }
+
     public void EnterInteractableObject(InteractableObject interactableObject)
     {
         if (interactableList.Count > 0)
@@ -143,7 +151,7 @@ public class InputController : MonoBehaviour
         interactableList.Remove(interactableObject);
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

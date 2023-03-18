@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisplayCell : MonoBehaviour
+public class DisplayCell : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.PLAY; }
+
     public SpriteRenderer sr;
     public GameObject checkmark;
     public GameObject overlay;
@@ -51,6 +53,12 @@ public class DisplayCell : MonoBehaviour
 
     private void OnMouseEnter()
     {
+       // Abort if we are not in play
+        if (!SceneActive())
+        {
+            return;
+        }
+
         if (InputController.Instance.inputState == InputController.InputState.Default && sr.sprite != null)
         {
             overlay.SetActive(true);
@@ -70,6 +78,12 @@ public class DisplayCell : MonoBehaviour
 
     private void OnMouseExit()
     {
+        // Abort if we are not in play
+        if (!SceneActive())
+        {
+            return;
+        }
+
         sr.sortingLayerName = "GameObjects";
         if (overlay.activeInHierarchy)
         {
