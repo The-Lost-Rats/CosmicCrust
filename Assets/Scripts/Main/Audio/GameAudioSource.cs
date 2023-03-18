@@ -16,6 +16,16 @@ public class GameAudioSource : MonoBehaviour
         _audioSource.Play();
     }
 
+    public void SetVolume(float volume)
+    {
+        _audioSource.volume = volume;
+    }
+
+    public void SetLooping(bool looping)
+    {
+        _audioSource.loop = looping;
+    }
+
     public bool IsPlaying()
     {
         return _audioSource.isPlaying;

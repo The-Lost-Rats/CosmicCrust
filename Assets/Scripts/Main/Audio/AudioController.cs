@@ -31,8 +31,9 @@ public class AudioController : MonoBehaviour
     [SerializeField] private Dictionary<string, AudioClip> audioClips;
     [SerializeField] private Dictionary<string, AudioClip> musicClips;
 
-    [SerializeField] private GameAudioSource musicSource;
-    private List<GameAudioSource> oneShotAudioSources = new List<GameAudioSource>();
+    private GameAudioSource musicSource;
+    private Dictionary<int, GameAudioSource> oneShotAudioSources = new Dictionary<int, GameAudioSource>();
+    private int oneShotAudioSourceNextId = 0;
 
     private void Awake()
     {
@@ -61,26 +62,36 @@ public class AudioController : MonoBehaviour
         }
 
         VerifyAudioSources();
+
+        musicSource = Instantiate(gameAudioSourcePrefab, transform);
+        musicSource.gameObject.name = "MusicSouce"; // Not necessary, but helpful!
+        musicSource.SetLooping(true);
     }
 
     private void Update()
     {
-        for (int i = oneShotAudioSources.Count - 1; i >= 0; i--)
+        foreach (int audioClipId in oneShotAudioSources.Keys)
         {
-            GameAudioSource audioSource = oneShotAudioSources[i];
+            GameAudioSource audioSource = oneShotAudioSources[audioClipId];
             if (!audioSource.IsPlaying())
             {
                 Destroy(audioSource.gameObject);
-                oneShotAudioSources.Remove(audioSource);
+                oneShotAudioSources.Remove(audioClipId);
             }
         }
     }
 
-    public void PlayOneShotAudio(string key, float volume = 1f)
+    // TODO replace optional params with options struct
+    public int PlayOneShotAudio(string key, bool looping = false, float volume = 1f)
     {
         if (audioClips.ContainsKey(key))
         {
-            PlayOneShotAudio(audioClips[key], volume);
+            GameAudioSource audioSource = Instantiate(gameAudioSourcePrefab, transform);
+            audioSource.SetAudioClip(audioClips[key]);
+            audioSource.SetVolume(volume);
+            audioSource.SetLooping(looping);
+            oneShotAudioSources.Add(oneShotAudioSourceNextId, audioSource);
+            return oneShotAudioSourceNextId++;
         }
         else
         {
@@ -88,26 +99,11 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void PlayOneShotAudio(AudioClip clip, float volume = 1f)
-    {
-        if (clip != null)
-        {
-            GameAudioSource audioSource = Instantiate(gameAudioSourcePrefab, transform);
-            audioSource.SetAudioClip(clip);
-            audioSource.GetAudioSource().volume = volume; // TODO Will this work? May have to use .GetComponent<AudioSource>()
-            oneShotAudioSources.Add(audioSource);
-        }
-        else
-        {
-            throw new Exception("Audio clip not available {null}");
-        }
-    }
-
     public void StopAllOneShotAudio()
     {
-        for (int i = 0; i < oneShotAudioSources.Count; i++)
+        foreach (GameAudioSource audioSource in oneShotAudioSources.Values)
         {
-            oneShotAudioSources[i].GetAudioSource().Stop();
+            audioSource.GetAudioSource().Stop();
             // Audio source will be cleaned up in the next Update
         }
     }
@@ -116,24 +112,12 @@ public class AudioController : MonoBehaviour
     {
         if (musicClips.ContainsKey(key))
         {
-            PlayMusic(musicClips[key], volume);
+            musicSource.SetAudioClip(musicClips[key]);
+            musicSource.SetVolume(volume);
         }
         else
         {
             throw new Exception(String.Format("Music clip not available {0}", key));
-        }
-    }
-
-    public void PlayMusic(AudioClip clip, float volume = 1f)
-    {
-        if (clip != null)
-        {
-            musicSource.SetAudioClip(clip);
-            musicSource.GetAudioSource().volume = volume; // TODO Will this work? May have to use .GetComponent<AudioSource>()
-        }
-        else
-        {
-            throw new Exception("Music clip not available {null}");
         }
     }
 
