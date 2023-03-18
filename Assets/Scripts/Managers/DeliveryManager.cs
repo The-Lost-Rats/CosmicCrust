@@ -12,7 +12,7 @@ public class DeliveryManager : MonoBehaviour
 
     // List of all meat types cuz I couldnt generate a list of all meat types automatically cuz unity ;-;
     [SerializeField]
-    public List<Constants.Meats> meatTypes;
+    public List<IngredientTypes.Meats> meatTypes;
 
     public void Awake() {
         if ( null == dmInstance ) {
@@ -26,7 +26,7 @@ public class DeliveryManager : MonoBehaviour
     // The reason we allow for maxBoxesToDeliver to be specified, is so if we want
     // we could require only 1 meat, but specify the number of boxes that show up to be 2
     // This way, we don't have to flood the player with boxes early in the game
-    public bool DeliverMeat(List<Constants.Meats> requiredMeats, int maxBoxesToDeliver=Constants.MAX_MEAT_DELIVERY_SPOTS)
+    public bool DeliverMeat(List<IngredientTypes.Meats> requiredMeats, int maxBoxesToDeliver=Constants.MAX_MEAT_DELIVERY_SPOTS)
     {
         // Cant deliver enough
         if ( requiredMeats.Count > Constants.MAX_MEAT_DELIVERY_SPOTS )
@@ -44,7 +44,7 @@ public class DeliveryManager : MonoBehaviour
         }
         
         // Populate list up to maxBoxes to deliver
-        List<Constants.Meats> meatBoxes = PopulateMeatList(requiredMeats, maxBoxesToDeliver);
+        List<IngredientTypes.Meats> meatBoxes = PopulateMeatList(requiredMeats, maxBoxesToDeliver);
 
         // Tell table to create and deliver them
         // Returns true if we did deliver the boxes
@@ -52,10 +52,10 @@ public class DeliveryManager : MonoBehaviour
     }
 
     // Create list of meats
-    private List<Constants.Meats> PopulateMeatList(List<Constants.Meats> requiredMeats, int boxesToDeliver)
+    private List<IngredientTypes.Meats> PopulateMeatList(List<IngredientTypes.Meats> requiredMeats, int boxesToDeliver)
     {
         // Copy over required meats
-        List<Constants.Meats> finalMeats = new List<Constants.Meats>(requiredMeats);
+        List<IngredientTypes.Meats> finalMeats = new List<IngredientTypes.Meats>(requiredMeats);
 
         // Get random meats
         // TODO: do we want to exclude required meats from sampling?
@@ -64,7 +64,7 @@ public class DeliveryManager : MonoBehaviour
         for ( int i = 0; i < boxesToDeliver - initialCount; i++ )
         {
             int meatIdx = Random.Range(0, meatTypes.Count);
-            Constants.Meats meatType = meatTypes[meatIdx];
+            IngredientTypes.Meats meatType = meatTypes[meatIdx];
 
             // Eh what the heck - let's just add to required meats and return that...
             // This bit me in the butt gosh darn it - make a new list <_<
@@ -73,7 +73,7 @@ public class DeliveryManager : MonoBehaviour
 
         // Shuffle list of meats
         for ( int i = 0; i < finalMeats.Count; i++ ) {
-            Constants.Meats temp = finalMeats[i];
+            IngredientTypes.Meats temp = finalMeats[i];
             int randomIndex = Random.Range(i, finalMeats.Count);
             finalMeats[i] = finalMeats[randomIndex];
             finalMeats[randomIndex] = temp;

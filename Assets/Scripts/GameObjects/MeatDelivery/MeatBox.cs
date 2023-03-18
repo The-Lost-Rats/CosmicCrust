@@ -14,12 +14,15 @@ public class MeatBox : InteractableObject
     // Object prefab to instantiate (meat)
     public DroppableObject objectPrefab;
 
+    // Sprite for meat
+    private Texture2D meatImage;
+
     // Current grabbed object
     private DroppableObject currInstance;
 
     // Box meat type
     [SerializeField]
-    private Constants.Meats meatType = Constants.Meats.Pepperoni;
+    private IngredientTypes.Meats meatType = IngredientTypes.Meats.Pepperoni;
 
     // Box open sprite to switch to when opened
     [SerializeField]
@@ -73,6 +76,8 @@ public class MeatBox : InteractableObject
             
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
+            currInstance.SetDroppableSprite(meatImage);
+
             return InputController.InputState.Grabbing;
         }
     }
@@ -97,5 +102,11 @@ public class MeatBox : InteractableObject
         }
 
         return InputController.InputState.Default;
+    }
+
+    public void SetMeat(IngredientTypes.Meats type, Texture2D image)
+    {
+        meatImage = image;
+        meatType = type;
     }
 }

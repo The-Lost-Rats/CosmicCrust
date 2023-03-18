@@ -57,7 +57,7 @@ public class PlayController : ISceneController
             {
                 int numIngredients = order.meats.Count + order.peppers.Count +
                     order.vegetables.Count + order.genericToppings.Count + (order.hasPineapple ? 1 : 0);
-                if (numIngredients > Constants.maxIngredients)
+                if (numIngredients > Constants.MAX_INGREDIENTS)
                 {
                     invalidLevels.Add(i);
                 }
@@ -192,7 +192,7 @@ public class PlayController : ISceneController
         DeliveryManager.dmInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
     }
 
-    public bool SetSauce(Constants.Sauces sauce)
+    public bool SetSauce(IngredientTypes.Sauces sauce)
     {
         if (currPizzaOrder.sauce != sauce)
         {
@@ -206,7 +206,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool SetCheese(Constants.CheeseTypes cheese)
+    public bool SetCheese(IngredientTypes.CheeseTypes cheese)
     {
         if (currPizzaOrder.cheese != cheese)
         {
@@ -220,7 +220,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddMeat(Constants.Meats meat)
+    public bool AddMeat(IngredientTypes.Meats meat)
     {
         if (!currPizzaOrder.meats.Contains(meat))
         {
@@ -234,7 +234,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddPepper(Constants.Peppers pepper)
+    public bool AddPepper(IngredientTypes.Peppers pepper)
     {
         if (!currPizzaOrder.peppers.Contains(pepper))
         {
@@ -248,7 +248,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddVegetable(Constants.Vegetables vegetable)
+    public bool AddVegetable(IngredientTypes.Vegetables vegetable)
     {
         if (!currPizzaOrder.vegetables.Contains(vegetable))
         {
@@ -262,7 +262,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddGenericTopping(Constants.GenericToppings topping)
+    public bool AddGenericTopping(IngredientTypes.GenericToppings topping)
     {
         if (!currPizzaOrder.genericToppings.Contains(topping))
         {

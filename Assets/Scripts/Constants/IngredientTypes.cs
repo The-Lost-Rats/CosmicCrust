@@ -1,5 +1,16 @@
-public class Constants
+public class IngredientTypes
 {
+    public enum ToppingTypes
+    {
+        CheeseTypes,
+        Sauces,
+        Meats,
+        Peppers,
+        Vegetables,
+        GenericToppings,
+        Pineapple
+    }
+    
     public enum CheeseTypes
     {
         Ball,
@@ -26,8 +37,7 @@ public class Constants
     {
         Serrano,
         Bell,
-        Jalapeno,
-        Ghost
+        Jalapeno
     }
 
     public enum Vegetables
@@ -53,8 +63,4 @@ public class Constants
     {
         Pineapple
     }
-
-    public const int maxIngredients = 10;
-
-    public const int MAX_MEAT_DELIVERY_SPOTS = 4;
 }

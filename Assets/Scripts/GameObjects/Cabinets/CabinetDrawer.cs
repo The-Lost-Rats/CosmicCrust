@@ -9,7 +9,7 @@ public class CabinetDrawer : InteractableObject
 
     private const float drawerHeight = .19f;
 
-    [SerializeField] private Constants.GenericToppings topping;
+    [SerializeField] private IngredientTypes.GenericToppings topping;
 
     private bool isMoving;
     private float mouseOffset;

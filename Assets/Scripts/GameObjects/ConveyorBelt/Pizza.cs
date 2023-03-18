@@ -9,12 +9,12 @@ public class Pizza : InteractableObject
 
     public class PizzaData
     {
-        public Constants.Sauces? sauce = null;
-        public Constants.CheeseTypes? cheese = null;
-        public HashSet<Constants.Meats> meats = new HashSet<Constants.Meats>();
-        public HashSet<Constants.Peppers> peppers = new HashSet<Constants.Peppers>();
-        public HashSet<Constants.Vegetables> vegetables = new HashSet<Constants.Vegetables>();
-        public HashSet<Constants.GenericToppings> genericToppings = new HashSet<Constants.GenericToppings>();
+        public IngredientTypes.Sauces? sauce = null;
+        public IngredientTypes.CheeseTypes? cheese = null;
+        public HashSet<IngredientTypes.Meats> meats = new HashSet<IngredientTypes.Meats>();
+        public HashSet<IngredientTypes.Peppers> peppers = new HashSet<IngredientTypes.Peppers>();
+        public HashSet<IngredientTypes.Vegetables> vegetables = new HashSet<IngredientTypes.Vegetables>();
+        public HashSet<IngredientTypes.GenericToppings> genericToppings = new HashSet<IngredientTypes.GenericToppings>();
         public bool hasPineapple = false;
     }
     public PizzaData pizzaData;
@@ -22,7 +22,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct SauceImage
     {
-        public Constants.Sauces sauce;
+        public IngredientTypes.Sauces sauce;
         public Texture2D image;
     }
     [SerializeField] public List<SauceImage> sauceImages;
@@ -31,7 +31,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct CheeseImage
     {
-        public Constants.CheeseTypes cheese;
+        public IngredientTypes.CheeseTypes cheese;
         public Texture2D image;
     }
     [SerializeField] public List<CheeseImage> cheeseImages;
@@ -40,7 +40,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct MeatImage
     {
-        public Constants.Meats meat;
+        public IngredientTypes.Meats meat;
         public Texture2D image;
     }
     [SerializeField] public List<MeatImage> meatImages;
@@ -49,7 +49,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct PepperImage
     {
-        public Constants.Peppers pepper;
+        public IngredientTypes.Peppers pepper;
         public Texture2D image;
     }
     [SerializeField] public List<PepperImage> pepperImages;
@@ -58,7 +58,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct VegetableImage
     {
-        public Constants.Vegetables vegetable;
+        public IngredientTypes.Vegetables vegetable;
         public Texture2D image;
     }
     [SerializeField] public List<VegetableImage> vegetableImages;
@@ -67,7 +67,7 @@ public class Pizza : InteractableObject
     [System.Serializable]
     public struct ToppingImage
     {
-        public Constants.GenericToppings topping;
+        public IngredientTypes.GenericToppings topping;
         public Texture2D image;
     }
     [SerializeField] public List<ToppingImage> toppingImages;
@@ -94,19 +94,19 @@ public class Pizza : InteractableObject
     {
         SetSauce(pizzaOrder.sauce);
         SetCheese(pizzaOrder.cheese);
-        foreach (Constants.Meats meat in pizzaOrder.meats)
+        foreach (IngredientTypes.Meats meat in pizzaOrder.meats)
         {
             AddMeat(meat);
         }
-        foreach (Constants.Peppers pepper in pizzaOrder.peppers)
+        foreach (IngredientTypes.Peppers pepper in pizzaOrder.peppers)
         {
             AddPepper(pepper);
         }
-        foreach (Constants.Vegetables vegetable in pizzaOrder.vegetables)
+        foreach (IngredientTypes.Vegetables vegetable in pizzaOrder.vegetables)
         {
             AddVegetable(vegetable);
         }
-        foreach (Constants.GenericToppings topping in pizzaOrder.genericToppings)
+        foreach (IngredientTypes.GenericToppings topping in pizzaOrder.genericToppings)
         {
             AddGenericTopping(topping);
         }
@@ -116,7 +116,7 @@ public class Pizza : InteractableObject
         }
     }
 
-    public bool SetSauce(Constants.Sauces sauce)
+    public bool SetSauce(IngredientTypes.Sauces sauce)
     {
         if (pizzaData.sauce != sauce)
         {
@@ -134,7 +134,7 @@ public class Pizza : InteractableObject
         return false;
     }
 
-    public bool SetCheese(Constants.CheeseTypes cheese)
+    public bool SetCheese(IngredientTypes.CheeseTypes cheese)
     {
         if (pizzaData.cheese != cheese)
         {
@@ -152,7 +152,7 @@ public class Pizza : InteractableObject
         return false;
     }
 
-    public bool AddMeat(Constants.Meats meat)
+    public bool AddMeat(IngredientTypes.Meats meat)
     {
         if (pizzaData.meats.Add(meat))
         {
@@ -169,7 +169,7 @@ public class Pizza : InteractableObject
         return false;
     }
 
-    public bool AddPepper(Constants.Peppers pepper)
+    public bool AddPepper(IngredientTypes.Peppers pepper)
     {
         if (pizzaData.peppers.Add(pepper))
         {
@@ -186,7 +186,7 @@ public class Pizza : InteractableObject
         return false;
     }
 
-    public bool AddVegetable(Constants.Vegetables vegetable)
+    public bool AddVegetable(IngredientTypes.Vegetables vegetable)
     {
         if (pizzaData.vegetables.Add(vegetable))
         {
@@ -203,7 +203,7 @@ public class Pizza : InteractableObject
         return false;
     }
 
-    public bool AddGenericTopping(Constants.GenericToppings topping)
+    public bool AddGenericTopping(IngredientTypes.GenericToppings topping)
     {
         if (pizzaData.genericToppings.Add(topping))
         {
@@ -255,28 +255,28 @@ public class Pizza : InteractableObject
         {
             return false;
         }
-        foreach (Constants.Meats meat in pizzaOrder.meats)
+        foreach (IngredientTypes.Meats meat in pizzaOrder.meats)
         {
             if (!pizzaData.meats.Contains(meat))
             {
                 return false;
             }
         }
-        foreach (Constants.Peppers pepper in pizzaOrder.peppers)
+        foreach (IngredientTypes.Peppers pepper in pizzaOrder.peppers)
         {
             if (!pizzaData.peppers.Contains(pepper))
             {
                 return false;
             }
         }
-        foreach (Constants.Vegetables vegetable in pizzaOrder.vegetables)
+        foreach (IngredientTypes.Vegetables vegetable in pizzaOrder.vegetables)
         {
             if (!pizzaData.vegetables.Contains(vegetable))
             {
                 return false;
             }
         }
-        foreach (Constants.GenericToppings topping in pizzaOrder.genericToppings)
+        foreach (IngredientTypes.GenericToppings topping in pizzaOrder.genericToppings)
         {
             if (!pizzaData.genericToppings.Contains(topping))
             {
