@@ -26,13 +26,13 @@ public class GameAudioSource : MonoBehaviour
         _audioSource.loop = looping;
     }
 
+    public void Stop()
+    {
+        _audioSource.Stop();
+    }
+
     public bool IsPlaying()
     {
         return _audioSource.isPlaying;
-    }
-
-    public AudioSource GetAudioSource()
-    {
-        return _audioSource;
     }
 }

@@ -22,7 +22,7 @@ public class VeggieQuad : InteractableObject
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
         currInstance.SetDroppableSprite(objectImage);
-        SoundController.scInstance.PlaySingle("itemGrab");
+        AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
 
         return InputController.InputState.Grabbing;
     }

@@ -137,7 +137,7 @@ public class PlayController : ISceneController
             // Update score
             UIController.uicInstance.SetCurrentScore(score);
 
-            SoundController.scInstance.PlaySingle("pizzaCorrect");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.PizzaCorrect);
 
             pizzaIndex++;
 
@@ -148,7 +148,7 @@ public class PlayController : ISceneController
             UIController.uicInstance.SetHearts( true );
             numLives--;
 
-            SoundController.scInstance.PlaySingle("pizzaWrong");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.PizzaIncorrect);
 
             Debug.Log("Pizza incorrect");
         }

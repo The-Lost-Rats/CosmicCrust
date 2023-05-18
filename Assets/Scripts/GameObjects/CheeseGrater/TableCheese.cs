@@ -28,7 +28,7 @@ public class TableCheese : InteractableObject
         grabbedCheese = Instantiate(grabCheesePrefab, mousePosition, Quaternion.identity, transform);
         grabbedCheese.CopyCheeseValues(this);
         SetVisible(false);
-        SoundController.scInstance.PlaySingle("itemGrab");
+        AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
         return InputController.InputState.Grabbing;
     }
 

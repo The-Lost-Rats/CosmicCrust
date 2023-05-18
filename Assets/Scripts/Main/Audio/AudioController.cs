@@ -7,7 +7,7 @@ public static class SoundEffectKeys
     public const string ItemGrab = "Item Grab";
     public const string PizzaCorrect = "Ding!";
     public const string PizzaIncorrect = "Error";
-    public const string DrawerOpening = "Cabniet Open";
+    public const string DrawerOpening = "Cabinet Open";
     public const string MeatBoxOpen = "Box Open";
     public const string CheeseGrate = "Cheese Grating";
     public const string SauceSpray = "Sauce Spraying";
@@ -16,7 +16,16 @@ public static class SoundEffectKeys
 
 public static class MusicKeys
 {
-    public const string PlayScene = "slap_jazz";
+    public const string MainMenu = "slap_jazz";
+}
+
+[Serializable]
+public class GameAudioClip
+{
+    public AudioClip audioClip;
+    [Range(0, 2)]
+    public float volume = 1;
+    public string audioName = "";
 }
 
 public class AudioController : MonoBehaviour
@@ -25,15 +34,19 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private GameAudioSource gameAudioSourcePrefab;
 
-    [SerializeField] private List<AudioClip> audioClipsList;
-    [SerializeField] private List<AudioClip> musicClipsList;
+    [SerializeField]
+    [Range(0, 1)]
+    private float baseVolume;
 
-    [SerializeField] private Dictionary<string, AudioClip> audioClips;
-    [SerializeField] private Dictionary<string, AudioClip> musicClips;
+    [SerializeField] private List<GameAudioClip> audioClipsList;
+    [SerializeField] private List<GameAudioClip> musicClipsList;
+
+    [SerializeField] private Dictionary<string, GameAudioClip> audioClips;
+    [SerializeField] private Dictionary<string, GameAudioClip> musicClips;
 
     private GameAudioSource musicSource;
     private Dictionary<int, GameAudioSource> oneShotAudioSources = new Dictionary<int, GameAudioSource>();
-    private int oneShotAudioSourceNextId = 0;
+    private int oneShotAudioSourceNextId = 1;
 
     private void Awake()
     {
@@ -50,15 +63,15 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        audioClips = new Dictionary<string, AudioClip>(audioClipsList.Count);
-        foreach (AudioClip clip in audioClipsList)
+        audioClips = new Dictionary<string, GameAudioClip>(audioClipsList.Count);
+        foreach (GameAudioClip gameClip in audioClipsList)
         {
-            audioClips[clip.name] = clip;
+            audioClips[gameClip.audioName != "" ? gameClip.audioName : gameClip.audioClip.name] = gameClip;
         }
-        musicClips = new Dictionary<string, AudioClip>(musicClipsList.Count);
-        foreach (AudioClip clip in musicClipsList)
+        musicClips = new Dictionary<string, GameAudioClip>(musicClipsList.Count);
+        foreach (GameAudioClip gameClip in musicClipsList)
         {
-            musicClips[clip.name] = clip;
+            musicClips[gameClip.audioName != "" ? gameClip.audioName : gameClip.audioClip.name] = gameClip;
         }
 
         VerifyAudioSources();
@@ -70,7 +83,8 @@ public class AudioController : MonoBehaviour
 
     private void Update()
     {
-        foreach (int audioClipId in oneShotAudioSources.Keys)
+        List<int> audioClipIds = new List<int>(oneShotAudioSources.Keys);
+        foreach (int audioClipId in audioClipIds)
         {
             GameAudioSource audioSource = oneShotAudioSources[audioClipId];
             if (!audioSource.IsPlaying())
@@ -82,13 +96,13 @@ public class AudioController : MonoBehaviour
     }
 
     // TODO replace optional params with options struct
-    public int PlayOneShotAudio(string key, bool looping = false, float volume = 1f)
+    public int PlayOneShotAudio(string key, bool looping = false, float volume = -1f)
     {
         if (audioClips.ContainsKey(key))
         {
             GameAudioSource audioSource = Instantiate(gameAudioSourcePrefab, transform);
-            audioSource.SetAudioClip(audioClips[key]);
-            audioSource.SetVolume(volume);
+            audioSource.SetAudioClip(audioClips[key].audioClip);
+            audioSource.SetVolume((volume >= 0 ? volume : audioClips[key].volume) * baseVolume);
             audioSource.SetLooping(looping);
             oneShotAudioSources.Add(oneShotAudioSourceNextId, audioSource);
             return oneShotAudioSourceNextId++;
@@ -99,21 +113,29 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    public void StopOneShotAudio(int audioId)
+    {
+        if (oneShotAudioSources.ContainsKey(audioId))
+        {
+            oneShotAudioSources[audioId].Stop();
+        }
+    }
+
     public void StopAllOneShotAudio()
     {
         foreach (GameAudioSource audioSource in oneShotAudioSources.Values)
         {
-            audioSource.GetAudioSource().Stop();
+            audioSource.Stop();
             // Audio source will be cleaned up in the next Update
         }
     }
 
-    public void PlayMusic(string key, float volume = 1f)
+    public void PlayMusic(string key, float volume = -1f)
     {
         if (musicClips.ContainsKey(key))
         {
-            musicSource.SetAudioClip(musicClips[key]);
-            musicSource.SetVolume(volume);
+            musicSource.SetAudioClip(musicClips[key].audioClip);
+            musicSource.SetVolume((volume >= 0 ? volume : musicClips[key].volume) * baseVolume);
         }
         else
         {
@@ -121,9 +143,14 @@ public class AudioController : MonoBehaviour
         }
     }
 
+    public bool IsMusicPlaying()
+    {
+        return musicSource.IsPlaying();
+    }
+
     public void StopMusic()
     {
-        musicSource.GetAudioSource().Stop();
+        musicSource.Stop();
     }
 
     /**************************************************/

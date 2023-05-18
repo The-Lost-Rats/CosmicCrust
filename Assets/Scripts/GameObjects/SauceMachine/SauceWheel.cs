@@ -12,6 +12,7 @@ public class SauceWheel : InteractableObject
 
     private bool isGrabbed;
     private float angleOffset;
+    private int sauceWheelAudioId;
 
     private float lastAngle;
     private const float angleDiff = 5;
@@ -53,7 +54,7 @@ public class SauceWheel : InteractableObject
     {
         isGrabbed = false;
         sauceParticles.Stop();
-        SoundController.scInstance.StopLoopingSound();
+        AudioController.Instance.StopOneShotAudio(sauceWheelAudioId);
         turnTimer = 0;
         sauceTimer = 0;
         sauceAdded = false;
@@ -75,7 +76,7 @@ public class SauceWheel : InteractableObject
                 turnTimer -= Time.deltaTime;
                 if (turnTimer <= 0)
                 {
-                    SoundController.scInstance.StopLoopingSound();
+                    AudioController.Instance.StopOneShotAudio(sauceWheelAudioId);
                     sauceParticles.Stop();
                 }
                 else if (bounds.pizzaInBounds)
@@ -99,7 +100,7 @@ public class SauceWheel : InteractableObject
         {
             if (!sauceParticles.isPlaying)
             {
-                SoundController.scInstance.PlayLoopingSound("sauceSpray");
+                sauceWheelAudioId = AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.SauceSpray, true);
                 sauceParticles.Play();
             }
             turnTimer = turnTimerStart;
