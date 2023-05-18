@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameAudioSourcePrefab: {fileID: 1784233904488542474, guid: dc76569fb95d5e84590137cd900e34a2,
     type: 3}
+  baseVolume: 0.4
   audioClipsList:
   - audioClip: {fileID: 8300000, guid: 642027e6ddd0bb84aa8b872f8eed522c, type: 3}
     volume: 1
@@ -260,16 +261,16 @@ MonoBehaviour:
     volume: 1
     audioName: Cabinet Open
   - audioClip: {fileID: 8300000, guid: e2d8a9dc1777f554e905bd75be29d479, type: 3}
-    volume: 1
+    volume: 2
     audioName: 
   - audioClip: {fileID: 8300000, guid: cc7a2673789421c49909fb09642ab2ef, type: 3}
     volume: 1
     audioName: Ding!
   - audioClip: {fileID: 8300000, guid: 268bf2d34a43bf94a892f527e3ff3734, type: 3}
-    volume: 1
+    volume: 0.8
     audioName: Error
   - audioClip: {fileID: 8300000, guid: b035272597c57a54b87e3f05b526bac0, type: 3}
-    volume: 1
+    volume: 0.8
     audioName: 
   - audioClip: {fileID: 8300000, guid: 7fa74744d034009488d931bb1f1b7fac, type: 3}
     volume: 1
@@ -278,11 +279,11 @@ MonoBehaviour:
     volume: 1
     audioName: 
   - audioClip: {fileID: 8300000, guid: fe330ca9087e5e94d974c2305f8e41ef, type: 3}
-    volume: 1
+    volume: 1.4
     audioName: 
   musicClipsList:
   - audioClip: {fileID: 8300000, guid: 52e1e711f5f071a43bda252d31858805, type: 3}
-    volume: 1
+    volume: 0.3
     audioName: 
 --- !u!4 &614652261
 Transform:
