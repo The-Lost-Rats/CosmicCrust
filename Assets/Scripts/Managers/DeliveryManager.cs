@@ -98,18 +98,6 @@ public class DeliveryManager : MonoBehaviour
         return finalMeats;
     }
 
-    private int GetTotalBoxesCount(List<PizzaOrder.MeatItem> meats)
-    {
-        int total = 0;
-
-        foreach ( PizzaOrder.MeatItem meatItem in meats )
-        {
-            total += meatItem.numBoxes;
-        }
-
-        return ( total );
-    }
-
     // Create unique list of meats that exludes the required meat boxes
     // eg. if I want pepperoni as a meat, this list will not contain pepperoni
     private List<IngredientTypes.Meats> CreateUniqueMeatList(List<PizzaOrder.MeatItem> meats)
