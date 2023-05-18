@@ -120,7 +120,7 @@ public class PlayController : ISceneController
         toppingsDisplay.SetPizzaOrder(currPizzaOrder);
 
         // Ship meat
-        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats, currPizzaOrder.numMeatToShip);
+        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats, currPizzaOrder.numBoxesToShip);
     }
 
     public void EndLevel()
@@ -222,7 +222,7 @@ public class PlayController : ISceneController
 
     public bool AddMeat(IngredientTypes.Meats meat)
     {
-        if (!currPizzaOrder.meats.Contains(meat))
+        if (!Utilities.containsMeat(currPizzaOrder.meats, meat))
         {
             return false;
         }

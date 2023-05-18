@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Utilities
 {
@@ -11,5 +12,10 @@ public class Utilities
         numDigits = (int)Mathf.Floor( Mathf.Log10( num ) + 1 );
 
         return ( numDigits );
+    }
+
+    public static bool containsMeat( List<PizzaOrder.MeatItem> meats, IngredientTypes.Meats meatType )
+    {
+        return ( meats.FindIndex(meatItem => meatItem.meatType == meatType)  != -1 );
     }
 }

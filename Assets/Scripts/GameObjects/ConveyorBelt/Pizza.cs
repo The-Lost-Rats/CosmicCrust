@@ -94,9 +94,9 @@ public class Pizza : InteractableObject
     {
         SetSauce(pizzaOrder.sauce);
         SetCheese(pizzaOrder.cheese);
-        foreach (IngredientTypes.Meats meat in pizzaOrder.meats)
+        foreach (PizzaOrder.MeatItem meatItem in pizzaOrder.meats)
         {
-            AddMeat(meat);
+            AddMeat(meatItem.meatType);
         }
         foreach (IngredientTypes.Peppers pepper in pizzaOrder.peppers)
         {
@@ -255,9 +255,9 @@ public class Pizza : InteractableObject
         {
             return false;
         }
-        foreach (IngredientTypes.Meats meat in pizzaOrder.meats)
+        foreach (PizzaOrder.MeatItem meatItem in pizzaOrder.meats)
         {
-            if (!pizzaData.meats.Contains(meat))
+            if (!pizzaData.meats.Contains(meatItem.meatType))
             {
                 return false;
             }
