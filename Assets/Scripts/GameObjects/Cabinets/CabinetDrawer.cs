@@ -61,9 +61,4 @@ public class CabinetDrawer : InteractableObject
             transform.position = new Vector3(transform.position.x, posY, transform.position.z);
         }
     }
-
-    public void Reset()
-    {
-        transform.position = new Vector3(transform.position.x, movementBounds[1], transform.position.z);
-    }
 }

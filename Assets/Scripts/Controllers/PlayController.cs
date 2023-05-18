@@ -168,28 +168,17 @@ public class PlayController : ISceneController
             // You lost :(
             UIController.uicInstance.SetFinalScore(score);
             GameController.instance.ChangeState(GameState.GAME_OVER_SCREEN);
-            ResetScene();
         }
         else 
         if (pizzaIndex >= pizzaOrders.Count - 1)
         {
             // You won!
             GameController.instance.ChangeState(GameState.WIN_SCREEN);
-            ResetScene();
         }
         else
         {
             Invoke("StartLevel", 1); // TODO Does using Invoke work with pause?
         }
-    }
-
-    private void ResetScene()
-    {
-        // TODO: there are 100% things I have missed to reset -> must be a better way to do this
-        DrawerController.dcInstance.Reset();
-
-        PlantManager.pmInstance.Reset();
-        DeliveryManager.dmInstance.Reset(); // Might catch lingering boxes in some weird state -> why did I do it this way god why
     }
 
     public bool SetSauce(IngredientTypes.Sauces sauce)

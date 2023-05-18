@@ -114,10 +114,4 @@ public class DeliveryManager : MonoBehaviour
 
         return ( uniqueMeats );
     }
-
-    // Reset delivery table
-    public void Reset()
-    {
-        DeliveryTable.dtInstance.Reset();
-    }
 }

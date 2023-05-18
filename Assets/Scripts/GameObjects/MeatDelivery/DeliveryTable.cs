@@ -150,27 +150,4 @@ public class DeliveryTable : MonoBehaviour
         }
     }
 
-    public void Reset()
-    {
-        // Loop backwards and destroy boxes in every list
-        for (int i = deliveredBoxes.Count - 1; i >= 0; i--)
-        {
-            GameObject.Destroy(deliveredBoxes[i]);
-        }
-        
-        for (int i = boxesToDeliver.Count - 1; i >= 0; i--)
-        {
-            GameObject.Destroy(boxesToDeliver[i]);
-        }
-
-        for (int i = boxesToDelete.Count - 1; i >= 0; i--)
-        {
-            GameObject.Destroy(boxesToDelete[i]);
-        }
-
-        deliveredBoxes.Clear();
-        boxesToDeliver.Clear();
-        boxesToDelete.Clear();
-    }
-
 }
