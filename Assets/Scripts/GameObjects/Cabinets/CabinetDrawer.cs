@@ -55,7 +55,8 @@ public class CabinetDrawer : InteractableObject
             float posY = Mathf.Clamp(mousePosition.y + mouseOffset, movementBounds[0], movementBounds[1]);
             if (!playedSound && posY != transform.position.y)
             {
-                SoundController.scInstance.PlaySingle("drawerOpening");
+                AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.DrawerOpening);
+                playedSound = true;
             }
             transform.position = new Vector3(transform.position.x, posY, transform.position.z);
         }

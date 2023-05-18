@@ -19,6 +19,7 @@ public class GrabCheese : GrabbableObject
     [Range(0.1f, 0.5f)]
     private const float grateTimerStart = 0.2f;
     private float grateTimer = 0;
+    private int grateSoundId;
 
     [SerializeField]
     [Range(1, 5)]
@@ -36,7 +37,7 @@ public class GrabCheese : GrabbableObject
             grateTimer -= Time.deltaTime;
             if (grateTimer <= 0)
             {
-                SoundController.scInstance.StopLoopingSound();
+                AudioController.Instance.StopOneShotAudio(grateSoundId);
                 cheeseGraterParticles.Stop();
             }
             else if (cheeseBounds.pizzaInBounds)
@@ -60,7 +61,7 @@ public class GrabCheese : GrabbableObject
         {
             if (!cheeseGraterParticles.isPlaying)
             {
-                SoundController.scInstance.PlayLoopingSound("cheeseGrate");
+                grateSoundId = AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.CheeseGrate, true);
                 cheeseGraterParticles.Play();
             }
             grateTimer = grateTimerStart;
@@ -138,7 +139,7 @@ public class GrabCheese : GrabbableObject
 
     private void OnDestroy()
     {
-        SoundController.scInstance.StopLoopingSound();
+        AudioController.Instance.StopOneShotAudio(grateSoundId);
         cheeseGraterParticles.Stop();
     }
 }

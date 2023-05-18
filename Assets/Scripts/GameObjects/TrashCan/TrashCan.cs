@@ -28,7 +28,7 @@ public class TrashCan : InteractableObject
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currPineapple = Instantiate(pineapplePrefab, mousePosition, Quaternion.identity);
         currPineapple.SetDroppableSprite(texture);
-        SoundController.scInstance.PlaySingle("itemGrab");
+        AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
         return InputController.InputState.Grabbing;
     }
 

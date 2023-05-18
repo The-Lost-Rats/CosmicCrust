@@ -181,7 +181,7 @@ public class PepperPlant : InteractableObject
         // If we are grown, allow player to get pepper
         if (isGrown)
         {
-            SoundController.scInstance.PlaySingle("itemGrab");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
             currInstance.SetDroppableSprite(fruitImage);
