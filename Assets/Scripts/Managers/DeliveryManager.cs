@@ -15,7 +15,7 @@ public class DeliveryManager : MonoBehaviour
 
     // List of all meat types cuz I couldnt generate a list of all meat types automatically cuz unity ;-;
     // I was wrong - literally the first bing search pulls this up
-    public HashSet<Constants.Meats> meatTypes = Enum.GetValues(typeof(Constants.Meats)).Cast<Constants.Meats>().ToHashSet();
+    public HashSet<IngredientTypes.Meats> meatTypes = Enum.GetValues(typeof(IngredientTypes.Meats)).Cast<IngredientTypes.Meats>().ToHashSet();
 
     public void Awake() {
         if ( null == dmInstance ) {
@@ -49,7 +49,7 @@ public class DeliveryManager : MonoBehaviour
         }
         
         // Populate list up to maxBoxes to deliver
-        List<Constants.Meats> meatBoxes = PopulateMeatList(requiredMeats, maxBoxesToDeliver, totalBoxesRequired);
+        List<IngredientTypes.Meats> meatBoxes = PopulateMeatList(requiredMeats, maxBoxesToDeliver, totalBoxesRequired);
 
         // Tell table to create and deliver them
         // Returns true if we did deliver the boxes
@@ -57,9 +57,9 @@ public class DeliveryManager : MonoBehaviour
     }
 
     // Create list of meats
-    private List<Constants.Meats> PopulateMeatList(List<PizzaOrder.MeatItem> requiredMeats, int boxesToDeliver, int totalBoxesRequired)
+    private List<IngredientTypes.Meats> PopulateMeatList(List<PizzaOrder.MeatItem> requiredMeats, int boxesToDeliver, int totalBoxesRequired)
     {
-        List<Constants.Meats> finalMeats = new List<Constants.Meats>();
+        List<IngredientTypes.Meats> finalMeats = new List<IngredientTypes.Meats>();
 
         // Copy over required meats
         foreach ( PizzaOrder.MeatItem meatItem in requiredMeats )
@@ -74,12 +74,12 @@ public class DeliveryManager : MonoBehaviour
         // Need to fill in with random meat up to boxes to deliver
         if ( boxesToDeliver - totalBoxesRequired > 0 )
         {
-            List<Constants.Meats> uniqueMeats = CreateUniqueMeatList(requiredMeats);
+            List<IngredientTypes.Meats> uniqueMeats = CreateUniqueMeatList(requiredMeats);
 
             for ( int i = 0; i < boxesToDeliver - totalBoxesRequired; i++ )
             {
                 int meatIdx = Random.Range(0, uniqueMeats.Count);
-                Constants.Meats meatType = uniqueMeats[meatIdx];
+                IngredientTypes.Meats meatType = uniqueMeats[meatIdx];
 
                 // Eh what the heck - let's just add to required meats and return that...
                 // This bit me in the butt gosh darn it - make a new list <_<
@@ -112,11 +112,11 @@ public class DeliveryManager : MonoBehaviour
 
     // Create unique list of meats that exludes the required meat boxes
     // eg. if I want pepperoni as a meat, this list will not contain pepperoni
-    private List<Constants.Meats> CreateUniqueMeatList(List<PizzaOrder.MeatItem> meats)
+    private List<IngredientTypes.Meats> CreateUniqueMeatList(List<PizzaOrder.MeatItem> meats)
     {
-        List<Constants.Meats> uniqueMeats = new List<Constants.Meats>();
+        List<IngredientTypes.Meats> uniqueMeats = new List<IngredientTypes.Meats>();
 
-        foreach ( Constants.Meats meat in meatTypes )
+        foreach ( IngredientTypes.Meats meat in meatTypes )
         {
             if ( !Utilities.containsMeat(meats, meat) )
             {

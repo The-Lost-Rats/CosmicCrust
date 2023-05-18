@@ -14,7 +14,7 @@ public class Utilities
         return ( numDigits );
     }
 
-    public static bool containsMeat( List<PizzaOrder.MeatItem> meats, Constants.Meats meatType )
+    public static bool containsMeat( List<PizzaOrder.MeatItem> meats, IngredientTypes.Meats meatType )
     {
         return ( meats.FindIndex(meatItem => meatItem.meatType == meatType)  != -1 );
     }
