@@ -16,14 +16,6 @@ public class Utilities
 
     public static bool containsMeat( List<PizzaOrder.MeatItem> meats, Constants.Meats meatType )
     {
-        foreach ( PizzaOrder.MeatItem meatItem in meats )
-        {
-            if ( meatItem.meatType == meatType )
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return ( meats.FindIndex(meatItem => meatItem.meatType == meatType)  != -1 );
     }
 }

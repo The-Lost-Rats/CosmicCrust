@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
+using Random = UnityEngine.Random;
 
 // Handle generating x boxes with required list + random to reach total y
 // Send off to delivery table
@@ -11,8 +14,8 @@ public class DeliveryManager : MonoBehaviour
     public static DeliveryManager dmInstance = null;
 
     // List of all meat types cuz I couldnt generate a list of all meat types automatically cuz unity ;-;
-    [SerializeField]
-    public List<IngredientTypes.Meats> meatTypes;
+    // I was wrong - literally the first bing search pulls this up
+    public HashSet<Constants.Meats> meatTypes = Enum.GetValues(typeof(Constants.Meats)).Cast<Constants.Meats>().ToHashSet();
 
     public void Awake() {
         if ( null == dmInstance ) {
@@ -28,8 +31,10 @@ public class DeliveryManager : MonoBehaviour
     // This way, we don't have to flood the player with boxes early in the game
     public bool DeliverMeat(List<PizzaOrder.MeatItem> requiredMeats, int maxBoxesToDeliver=Constants.MAX_MEAT_DELIVERY_SPOTS)
     {
+        int totalBoxesRequired = requiredMeats.Aggregate(0, (total, meatItem) => total + meatItem.numBoxes);
+
         // Cant deliver enough
-        if ( requiredMeats.Count > Constants.MAX_MEAT_DELIVERY_SPOTS )
+        if ( totalBoxesRequired > Constants.MAX_MEAT_DELIVERY_SPOTS || maxBoxesToDeliver > Constants.MAX_MEAT_DELIVERY_SPOTS )
         {
             return false;
         }
@@ -38,7 +43,6 @@ public class DeliveryManager : MonoBehaviour
         // Set number of boxes to be delivered to be equal to required meats
         // ie. I need one box of pepperoni, but for whatever reason, I pass in maxBoxesToDeliver as 0
         // I want maxBoxesToDeliver to be 1 so I still get the pepperoni box
-        int totalBoxesRequired = GetTotalBoxesCount( requiredMeats );
         if ( maxBoxesToDeliver < totalBoxesRequired )
         {
             maxBoxesToDeliver = totalBoxesRequired;
