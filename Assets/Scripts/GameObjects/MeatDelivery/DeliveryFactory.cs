@@ -8,16 +8,20 @@ public class DeliveryFactory : MonoBehaviour
     public static DeliveryFactory dfInstance = null;
 
     [SerializeField]
-    public GameObject pepperoniBoxPrefab;
+    public GameObject meatBoxPrefab;
 
     [SerializeField]
-    public GameObject sausageBoxPrefab;
+    public Transform initializeLocation;
 
-    [SerializeField]
-    public GameObject beefBoxPrefab;
+    [System.Serializable]
+    public struct MeatImage
+    {
+        public IngredientTypes.Meats meatType;
+        public Texture2D image;
+    }
+    [SerializeField] public List<MeatImage> meatImages;
 
-    [SerializeField]
-    public GameObject chickenBoxPrefab;
+    private Hashtable meatImagesMap;
 
     public void Awake() {
         if ( null == dfInstance ) {
@@ -25,35 +29,23 @@ public class DeliveryFactory : MonoBehaviour
         } else {
             Destroy( this.gameObject );
         }
+
+        // Translate list to hash table
+        meatImagesMap = new Hashtable();
+        foreach (MeatImage image in meatImages)
+        {
+            meatImagesMap[image.meatType] = image.image;
+        }
     }
 
     // Create a meatBox
-    public GameObject CreateMeatBox(Constants.Meats meatType)
+    public GameObject CreateMeatBox(IngredientTypes.Meats meatType)
     {
-        GameObject meatBoxPrefab = null;
         GameObject meatBox = null;
 
-        switch(meatType)
-        {
-            case Constants.Meats.Pepperoni:
-                meatBoxPrefab = pepperoniBoxPrefab;
-                break;
-            case Constants.Meats.Sausage:
-                meatBoxPrefab = sausageBoxPrefab;
-                break;
-            case Constants.Meats.Beef:
-                meatBoxPrefab = beefBoxPrefab;
-                break;
-            case Constants.Meats.Chicken:
-                meatBoxPrefab = chickenBoxPrefab;
-                break;
-        }
-
-        if (meatBoxPrefab != null)
-        {
-            meatBox = Instantiate(meatBoxPrefab, meatBoxPrefab.transform.position, Quaternion.identity, transform);
-            meatBox.SetActive(true);
-        }
+        meatBox = Instantiate(meatBoxPrefab, initializeLocation.position, Quaternion.identity, transform);
+        meatBox.GetComponent<MeatBox>().SetMeat(meatType, (Texture2D)meatImagesMap[meatType]);
+        meatBox.SetActive(true);
 
         return meatBox;
     }

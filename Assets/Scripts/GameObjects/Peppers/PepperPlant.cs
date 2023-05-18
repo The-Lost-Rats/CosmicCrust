@@ -13,6 +13,8 @@ public class PepperPlant : InteractableObject
     // Pepper to grab and drop
     public DroppableObject objectPrefab;
 
+    public Texture2D fruitImage;
+
     // Current pepper instance
     private DroppableObject currInstance;
 
@@ -30,7 +32,7 @@ public class PepperPlant : InteractableObject
     private Vector3 fruitLocalScale;
 
     // Type of pepper plant
-    [SerializeField] private Constants.Peppers instanceType = Constants.Peppers.Serrano;
+    [SerializeField] private IngredientTypes.Peppers instanceType = IngredientTypes.Peppers.Serrano;
 
     // Is done growing bool
     private bool isGrown = false;
@@ -93,7 +95,7 @@ public class PepperPlant : InteractableObject
         }
     }
 
-    void Update()
+    protected override void SceneUpdate()
     {
         // Only do this stuff if the plant isn't grown
         // Plant can do nothing once it is grown
@@ -179,9 +181,10 @@ public class PepperPlant : InteractableObject
         // If we are grown, allow player to get pepper
         if (isGrown)
         {
-            SoundController.scInstance.PlaySingle("itemGrab");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             currInstance = Instantiate(objectPrefab, mousePosition, Quaternion.identity);
+            currInstance.SetDroppableSprite(fruitImage);
         }
         return InputController.InputState.Grabbing;
     }

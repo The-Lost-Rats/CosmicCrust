@@ -221,6 +221,84 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &614652259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 614652261}
+  - component: {fileID: 614652260}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &614652260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614652259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a59cd1b2fad3141905a852ea0ae2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameAudioSourcePrefab: {fileID: 1784233904488542474, guid: dc76569fb95d5e84590137cd900e34a2,
+    type: 3}
+  audioClipsList:
+  - audioClip: {fileID: 8300000, guid: 642027e6ddd0bb84aa8b872f8eed522c, type: 3}
+    volume: 1
+    audioName: 
+  - audioClip: {fileID: 8300000, guid: f17ef23436980dc428d3b9c35ca1ef6c, type: 3}
+    volume: 1
+    audioName: Cabinet Open
+  - audioClip: {fileID: 8300000, guid: e2d8a9dc1777f554e905bd75be29d479, type: 3}
+    volume: 1
+    audioName: 
+  - audioClip: {fileID: 8300000, guid: cc7a2673789421c49909fb09642ab2ef, type: 3}
+    volume: 1
+    audioName: Ding!
+  - audioClip: {fileID: 8300000, guid: 268bf2d34a43bf94a892f527e3ff3734, type: 3}
+    volume: 1
+    audioName: Error
+  - audioClip: {fileID: 8300000, guid: b035272597c57a54b87e3f05b526bac0, type: 3}
+    volume: 1
+    audioName: 
+  - audioClip: {fileID: 8300000, guid: 7fa74744d034009488d931bb1f1b7fac, type: 3}
+    volume: 1
+    audioName: 
+  - audioClip: {fileID: 8300000, guid: 8af5e8ae0040ae04180ab4debce9353e, type: 3}
+    volume: 1
+    audioName: 
+  - audioClip: {fileID: 8300000, guid: fe330ca9087e5e94d974c2305f8e41ef, type: 3}
+    volume: 1
+    audioName: 
+  musicClipsList:
+  - audioClip: {fileID: 8300000, guid: 52e1e711f5f071a43bda252d31858805, type: 3}
+    volume: 1
+    audioName: 
+--- !u!4 &614652261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614652259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354895186
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ public class VeggieWheel : InteractableObject
         return InputController.InputState.Default;
     }
 
-    private void Update()
+    protected override void SceneUpdate()
     {
         float angle;
         if (isGrabbed)

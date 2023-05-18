@@ -10,7 +10,7 @@ public class TableCheese : InteractableObject
     public GrabCheese grabCheesePrefab;
     private GrabCheese grabbedCheese;
 
-    public Constants.CheeseTypes cheeseType;
+    public IngredientTypes.CheeseTypes cheeseType;
 
     public override void OnEnter()
     {
@@ -28,7 +28,7 @@ public class TableCheese : InteractableObject
         grabbedCheese = Instantiate(grabCheesePrefab, mousePosition, Quaternion.identity, transform);
         grabbedCheese.CopyCheeseValues(this);
         SetVisible(false);
-        SoundController.scInstance.PlaySingle("itemGrab");
+        AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
         return InputController.InputState.Grabbing;
     }
 

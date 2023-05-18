@@ -11,7 +11,7 @@ public class GrabCheese : GrabbableObject
     private ParticleSystem cheeseGraterParticles;
     private Bounds cheeseBounds;
 
-    private Constants.CheeseTypes cheeseType;
+    private IngredientTypes.CheeseTypes cheeseType;
     private Vector2 lastPos;
     private bool overGrater = false;
 
@@ -19,6 +19,7 @@ public class GrabCheese : GrabbableObject
     [Range(0.1f, 0.5f)]
     private const float grateTimerStart = 0.2f;
     private float grateTimer = 0;
+    private int grateSoundId;
 
     [SerializeField]
     [Range(1, 5)]
@@ -36,7 +37,7 @@ public class GrabCheese : GrabbableObject
             grateTimer -= Time.deltaTime;
             if (grateTimer <= 0)
             {
-                SoundController.scInstance.StopLoopingSound();
+                AudioController.Instance.StopOneShotAudio(grateSoundId);
                 cheeseGraterParticles.Stop();
             }
             else if (cheeseBounds.pizzaInBounds)
@@ -60,7 +61,7 @@ public class GrabCheese : GrabbableObject
         {
             if (!cheeseGraterParticles.isPlaying)
             {
-                SoundController.scInstance.PlayLoopingSound("cheeseGrate");
+                grateSoundId = AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.CheeseGrate, true);
                 cheeseGraterParticles.Play();
             }
             grateTimer = grateTimerStart;
@@ -82,13 +83,13 @@ public class GrabCheese : GrabbableObject
         ParticleSystem.MainModule particleSystemMain = cheeseGraterParticles.main;
         switch (cheeseType)
         {
-            case Constants.CheeseTypes.Ball:
+            case IngredientTypes.CheeseTypes.Ball:
                 particleSystemMain.startColor = ballCheeseGradient;
                 break;
-            case Constants.CheeseTypes.Cube:
+            case IngredientTypes.CheeseTypes.Cube:
                 particleSystemMain.startColor = cubeCheeseGradient;
                 break;
-            case Constants.CheeseTypes.Triangle:
+            case IngredientTypes.CheeseTypes.Triangle:
                 particleSystemMain.startColor = triangleCheeseGradient;
                 break;
         }
@@ -138,7 +139,7 @@ public class GrabCheese : GrabbableObject
 
     private void OnDestroy()
     {
-        SoundController.scInstance.StopLoopingSound();
+        AudioController.Instance.StopOneShotAudio(grateSoundId);
         cheeseGraterParticles.Stop();
     }
 }

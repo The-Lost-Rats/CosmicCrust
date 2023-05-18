@@ -14,6 +14,7 @@ public class WateringCan : InteractableObject
     public override List<string> interactableObjects { get { return new List<string>(); }}
 
     private bool amHolding = false;
+    private int wateringCanAudioId;
 
     [SerializeField]
     public Sprite active;
@@ -44,13 +45,13 @@ public class WateringCan : InteractableObject
         amHolding = true;
         waterParticleSystem.Play();
         GetComponent<SpriteRenderer>().sprite  = active;
-        SoundController.scInstance.PlaySingle("itemGrab");
-        SoundController.scInstance.PlayLoopingSound("wateringCan");
+        AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.ItemGrab);
+        wateringCanAudioId = AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.WateringCan, true);
 
         return InputController.InputState.Grabbing;
     }
 
-    void Update()
+    protected override void SceneUpdate()
     {
         if (amHolding)
         {
@@ -65,7 +66,7 @@ public class WateringCan : InteractableObject
 
         waterParticleSystem.Stop();
         GetComponent<SpriteRenderer>().sprite  = inactive;
-        SoundController.scInstance.StopLoopingSound();
+        AudioController.Instance.StopOneShotAudio(wateringCanAudioId);
 
         transform.position = initPos;
 

@@ -57,7 +57,7 @@ public class PlayController : ISceneController
             {
                 int numIngredients = order.meats.Count + order.peppers.Count +
                     order.vegetables.Count + order.genericToppings.Count + (order.hasPineapple ? 1 : 0);
-                if (numIngredients > Constants.maxIngredients)
+                if (numIngredients > Constants.MAX_INGREDIENTS)
                 {
                     invalidLevels.Add(i);
                 }
@@ -120,7 +120,7 @@ public class PlayController : ISceneController
         toppingsDisplay.SetPizzaOrder(currPizzaOrder);
 
         // Ship meat
-        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats, currPizzaOrder.numMeatToShip);
+        DeliveryManager.dmInstance.DeliverMeat(currPizzaOrder.meats, currPizzaOrder.numBoxesToShip);
     }
 
     public void EndLevel()
@@ -137,7 +137,7 @@ public class PlayController : ISceneController
             // Update score
             UIController.uicInstance.SetCurrentScore(score);
 
-            SoundController.scInstance.PlaySingle("pizzaCorrect");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.PizzaCorrect);
 
             pizzaIndex++;
 
@@ -148,7 +148,7 @@ public class PlayController : ISceneController
             UIController.uicInstance.SetHearts( true );
             numLives--;
 
-            SoundController.scInstance.PlaySingle("pizzaWrong");
+            AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.PizzaIncorrect);
 
             Debug.Log("Pizza incorrect");
         }
@@ -181,7 +181,7 @@ public class PlayController : ISceneController
         }
     }
 
-    public bool SetSauce(Constants.Sauces sauce)
+    public bool SetSauce(IngredientTypes.Sauces sauce)
     {
         if (currPizzaOrder.sauce != sauce)
         {
@@ -195,7 +195,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool SetCheese(Constants.CheeseTypes cheese)
+    public bool SetCheese(IngredientTypes.CheeseTypes cheese)
     {
         if (currPizzaOrder.cheese != cheese)
         {
@@ -209,9 +209,9 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddMeat(Constants.Meats meat)
+    public bool AddMeat(IngredientTypes.Meats meat)
     {
-        if (!currPizzaOrder.meats.Contains(meat))
+        if (!Utilities.containsMeat(currPizzaOrder.meats, meat))
         {
             return false;
         }
@@ -223,7 +223,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddPepper(Constants.Peppers pepper)
+    public bool AddPepper(IngredientTypes.Peppers pepper)
     {
         if (!currPizzaOrder.peppers.Contains(pepper))
         {
@@ -237,7 +237,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddVegetable(Constants.Vegetables vegetable)
+    public bool AddVegetable(IngredientTypes.Vegetables vegetable)
     {
         if (!currPizzaOrder.vegetables.Contains(vegetable))
         {
@@ -251,7 +251,7 @@ public class PlayController : ISceneController
         return success;
     }
 
-    public bool AddGenericTopping(Constants.GenericToppings topping)
+    public bool AddGenericTopping(IngredientTypes.GenericToppings topping)
     {
         if (!currPizzaOrder.genericToppings.Contains(topping))
         {

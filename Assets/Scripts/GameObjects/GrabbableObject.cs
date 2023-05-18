@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GrabbableObject : MonoBehaviour
+public abstract class GrabbableObject : ISceneController
 {
+    override protected GameState GetGameState() { return GameState.PLAY; }
+
     [Range(5, 20)]
     [SerializeField]
     protected float fallingSpeed = 5;
@@ -11,7 +13,7 @@ public abstract class GrabbableObject : MonoBehaviour
 
     protected abstract void OnUpdate(Vector2 mousePos);
 
-    void Update()
+    protected override void SceneUpdate()
     {
         if (isFalling)
         {
