@@ -11,7 +11,7 @@ public class GameOverController : ISceneController
     void Start()
     {
         Time.timeScale = 0.0f;
-        scoreText.text = "" + PlayController.instance.score;
+        scoreText.text = "" + ScoreController.scInstance.GetCurrentScore();
     }
 
     override protected void SceneUpdate()

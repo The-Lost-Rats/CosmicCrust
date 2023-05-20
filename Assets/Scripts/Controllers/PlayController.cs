@@ -14,10 +14,8 @@ public class PlayController : ISceneController
 
     [SerializeField] private List<PizzaOrder> pizzaOrders = null;
 
-    public int score { get; private set; }
-
     private int pizzaIndex;
-    private const int MAX_SCORE = 999;
+
     private const int MAX_LIFE = 3;
     private int numLives;
 
@@ -94,11 +92,10 @@ public class PlayController : ISceneController
 
         // Initialize the game
         pizzaIndex = 0;
-        score = 0;
         numLives = MAX_LIFE;
 
         // Update score displayed by chef bot
-        UIController.uicInstance.SetCurrentScore(score);
+        UIController.uicInstance.SetCurrentScore(ScoreController.scInstance.GetCurrentScore());
 
         // Initialize hearts
         for ( int i = 0; i < numLives; i++ ) {
@@ -129,13 +126,15 @@ public class PlayController : ISceneController
         bool pizzaCorrect = currPizza.IsOrderCorrect(currPizzaOrder);
         if (pizzaCorrect)
         {
-            score += 4;
-            if (score > MAX_SCORE)
+            // TODO: think about how we want to handle communication across components?
+            // maybe we want to maek a score manager and an event system that triggers score controller?
+            // we could lessen our dependency on singletons that way maybe
+            if (ScoreController.scInstance.UpdateScore(1) > Constants.MAX_SCORE)
             {
-                score = MAX_SCORE;
+                ScoreController.scInstance.SetScore(Constants.MAX_SCORE);
             }
-            // Update score
-            UIController.uicInstance.SetCurrentScore(score);
+            // Update displayed score
+            UIController.uicInstance.SetCurrentScore(ScoreController.scInstance.GetCurrentScore());
 
             AudioController.Instance.PlayOneShotAudio(SoundEffectKeys.PizzaCorrect);
 
@@ -166,7 +165,9 @@ public class PlayController : ISceneController
         if (numLives == 0)
         {
             // You lost :(
-            UIController.uicInstance.SetFinalScore(score);
+            // TODO: do we still need this final high score stuff? with the new win/lose screens I think we just render text now?
+            UIController.uicInstance.SetFinalScore(ScoreController.scInstance.GetCurrentScore());
+            ScoreController.scInstance.SaveHighScore();
             GameController.instance.ChangeState(GameState.GAME_OVER_SCREEN);
         }
         else 
