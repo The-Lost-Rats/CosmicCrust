@@ -24,12 +24,12 @@ public class ScoreController : MonoBehaviour
         }
 
         currentScore = 0;
-        highScore = LoadScore();
+        LoadScore();
     }
 
-    private int LoadScore()
+    private void LoadScore()
     {
-        return (PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0));
+        highScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY, 0);
     }
 
     public int GetHighScore()
